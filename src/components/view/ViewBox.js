@@ -3,16 +3,19 @@ import React, {memo} from 'react'
 import { colors } from '../../constants/colors'
 
 const ViewBox = ({
+    children,
     height,
     width,
+    viewBorderStyle,
     viewboxStyle,
     ...other
 }) => {
   return (
     <View 
-        style={[ {height: height, width: width},styles.viewboxContainer, viewboxStyle]}
+        style={[ {height: height, width: width, borderStyle: viewBorderStyle},styles.viewboxContainer, viewboxStyle]}
         {...other}
     >
+      {children}
     </View>
   )
 }

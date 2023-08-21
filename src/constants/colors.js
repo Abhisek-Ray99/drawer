@@ -23,4 +23,11 @@ export const colors = {
     grey1000: '#616161',
     grey1100: '#ECECED',
     grey1200: '#7B7B7B',
+    grey1300: '#F6F6F6',
+    grey1400: '#F8F8FA',
+    grey1500: '#BDC1CE',
+    grey1600: '#FBFBFD',
+    grey1700: '#F8F8F9',
+    grey1800: '#5A5D6B',
+    grey1900: '#A5A9BC'
   };

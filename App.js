@@ -12,18 +12,22 @@ import { NavigationContainer } from '@react-navigation/native';
 import RNBootSplash from "react-native-bootsplash";
 import { globalstyles } from './src/styles/global.style';
 
+
 function App() {
 
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
+    
     <NavigationContainer onReady={() => RNBootSplash.hide()}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={'#fff'}
-      />
-      <RootNavigation />
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor={'#fff'}
+        />
+        
+        <RootNavigation />
     </NavigationContainer>
+    
   );
 }
 

@@ -7,8 +7,6 @@ import { windowWidth, windowHeight } from '../../utils/Dimension';
 const boxHeight = (windowHeight - 0 * 2)/5.8;
 const boxWidth = (windowWidth - 0 * 2)/2.24;
 
-
-
 const Dashboard = () => {
   return (
     <View style={styles.container}>

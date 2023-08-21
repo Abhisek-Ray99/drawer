@@ -10,6 +10,7 @@ import Sales from '../screens/sale/Sales';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Feather from 'react-native-vector-icons/Feather'
 import Octicons from 'react-native-vector-icons/Octicons'
+import TopTabNavigation from './TopTabNavigation';
 
 
 const Tab = createBottomTabNavigator();
@@ -42,7 +43,7 @@ const BottomTabNavigation = () => {
         }} />
       <Tab.Screen 
         name="item" 
-        component={Items}
+        component={TopTabNavigation}
         options={{
             tabBarLabel: "Items",
             headerTitle: "Items",

@@ -1,36 +1,54 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React, { useCallback, useRef, useLayoutEffect } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import React, { useCallback, useRef, useMemo } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-
+import {
+  BottomSheetModalProvider,
+} from '@gorhom/bottom-sheet';
 
 import ActionButton from './components/ActionButton'
-import BottomSheet from './components/BottomSheet'
-import { windowHeight, windowWidth } from '../../utils/Dimension'
+
+import {
+  BottomSheetModal,
+} from '@gorhom/bottom-sheet';
+import Button from './components/Button';
 
 const Items = ({navigation}) => {
+  // ref
+  const bottomSheetModalRef = useRef(null);
 
-  const ref = useRef(null)
-  const onPress = useCallback(() => {
-    const isActive = ref.current.isActive()
-    if(isActive){
-      ref.current.scrollTo(0)
-    }else{
-      navigation.getParent()?.setOptions({ tabBarStyle: { display: 'none' }, tabBarVisible: false });
-      ref.current.scrollTo(-320)
-    }
+  // variables
+  const snapPoints = useMemo(() => ['25%', '50%'], []);
+
+  // callbacks
+  const handlePresentModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.present();
+  }, []);
+  const handleSheetChanges = useCallback((index) => {
+    console.log('handleSheetChanges', index);
   }, []);
 
   return (
     <GestureHandlerRootView style={{flex: 1}}>
-      <View style={styles.container}>
-        <ActionButton 
-            onPress = {onPress}
-        />
-        <BottomSheet 
-          ref = {ref}
-        />
-      </View>
-      
+      <BottomSheetModalProvider>
+        <View style={styles.container}>
+          <ActionButton
+            onPress={handlePresentModalPress}
+            title="Present Modal"
+            color="black"
+          />
+          <BottomSheetModal
+            ref={bottomSheetModalRef}
+            index={1}
+            snapPoints={snapPoints}
+            onChange={handleSheetChanges}
+          >
+            <View style={styles.contentContainer}>
+              <Button name="Add a Item" IconName="package-variant" onPress={()=> navigation.navigate('add-item')} />
+              <Button name="Add Item via Scan" IconName="barcode-scan" onPress={()=> navigation.navigate('barcode-item')}/>
+            </View>
+          </BottomSheetModal>
+        </View>
+      </BottomSheetModalProvider>
     </GestureHandlerRootView>
   )
 }
@@ -40,21 +58,10 @@ export default Items
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  touchbutton: {
-    width: windowWidth / 10,
-    height: windowHeight / 20,
-    backgroundColor: '#C2E5FF',
-    borderRadius: 35,
+    padding: 24,
     justifyContent: 'center',
-    alignItems: 'center'
   },
-  cTitle: {
-    textAlign: 'center',
-    color: '#000000',
-    fontSize: windowHeight / 42,
-    fontWeight: 'bold',
+  contentContainer: {
+    flex: 1,
   },
 })

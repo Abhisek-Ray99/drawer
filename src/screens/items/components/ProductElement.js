@@ -1,5 +1,5 @@
-import { StyleSheet, Pressable, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Pressable, View, Modal, Text } from 'react-native'
+import React, {useState} from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { colors } from '../../../constants/colors'
 
@@ -17,6 +17,15 @@ const ProductElement = ({
   productStyle,
   onPress
 }) => {
+
+  const [visible, setVisible] = useState(false);
+  const show = () => {
+    setVisible(true)
+  }
+  const hide = () => {
+    setVisible(false)
+  }
+
   return (
     <Pressable
       onPress={onPress}
@@ -39,9 +48,23 @@ const ProductElement = ({
               </View>
           </View>
         </View>
-        <View>
+        <Pressable 
+          hitSlop={{top: 50, left: 50, right: 50, bottom: 100}}
+          pressRetentionOffset={100}
+          onPress={show}>
             <MaterialIcons name="more-vert" size={26} color={colors.grey300} />
-        </View>
+        </Pressable>
+        <Modal
+          animationType="slide"
+          visible={visible}
+          onRequestClose={hide}
+          transparent
+        >
+          <Pressable style={styles.upper} onPress={hide} />
+          <View style={styles.lower}>
+                <Text onPress={hide}>hide</Text>
+          </View>
+        </Modal>
       </View>
     </Pressable>
 
@@ -85,5 +108,15 @@ const styles = StyleSheet.create({
   },
   amountStyle:{
     paddingHorizontal: 10
+  },
+  fill:{
+    flex: 1,
+  },
+  upper:{
+    height: 100
+  },
+  lower:{
+    flex:1,
+    backgroundColor: colors.white
   }
 })

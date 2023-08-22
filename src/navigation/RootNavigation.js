@@ -66,6 +66,7 @@ const RootNavigation = () => {
                 name="category-screen"
                 component={CategoryScreen} 
                 options={{
+                    headerTitle: "cateGory",
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                     cardStyle:{
                         backgroundColor: colors.white

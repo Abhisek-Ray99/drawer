@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import React, {memo} from 'react'
 
-import { createStackNavigator } from '@react-navigation/stack';
+import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 
 import Onboarding from '../screens/onboarding/Onboarding';
 import OwnerLogin from '../screens/auth/OwnerLogin';
@@ -9,6 +9,9 @@ import StaffLogin from '../screens/auth/StaffLogin';
 import BottomTabNavigation from './BottomTabNavigation';
 import AddItem from '../screens/items/AddItem';
 import BarcodeItem from '../screens/items/BarcodeItem'
+import CategoryScreen from '../screens/items/Category.screen';
+import { colors } from '../constants/colors';
+import ProductDetailsScreen from '../screens/product/ProductDetails.screen';
 
 
 const RootStack = createStackNavigator()
@@ -58,6 +61,25 @@ const RootNavigation = () => {
                     headerTitleStyle: {display: 'none'},
                     
                 }}
+                />
+            <RootStack.Screen
+                name="category-screen"
+                component={CategoryScreen} 
+                options={{
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                    cardStyle:{
+                        backgroundColor: colors.white
+                    }
+                }}
+                
+                />
+            <RootStack.Screen
+                name="product-screen"
+                component={ProductDetailsScreen} 
+                options={{
+                    cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+                }}
+                
                 />
         </RootStack.Navigator>
     )

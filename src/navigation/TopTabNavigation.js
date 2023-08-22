@@ -1,27 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Category from '../screens/items/Category';
-import Items from '../screens/items/Items';
+import Products from '../screens/items/Products';
 
 const Tab = createMaterialTopTabNavigator();
 
 const TopTabNavigation = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarBounces: true,
+        tabBarPressOpacity: 0,
+      }}
+    >
         <Tab.Screen 
             name="products" 
-            component={Items}   
+            component={Products}   
             options={{
-                
+              
             }}
         />
         <Tab.Screen 
             name="categories" 
             component={Category} 
             options={{
-                
+              
             }}
         />
     </Tab.Navigator>
@@ -29,5 +33,3 @@ const TopTabNavigation = () => {
 }
 
 export default TopTabNavigation
-
-const styles = StyleSheet.create({})

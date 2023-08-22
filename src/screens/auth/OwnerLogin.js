@@ -51,7 +51,6 @@ export default memo(Login)
 const styles = StyleSheet.create({
   ownerLoginContainer: {
     flex: 1,
-    backgroundColor: '#F1F1F1'
   },
   ownerLoginView1: {
     flex: 1,

@@ -5,6 +5,7 @@ export const colors = {
     black: 'black',
     lightblue: '#D6D8FE',
     heavyblue: '#5b57d1',
+    blue100: '#D0BFFF',
     white: 'white',
     danger: '#E62E2E',
     danger100: '#FFE6E6',
@@ -29,5 +30,8 @@ export const colors = {
     grey1600: '#FBFBFD',
     grey1700: '#F8F8F9',
     grey1800: '#5A5D6B',
-    grey1900: '#A5A9BC'
+    grey1900: '#A5A9BC',
+    wheat100: '#F5EFE6',
+    alice: '#EFF6FF' ,
+    flashWhite: '#E4E7EE'
   };

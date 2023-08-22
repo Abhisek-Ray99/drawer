@@ -1,8 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React, {memo} from 'react'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Items from '../screens/items/Items';
 import Profile from '../screens/profile/Profile';
 import Dashboard from '../screens/dashboard/Dashboard';
 import Sales from '../screens/sale/Sales';
@@ -90,5 +88,3 @@ const BottomTabNavigation = () => {
 }
 
 export default memo(BottomTabNavigation)
-
-const styles = StyleSheet.create({})

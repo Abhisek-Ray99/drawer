@@ -23,6 +23,6 @@ export default memo(AppText)
 const styles = StyleSheet.create({
   text: {
     fontSize: 14,
-    color: colors.black,
+    color: colors.black
   },
 })

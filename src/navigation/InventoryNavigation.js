@@ -14,7 +14,8 @@ const InventoryNavigation = () => {
     <Drawer.Navigator
         screenOptions={{
             headerShown: false,
-            drawerType: 'slide'
+            drawerType: 'slide',
+            drawerStyle: { width: '85%' }
         }}
     >
       <Drawer.Screen 

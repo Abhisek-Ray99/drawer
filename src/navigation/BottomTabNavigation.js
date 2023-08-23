@@ -9,6 +9,7 @@ import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Feather from 'react-native-vector-icons/Feather'
 import Octicons from 'react-native-vector-icons/Octicons'
 import TopTabNavigation from './TopTabNavigation';
+import Transactions from '../screens/transactions/Transactions';
 
 
 const Tab = createBottomTabNavigator();
@@ -33,8 +34,7 @@ const BottomTabNavigation = () => {
         component={Dashboard} 
         options={{
             tabBarLabel: "Dashboard",
-            headerTitle: "Dashboard",
-            headerLeft: null,
+            headerShown: false,
             tabBarIcon: ({focused}) => (
                 <Icons name="view-dashboard-outline" size={22} color={focused? 'blue':'grey'} />
             ),
@@ -63,7 +63,7 @@ const BottomTabNavigation = () => {
         }} />
       <Tab.Screen 
         name="transactions" 
-        component={Profile}
+        component={Transactions}
         options={{
             tabBarLabel: "Transactions",
             headerTitle: "Transactions",

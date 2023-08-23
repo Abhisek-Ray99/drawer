@@ -1,29 +1,42 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import CategoryElement from './components/CategoryElement'
+import { products } from '../../data/data'
 
 const Category = ({navigation}) => {
+
+  const categoriesList = {}
+  products.map((item) => {
+    if(categoriesList.hasOwnProperty(item.category)){
+      categoriesList[item.category] += 1;
+    }else{
+      categoriesList[item.category] = 1;
+    }
+  })
+
+  const categoriesData = Object.keys(categoriesList).map(categoryName => ({
+    categoryName,
+    totalItems: categoriesList[categoryName]
+  }));
+
   return (
     <View style={styles.categoryContainer}>
-      <CategoryElement 
-        categoryName={"Items Not in Any Category"} 
-        totalItems={1}  
-        onPress={()=> navigation.navigate('category-screen')} />
-      <CategoryElement 
-        categoryName={"Pants👖"} 
-        totalItems={1}
-        onPress={()=> navigation.navigate('category-screen')} />
-      <CategoryElement 
-        categoryName={"Shirts👕"} 
-        totalItems={23}
-        onPress={()=> navigation.navigate('category-screen')} />
-      <CategoryElement 
-        categoryName={"Perfumes"} 
-        totalItems={0}
-        onPress={()=> navigation.navigate('category-screen')} />
+      <FlatList
+        data={categoriesData }
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        renderItem={({item}) =>(
+          <CategoryElement 
+            categoryName={item.categoryName} 
+            totalItems={item.totalItems}  
+            onPress={()=> navigation.navigate('category-screen')} />
+        )}
+        keyExtractor={(item) => item.categoryName}
+      />
     </View>
   )
 }
+
 
 export default Category
 

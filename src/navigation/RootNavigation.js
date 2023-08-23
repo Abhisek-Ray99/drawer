@@ -6,12 +6,12 @@ import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/
 import Onboarding from '../screens/onboarding/Onboarding';
 import OwnerLogin from '../screens/auth/OwnerLogin';
 import StaffLogin from '../screens/auth/StaffLogin';
-import BottomTabNavigation from './BottomTabNavigation';
 import AddItem from '../screens/items/AddItem';
 import BarcodeItem from '../screens/items/BarcodeItem'
 import CategoryScreen from '../screens/items/Category.screen';
 import { colors } from '../constants/colors';
 import ProductDetailsScreen from '../screens/product/ProductDetails.screen';
+import InventoryNavigation from './InventoryNavigation';
 
 
 const RootStack = createStackNavigator()
@@ -41,7 +41,7 @@ const RootNavigation = () => {
                 }} />
             <RootStack.Screen
                 name="home"
-                component={BottomTabNavigation} 
+                component={InventoryNavigation} 
                 options={{
                     headerShown: false,
                 }}/>

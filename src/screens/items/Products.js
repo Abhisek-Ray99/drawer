@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useCallback, useRef, useMemo } from 'react'
+import { StyleSheet, Text, View, FlatList } from 'react-native'
+import React, { useCallback, useRef, useMemo,useState } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import {
   BottomSheetModalProvider,
@@ -13,6 +13,11 @@ import {
 import Button from './components/Button';
 import { colors } from '../../constants/colors';
 import ProductElement from './components/ProductElement';
+
+import { products } from '../../data/data';
+
+import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
+
 
 const Products = ({navigation}) => {
   // ref
@@ -29,16 +34,79 @@ const Products = ({navigation}) => {
     console.log('handleSheetChanges', index);
   }, []);
 
+  const [visible, setVisible] = useState(false);
+  const show = () => {
+    setVisible(true)
+    console.log("hide")
+  }
+  const hide = () => {
+    setVisible(false)
+  }
+
+  const lastContentOffset = useSharedValue(0);
+  const isScrolling = useSharedValue(false);
+  const translateY = useSharedValue(0);
+
+  const actionBarStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateY: withTiming(translateY.value, {
+            duration: 300,
+            easing: Easing.inOut(Easing.ease),
+          }),
+        },
+      ],
+    };
+  });
+
+
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      if (
+        lastContentOffset.value > event.contentOffset.y &&
+        isScrolling.value
+      ) {
+        translateY.value = -2;
+        console.log("scrolling up");
+      } else if (
+        lastContentOffset.value < event.contentOffset.y &&
+        isScrolling.value
+      ) {
+        translateY.value = 100;
+        console.log("scrolling down");
+      }
+      lastContentOffset.value = event.contentOffset.y;
+    },
+    onBeginDrag: (e) => {
+      isScrolling.value = true;
+    },
+    onEndDrag: (e) => {
+      isScrolling.value = false;
+    },
+  });
+
   return (
       <GestureHandlerRootView style={{flex: 1}}>
         <BottomSheetModalProvider>
-          <View style={styles.container}>
-            <ProductElement onPress={()=> navigation.navigate('product-screen')} />
-            <ActionButton
-              onPress={handlePresentModalPress}
-              title="Present Modal"
-              color="black"
-            />
+          <View style={[styles.container, ]}>
+              <Animated.FlatList
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                data={products}
+                renderItem={({item}) => <ProductElement item={item} onPress={()=> navigation.navigate('product-screen')} show={show} hide={hide} visible={visible} />}
+                keyExtractor={item => item.id}
+                style={styles.productflatlist}
+                scrollEventThrottle={16}
+                onScroll={scrollHandler}
+              />
+            <Animated.View style={actionBarStyle}>
+              <ActionButton
+                onPress={handlePresentModalPress}
+                title="Present Modal"
+                color="black"
+              />
+            </Animated.View>
             <BottomSheetModal
               ref={bottomSheetModalRef}
               index={1}
@@ -61,10 +129,12 @@ export default Products
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10
   },
   contentContainer: {
     flex: 1,
     backgroundColor: colors.wheat100
   },
+  productflatlist:{
+    padding: 10,
+  }
 })

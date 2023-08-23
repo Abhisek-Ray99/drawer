@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable, View, Modal, Text } from 'react-native'
+import { StyleSheet, Pressable, View, Modal, Text, Image } from 'react-native'
 import React, {useState} from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { colors } from '../../../constants/colors'
@@ -12,44 +12,53 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 const boxHeight = (windowHeight - 0 * 2)/12;
 const boxWidth = (windowWidth - 0 * 2)/5;
 
+
 const ProductElement = ({
+  item,
   productImg=null,
   productStyle,
-  onPress
+  onPress,
+  show,
+  hide,
+  visible
 }) => {
-
-  const [visible, setVisible] = useState(false);
-  const show = () => {
-    setVisible(true)
-  }
-  const hide = () => {
-    setVisible(false)
-  }
 
   return (
     <Pressable
       onPress={onPress}
     >
-      <View style={styles.productContainer}>
+      <View style={[styles.productContainer]}>
         <View style={[styles.productContainer1, productStyle]}>
           <View>
-            {productImg ? {productImg} : (
+            {item.img ? 
+            <Image
+            style={styles.tinyLogo}
+            source={{
+              uri: item.img,
+            }}
+          />
+          : (
               <View style={styles.imgstyle}>
                 <MaterialCommunityIcons name="package" size={44} color={colors.grey1900} />
               </View>
             )}
           </View>
           <View style={styles.desc}>
-              <AppText style={styles.idstyle}>DFRIE456778</AppText>
-              <AppText style={styles.productName}>Nivea Perfumes</AppText>
-              <View style={styles.unitPrice}>
-                <Tag>1 Unit</Tag>
-                <AppText style={styles.amountStyle}>$6789</AppText>
+              <AppText style={styles.idstyle}>{item.id}</AppText>
+              <AppText style={styles.productName}>{item.name}</AppText>
+              <View style={styles.tags}>
+                <View style={styles.unitPrice}>
+                  <Tag>{item.count +" "+item.unit}</Tag>
+                  <AppText style={styles.amountStyle}>${item.price}</AppText>
+                </View>
+                <Tag boxColor={colors.green100} titleColor={colors.greenheavy} borderColor={colors.greenheavy} borderW={0.5}>{item.category}</Tag>
               </View>
           </View>
         </View>
         <Pressable 
-          hitSlop={{top: 50, left: 50, right: 50, bottom: 100}}
+          style={{position: 'absolute', right: 10, top: 10}}
+          hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+          android_ripple={{color: colors.grey1900, borderless: true}}
           pressRetentionOffset={100}
           onPress={show}>
             <MaterialIcons name="more-vert" size={26} color={colors.grey300} />
@@ -60,7 +69,7 @@ const ProductElement = ({
           onRequestClose={hide}
           transparent
         >
-          <Pressable style={styles.upper} onPress={hide} />
+          <Pressable style={styles.upper} onPress={hide}  />
           <View style={styles.lower}>
                 <Text onPress={hide}>hide</Text>
           </View>
@@ -79,7 +88,8 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     padding: 10,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    margin: 4
   },
   productContainer1:{
     flexDirection: 'row'
@@ -113,10 +123,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   upper:{
-    height: 100
+    height: 155,
   },
   lower:{
     flex:1,
-    backgroundColor: colors.white
+    backgroundColor: colors.white,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+  },
+  tinyLogo: {
+    height: boxHeight,
+    width: boxWidth,
+  },
+  tags:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   }
 })

@@ -33,5 +33,7 @@ export const colors = {
     grey1900: '#A5A9BC',
     wheat100: '#F5EFE6',
     alice: '#EFF6FF' ,
-    flashWhite: '#E4E7EE'
+    flashWhite: '#E4E7EE',
+    green100: '#ECFDF5',
+    greenheavy: '#1A9B74'
   };

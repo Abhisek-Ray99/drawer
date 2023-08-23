@@ -7,9 +7,11 @@ const Tag = ({
     children,
     boxColor=colors.grey100,
     titleColor=colors.heavyblue,
+    borderColor=null,
+    borderW=null
 }) => {
   return (
-    <View style={[{ backgroundColor: boxColor}, styles.tagStyle]}>
+    <View style={[{ backgroundColor: boxColor, borderWidth:borderW , borderColor: borderColor}, styles.tagStyle]}>
       <AppText style={[{color: titleColor}, styles.tagText]}>{children.toUpperCase()}</AppText>
     </View>
   )

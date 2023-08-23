@@ -13,22 +13,14 @@ const InventoryNavigation = () => {
   return (
     <Drawer.Navigator
         screenOptions={{
-            drawerType: 'slide',
-            drawerStyle: { width: '85%' }
+            headerShown: false,
+            drawerType: 'slide'
         }}
     >
       <Drawer.Screen 
         name="shop1" 
         component={BottomTabNavigation} 
         options={{
-            headerTitle:"Shop1",
-            drawerIcon: ({focused, size}) => (
-                <Ionicons
-                   name="md-home"
-                   size={size}
-                   color={focused ? '#7cc' : '#ccc'}
-                />
-             ),
              
         }}
       />
@@ -36,15 +28,7 @@ const InventoryNavigation = () => {
         name="shop2" 
         component={BottomTabNavigation} 
         options={{
-            headerTitle:"Shop2",
-            drawerIcon: ({focused, size}) => (
-                <Ionicons
-                   name="md-home"
-                   size={size}
-                   color={focused ? '#7cc' : '#ccc'}
-                />
-             ),
-             
+            
         }}
       />
     </Drawer.Navigator>

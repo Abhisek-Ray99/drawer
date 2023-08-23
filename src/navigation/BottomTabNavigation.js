@@ -34,7 +34,8 @@ const BottomTabNavigation = () => {
         component={Dashboard} 
         options={{
             tabBarLabel: "Dashboard",
-            headerShown: false,
+            headerTitle: "Dashboard",
+            headerLeft: null,
             tabBarIcon: ({focused}) => (
                 <Icons name="view-dashboard-outline" size={22} color={focused? 'blue':'grey'} />
             ),

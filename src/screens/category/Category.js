@@ -29,7 +29,7 @@ const Category = ({navigation}) => {
           <CategoryElement 
             categoryName={item.categoryName} 
             totalItems={item.totalItems}  
-            onPress={()=> navigation.navigate('category-screen')} />
+            onPress={()=> navigation.navigate('category-screen', { categoryName: item.categoryName})} />
         )}
         keyExtractor={(item) => item.categoryName}
       />

@@ -68,14 +68,13 @@ const RootNavigation = () => {
             <RootStack.Screen
                 name="category-screen"
                 component={CategoryScreen} 
-                options={{
-                    headerTitle: "cateGory",
+                options={({ route }) => ({
+                    title: route.params.categoryName,
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-                    cardStyle:{
+                    cardStyle: {
                         backgroundColor: colors.white
                     }
-                }}
-                
+                })}
                 />
             <RootStack.Screen
                 name="product-screen"

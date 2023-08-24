@@ -27,18 +27,21 @@ const CustomDrawerContent = () => {
             <View style={styles.preferenceView}>
                 <TextBtn 
                     TextTitle="Create a new inventory" 
+                    onPress={()=> navigation.navigate('create-inventory')}
                     leftIcon={
                         <Ionicons name="add-circle-outline" size={24} />
                     } 
                 />
                 <TextBtn 
                     TextTitle="View Members" 
+                    onPress={()=> navigation.navigate('view-members')}
                     leftIcon={
                         <Ionicons name="people-outline" size={24} />
                     } 
                 />
                 <TextBtn 
                     TextTitle="Preferences" 
+                    onPress={()=> navigation.navigate('preferences')}
                     leftIcon={
                         <Ionicons name="settings-outline" size={24} />
                     } 

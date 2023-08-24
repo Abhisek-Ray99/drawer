@@ -7,12 +7,14 @@ const TextBtn = ({
     leftIcon=null,
     TextTitle,
     rightIcon=null,
-    TextStyle
+    TextStyle,
+    onPress
 }) => {
   return (
     <Pressable 
         android_ripple={{color: colors.grey1900, borderless: false}}
         style={styles.TextBtnView}
+        onPress={onPress}
     >
         {leftIcon}
         <AppText style={[styles.TextBtnText, TextStyle]}>{TextTitle}</AppText>

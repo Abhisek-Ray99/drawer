@@ -12,6 +12,9 @@ import CategoryScreen from '../screens/items/Category.screen';
 import { colors } from '../constants/colors';
 import ProductDetailsScreen from '../screens/product/ProductDetails.screen';
 import InventoryNavigation from './InventoryNavigation';
+import CreateInventoryScreen from '../screens/Inventory/CreateInventory.screen';
+import ViewMembersScreen from '../screens/members/ViewMembers.screen';
+import PreferencesScreen from '../screens/preferences/Preferences.screen';
 
 
 const RootStack = createStackNavigator()
@@ -79,6 +82,33 @@ const RootNavigation = () => {
                 component={ProductDetailsScreen} 
                 options={{
                     cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+                }}
+                
+                />
+            <RootStack.Screen
+                name="create-inventory"
+                component={CreateInventoryScreen} 
+                options={{
+                    headerTitle: 'Create a new inventory',
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                }}
+                
+                />
+            <RootStack.Screen
+                name="view-members"
+                component={ViewMembersScreen} 
+                options={{
+                    headerTitle: 'View Members',
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                }}
+                
+                />
+            <RootStack.Screen
+                name="preferences"
+                component={PreferencesScreen} 
+                options={{
+                    headerTitle: 'Preferences',
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                 }}
                 
                 />

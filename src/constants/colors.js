@@ -31,6 +31,7 @@ export const colors = {
     grey1700: '#F8F8F9',
     grey1800: '#5A5D6B',
     grey1900: '#A5A9BC',
+    grey2000: '#F7F8FA',
     wheat100: '#F5EFE6',
     alice: '#EFF6FF' ,
     flashWhite: '#E4E7EE',

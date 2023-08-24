@@ -3,6 +3,7 @@ import React, {memo} from 'react'
 import ViewBox from '../../components/view/ViewBox'
 
 import { windowWidth, windowHeight } from '../../utils/Dimension';
+import { colors } from '../../constants/colors';
 
 const boxHeight = (windowHeight - 0 * 2)/5.8;
 const boxWidth = (windowWidth - 0 * 2)/2.24;
@@ -36,7 +37,8 @@ const styles = StyleSheet.create({
   },
   container1: {
     flex: 2,
-    padding: 16
+    padding: 16,
+    backgroundColor: colors.grey2000
   },
   container2: {
     flex: 1

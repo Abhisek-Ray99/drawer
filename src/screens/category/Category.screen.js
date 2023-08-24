@@ -8,7 +8,6 @@ import ProductElement from '../product/components/ProductElement'
 const CategoryScreen = ({route, navigation}) => {
   // console.log(route.params.categoryName);
   const items = products.filter((item) => item.category == route.params.categoryName)
-  console.log(items)
 
   const [visible, setVisible] = useState(false);
   const show = () => {

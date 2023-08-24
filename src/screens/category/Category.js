@@ -1,5 +1,5 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 import CategoryElement from './components/CategoryElement'
 import { products } from '../../data/data'
 
@@ -38,7 +38,7 @@ const Category = ({navigation}) => {
 }
 
 
-export default Category
+export default memo(Category)
 
 const styles = StyleSheet.create({
   categoryContainer:{

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 import InputField from '../../../components/input/InputField'
 import { colors } from '../../../constants/colors'
 
@@ -23,7 +23,7 @@ const ItemInputField = ({
   )
 }
 
-export default ItemInputField
+export default memo(ItemInputField)
 
 const styles = StyleSheet.create({
     labelView: {

@@ -1,5 +1,5 @@
 import { StyleSheet, Pressable, View, Modal, Text, Image } from 'react-native'
-import React, {useState} from 'react'
+import React, {useState, memo} from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { colors } from '../../../constants/colors'
 
@@ -80,7 +80,7 @@ const ProductElement = ({
   )
 }
 
-export default ProductElement
+export default memo(ProductElement)
 
 const styles = StyleSheet.create({
   productContainer:{

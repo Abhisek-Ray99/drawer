@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 
 import { 
   createDrawerNavigator,
@@ -40,6 +40,6 @@ const InventoryNavigation = () => {
   )
 }
 
-export default InventoryNavigation
+export default memo(InventoryNavigation)
 
 const styles = StyleSheet.create({})

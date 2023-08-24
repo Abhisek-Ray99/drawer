@@ -1,5 +1,5 @@
 import { StyleSheet, Pressable } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 import AppText from '../text/AppText'
 import { colors } from '../../constants/colors'
 
@@ -23,7 +23,7 @@ const TextBtn = ({
   )
 }
 
-export default TextBtn
+export default memo(TextBtn)
 
 const styles = StyleSheet.create({
     TextBtnView:{

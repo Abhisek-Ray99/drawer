@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 
 const PreferencesScreen = () => {
   return (
@@ -9,6 +9,6 @@ const PreferencesScreen = () => {
   )
 }
 
-export default PreferencesScreen
+export default memo(PreferencesScreen)
 
 const styles = StyleSheet.create({})

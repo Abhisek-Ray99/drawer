@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -51,7 +51,7 @@ const CustomDrawerContent = () => {
     )
 }
 
-export default CustomDrawerContent
+export default memo(CustomDrawerContent)
 
 const styles = StyleSheet.create({
     drawerContainer:{

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import { colors } from '../../constants/colors'
 
 
@@ -25,7 +25,7 @@ const InputField = ({
   )
 }
 
-export default InputField
+export default memo(InputField)
 
 const styles = StyleSheet.create({
   input: {

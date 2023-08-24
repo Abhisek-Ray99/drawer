@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 
 const Profile = () => {
   return (
@@ -9,6 +9,6 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default memo(Profile)
 
 const styles = StyleSheet.create({})

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 import AppText from '../text/AppText'
 import { colors } from '../../constants/colors'
 
@@ -17,7 +17,7 @@ const Tag = ({
   )
 }
 
-export default Tag
+export default memo(Tag)
 
 const styles = StyleSheet.create({
     tagStyle: {

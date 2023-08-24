@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 
 const ProductDetailsScreen = () => {
   return (
@@ -9,6 +9,6 @@ const ProductDetailsScreen = () => {
   )
 }
 
-export default ProductDetailsScreen
+export default memo(ProductDetailsScreen)
 
 const styles = StyleSheet.create({})

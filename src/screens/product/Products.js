@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
-import React, { useCallback, useRef, useMemo,useState } from 'react'
+import React, { useCallback, useRef, useMemo,useState, memo } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import {
   BottomSheetModalProvider,
@@ -124,7 +124,7 @@ const Products = ({navigation}) => {
   )
 }
 
-export default Products
+export default memo(Products);
 
 const styles = StyleSheet.create({
   container: {

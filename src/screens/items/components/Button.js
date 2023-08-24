@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { windowHeight } from '../../../utils/Dimension'
@@ -13,7 +13,7 @@ const Button = ({name, IconName, ...other}) => {
   )
 }
 
-export default Button
+export default memo(Button)
 
 const styles = StyleSheet.create({
     btn: {

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 
 const Transactions = () => {
   return (
@@ -9,6 +9,6 @@ const Transactions = () => {
   )
 }
 
-export default Transactions
+export default memo(Transactions)
 
 const styles = StyleSheet.create({})

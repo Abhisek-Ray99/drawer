@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import AppText from '../../../components/text/AppText'
@@ -19,7 +19,7 @@ const ImageSelect = () => {
   )
 }
 
-export default ImageSelect
+export default memo(ImageSelect)
 
 const styles = StyleSheet.create({
   viewbox:{

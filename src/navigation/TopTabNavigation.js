@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Category from '../screens/category/Category';
@@ -32,4 +32,4 @@ const TopTabNavigation = () => {
   )
 }
 
-export default TopTabNavigation
+export default memo(TopTabNavigation)

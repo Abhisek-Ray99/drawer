@@ -1,5 +1,5 @@
 import { StyleSheet, Pressable } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 import AppText from './AppText'
 
 import { colors } from '../../constants/colors'
@@ -22,7 +22,7 @@ const TextLink = ({
   )
 }
 
-export default TextLink
+export default memo(TextLink)
 
 const styles = StyleSheet.create({
     color: {

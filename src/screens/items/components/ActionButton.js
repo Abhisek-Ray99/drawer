@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { windowHeight, windowWidth } from '../../../utils/Dimension'
 
@@ -19,7 +19,7 @@ const ActionButton = ({onPress}) => {
   )
 }
 
-export default ActionButton
+export default memo(ActionButton)
 
 const styles = StyleSheet.create({
     ABtn: {

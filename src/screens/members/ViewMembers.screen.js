@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 
 const ViewMembersScreen = () => {
   return (
@@ -9,6 +9,6 @@ const ViewMembersScreen = () => {
   )
 }
 
-export default ViewMembersScreen
+export default memo(ViewMembersScreen)
 
 const styles = StyleSheet.create({})

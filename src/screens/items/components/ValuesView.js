@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 
 import { windowHeight, windowWidth } from '../../../utils/Dimension'
 import { colors } from '../../../constants/colors';
@@ -19,7 +19,7 @@ const ValuesView = () => {
   )
 }
 
-export default ValuesView
+export default memo(ValuesView)
 
 const styles = StyleSheet.create({
   container: {

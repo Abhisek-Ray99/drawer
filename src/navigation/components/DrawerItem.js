@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 import AppText from '../../components/text/AppText'
 
 import { windowHeight, windowWidth } from '../../utils/Dimension';
@@ -44,7 +44,7 @@ const DrawerItem = ({
   )
 }
 
-export default DrawerItem
+export default memo(DrawerItem)
 
 const styles = StyleSheet.create({
     drawerItemView: {

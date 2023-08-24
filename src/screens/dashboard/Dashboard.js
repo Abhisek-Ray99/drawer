@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 import ViewBox from '../../components/view/ViewBox'
 
 import { windowWidth, windowHeight } from '../../utils/Dimension';
@@ -28,7 +28,7 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default memo(Dashboard)
 
 const styles = StyleSheet.create({
   container: {

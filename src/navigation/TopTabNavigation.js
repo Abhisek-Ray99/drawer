@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Category from '../screens/items/Category';
-import Products from '../screens/items/Products';
+import Category from '../screens/category/Category';
+import Products from '../screens/product/Products';
 
 const Tab = createMaterialTopTabNavigator();
 

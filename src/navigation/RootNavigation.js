@@ -8,7 +8,7 @@ import OwnerLogin from '../screens/auth/OwnerLogin';
 import StaffLogin from '../screens/auth/StaffLogin';
 import AddItem from '../screens/items/AddItem';
 import BarcodeItem from '../screens/items/BarcodeItem'
-import CategoryScreen from '../screens/items/Category.screen';
+import CategoryScreen from '../screens/category/Category.screen';
 import { colors } from '../constants/colors';
 import ProductDetailsScreen from '../screens/product/ProductDetails.screen';
 import InventoryNavigation from './InventoryNavigation';

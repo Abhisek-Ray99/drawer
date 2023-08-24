@@ -5,12 +5,12 @@ import {
   BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
 
-import ActionButton from './components/ActionButton'
+import ActionButton from '../items/components/ActionButton'
 
 import {
   BottomSheetModal,
 } from '@gorhom/bottom-sheet';
-import Button from './components/Button';
+import Button from '../items/components/Button';
 import { colors } from '../../constants/colors';
 import ProductElement from './components/ProductElement';
 

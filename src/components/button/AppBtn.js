@@ -17,6 +17,7 @@ const AppBtn = ({
 }) => {
   return (
     <Pressable
+        android_ripple={{color: colors.grey1900, borderless: false}}
         style={[
         styles.button,
         {backgroundColor: colors[disabled ? 'grey300' : color]},

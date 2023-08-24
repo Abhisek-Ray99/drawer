@@ -15,29 +15,32 @@ const DrawerItem = ({
     img=null
 }) => {
   return (
-    <Pressable 
-        onPress={onPress} 
-        android_ripple={{color: colors.grey1900, borderless: false}}
-        style={styles.drawerItemView}>
-        <View style={styles.drawerItemView2}>
-            {img ? 
-                <Image
-                    style={styles.tinyLogo}
-                    source={{
-                    uri: item.img,
-                    }}
-                /> 
-            : 
-                <View style={styles.imgstyle}>
-                    <AppText>{ItemTitle.charAt(0).toUpperCase()}</AppText>
-                </View> 
-            }
-            <AppText style={styles.itemText}>{ItemTitle}</AppText>
-        </View>
-        <View>
-            <MaterialIcons name="more-vert" size={26} color={colors.grey300} />
-        </View>
-    </Pressable>
+    <View style={{ borderRadius: 10, overflow: 'hidden' }}>
+        <Pressable 
+            onPress={onPress} 
+            android_ripple={{color: colors.grey1900, borderless: false}}
+            style={styles.drawerItemView}>
+            <View style={styles.drawerItemView2}>
+                {img ? 
+                    <Image
+                        style={styles.tinyLogo}
+                        source={{
+                        uri: item.img,
+                        }}
+                    /> 
+                : 
+                    <View style={styles.imgstyle}>
+                        <AppText style={{fontSize: 22, fontWeight: '700'}}>{ItemTitle.charAt(0).toUpperCase()}</AppText>
+                    </View> 
+                }
+                <AppText style={styles.itemText}>{ItemTitle}</AppText>
+            </View>
+            <View>
+                <MaterialIcons name="more-vert" size={26} color={colors.grey300} />
+            </View>
+        </Pressable>
+    </View>
+    
   )
 }
 

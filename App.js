@@ -15,7 +15,6 @@ import { colors } from './src/constants/colors';
 
 
 function App() {
-
   const isDarkMode = useColorScheme() === 'dark';
   const MyTheme = {
     ...DefaultTheme,
@@ -24,8 +23,6 @@ function App() {
       background: colors.white
     },
   };
-  
-
   return (
     
     <NavigationContainer theme={MyTheme} onReady={() => RNBootSplash.hide()}>

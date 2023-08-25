@@ -12,7 +12,7 @@ export const products = [
       img: "https://picsum.photos/200",
       id: "EEFET4568",
       name: "Milton Bottle",
-      count: "1.5",
+      count: "1",
       unit: "Litre",
       price: "5450",
       category: "Water Bottle"
@@ -88,5 +88,57 @@ export const products = [
       unit: "units",
       price: "200",
       category: "Computer Supplied"
-    }
+    },
   ]
+
+const users = [
+  {
+    mail: "abc@gmail.com",
+    password: "abcdefg",
+    type: "owner",
+    invetories: [
+      {
+        name: "shop1",
+        items: products.slice(0,3)
+      },
+      {
+        name: "shop2",
+        items: products.slice(0,2)
+      },
+      {
+        name: "shop3",
+        items: products.slice(0,6)
+      }
+    ]
+  },
+  {
+    mail: "def@gmail.com",
+    password: "defghij",
+    type: "staff",
+    invetories: [
+      {
+        name: "shop1",
+        items: products.slice(0,2)
+      },
+      {
+        name: "shop3",
+        items: products
+      },
+    ]
+  },
+  {
+    mail: "ghi@gmail.com",
+    password: "ghijklm",
+    type: "staff",
+    invetories: [
+      {
+        name: "shop1",
+        items: products.slice(2,10)
+      },
+      {
+        name: "shop2",
+        items: products
+      },
+    ]
+  }
+]

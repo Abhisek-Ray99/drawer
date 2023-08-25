@@ -6,6 +6,7 @@ import { windowWidth, windowHeight } from '../../utils/Dimension';
 import { colors } from '../../constants/colors';
 
 import { products } from '../../data/data';
+import Summary from './components/Summary';
 
 const boxHeight = (windowHeight - 0 * 2)/5.8;
 const boxWidth = (windowWidth - 0 * 2)/2.24;
@@ -16,7 +17,7 @@ const Dashboard = () => {
       <View style={styles.container1}>
         <View style={styles.container11}>
           <ViewBox height={'100%'} viewboxStyle={styles.mainview}>
-            
+            <Summary/>
           </ViewBox>
         </View>
         <View style={styles.container12}>

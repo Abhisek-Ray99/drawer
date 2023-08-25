@@ -11,6 +11,7 @@ import CustomDrawerContent from './components/CustomDrawerContent';
 
 const Drawer = createDrawerNavigator();
 
+
 const InventoryNavigation = () => {
   return (
     <Drawer.Navigator

@@ -22,10 +22,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingVertical: 10,
         borderBottomWidth: 1,
         borderBottomColor: colors.grey100,
-        paddingVertical: 20
+        paddingVertical: 20,
+        paddingHorizontal: 20
     },
     categoryText: {
         color: colors.black,

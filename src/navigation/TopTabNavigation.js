@@ -12,6 +12,7 @@ const TopTabNavigation = () => {
       screenOptions={{
         tabBarBounces: true,
         tabBarPressOpacity: 0,
+
       }}
     >
         <Tab.Screen 

@@ -28,7 +28,7 @@ function App() {
     <NavigationContainer theme={MyTheme} onReady={() => RNBootSplash.hide()}>
         <StatusBar
           barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={'#fff'}
+          backgroundColor="transparent"
         />
         <RootNavigation />
     </NavigationContainer>

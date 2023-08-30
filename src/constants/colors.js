@@ -5,6 +5,7 @@ export const colors = {
     black: 'black',
     lightblue: '#D6D8FE',
     heavyblue: '#5b57d1',
+    profileblue: '#486BD5',
     blue100: '#D0BFFF',
     white: 'white',
     danger: '#E62E2E',
@@ -32,9 +33,17 @@ export const colors = {
     grey1800: '#5A5D6B',
     grey1900: '#A5A9BC',
     grey2000: '#F7F8FA',
+    grey2100: '#DFE3E6',
     wheat100: '#F5EFE6',
     alice: '#EFF6FF' ,
     flashWhite: '#E4E7EE',
     green100: '#ECFDF5',
-    greenheavy: '#1A9B74'
+    greenheavy: '#1A9B74',
+    aliceblue: '#E5F3FE',
+    aliceblue1: '#F5F3FF',
+    dodgerblue: '#0886F8',
+    red100: '#FFE4DD',
+    redheavy100: '#F07C62',
+    green200: '#D1F2E7',
+    greenheavy100: '#25C48B'
   };

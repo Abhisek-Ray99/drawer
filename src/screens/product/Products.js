@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, Text, View, FlatList, SafeAreaView } from 'react-native'
 import React, { useCallback, useRef, useMemo,useState, memo } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import {
@@ -17,6 +17,7 @@ import ProductElement from './components/ProductElement';
 import { products } from '../../data/data';
 
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
+import SearchFilter from '../../components/input/Search&Filter';
 
 
 const Products = ({navigation}) => {
@@ -31,13 +32,13 @@ const Products = ({navigation}) => {
     bottomSheetModalRef.current?.present();
   }, []);
   const handleSheetChanges = useCallback((index) => {
-    console.log('handleSheetChanges', index);
+    // console.log('handleSheetChanges', index);
   }, []);
 
   const [visible, setVisible] = useState(false);
   const show = () => {
     setVisible(true)
-    console.log("hide")
+    // console.log("hide")
   }
   const hide = () => {
     setVisible(false)
@@ -53,6 +54,19 @@ const Products = ({navigation}) => {
         {
           translateY: withTiming(translateY.value, {
             duration: 300,
+            easing: Easing.inOut(Easing.quad),
+          }),
+        },
+      ],
+    };
+  });
+
+  const searchFilterStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateY: withTiming(translateY.value , {
+            duration: 300,
             easing: Easing.inOut(Easing.ease),
           }),
         },
@@ -60,21 +74,20 @@ const Products = ({navigation}) => {
     };
   });
 
-
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
       if (
         lastContentOffset.value > event.contentOffset.y &&
         isScrolling.value
       ) {
-        translateY.value = -2;
-        console.log("scrolling up");
+        translateY.value = 0;
+        // console.log("scrolling up");
       } else if (
         lastContentOffset.value < event.contentOffset.y &&
         isScrolling.value
       ) {
-        translateY.value = 100;
-        console.log("scrolling down");
+        translateY.value = 110;
+        // console.log("scrolling down");
       }
       lastContentOffset.value = event.contentOffset.y;
     },
@@ -89,8 +102,12 @@ const Products = ({navigation}) => {
   return (
       <GestureHandlerRootView style={{flex: 1}}>
         <BottomSheetModalProvider>
-          <View style={[styles.container, ]}>
+          <SafeAreaView style={[styles.container, ]}>
+              <Animated.View style={searchFilterStyle}>
+                <SearchFilter/>
+              </Animated.View>
               <Animated.FlatList
+                contentContainerStyle={{ paddingBottom: 50, paddingTop: 50 }}
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 data={products}
@@ -118,7 +135,7 @@ const Products = ({navigation}) => {
                 <Button name="Add Item via Scan" IconName="barcode-scan" onPress={()=> navigation.navigate('barcode-item')}/>
               </View>
             </BottomSheetModal>
-          </View>
+          </SafeAreaView>
         </BottomSheetModalProvider>
       </GestureHandlerRootView>
   )
@@ -136,5 +153,6 @@ const styles = StyleSheet.create({
   },
   productflatlist:{
     padding: 10,
-  }
+    zIndex: -10
+  },
 })

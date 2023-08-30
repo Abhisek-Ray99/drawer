@@ -44,9 +44,7 @@ const BottomTabNavigation = () => {
         name="item" 
         component={TopTabNavigation}
         options={{
-            tabBarLabel: "Items",
-            headerTitle: "Items",
-            headerLeft: null,
+            headerShown: false,
             tabBarIcon: ({focused}) => (
                 <Feather name="shopping-bag" size={22} color={focused? 'blue':'grey'} />
             )
@@ -55,8 +53,8 @@ const BottomTabNavigation = () => {
         name="sales" 
         component={Sales}
         options={{
-            tabBarLabel: "Sales",
-            headerTitle: "Sales",
+            tabBarLabel: "Reports",
+            headerTitle: "Reports",
             headerLeft: null,
             tabBarIcon: ({focused}) => (
                 <Octicons name="graph" size={22} color={focused? 'blue':'grey'} />
@@ -67,7 +65,7 @@ const BottomTabNavigation = () => {
         component={Transactions}
         options={{
             tabBarLabel: "Transactions",
-            headerTitle: "Transactions",
+            headerTitle: "Transactions History",
             headerLeft: null,
             tabBarIcon: ({focused}) => (
                 <Octicons name="history" size={22} color={focused? 'blue':'grey'} />
@@ -77,9 +75,7 @@ const BottomTabNavigation = () => {
         name="profile" 
         component={Profile}
         options={{
-            tabBarLabel: "Profile",
-            headerTitle: "Profile",
-            headerLeft: null,
+            headerShown: false,
             tabBarIcon: ({focused}) => (
                 <Octicons name="person" size={22} color={focused? 'blue':'grey'} />
             )

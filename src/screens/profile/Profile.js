@@ -1,14 +1,220 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Pressable, StatusBar, Image, ScrollView } from 'react-native'
 import React, {memo} from 'react'
+import HeaderBar from './components/HeaderBar'
+import ProfileImage from './components/ProfileImage'
+import AppText from '../../components/text/AppText'
+import TextBtn from '../../components/button/TextBtn'
 
-const Profile = () => {
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { colors } from '../../constants/colors'
+
+import LinearGradient from 'react-native-linear-gradient';
+import { windowHeight, windowWidth } from '../../utils/Dimension'
+
+const boxHeight = (windowHeight - 0 * 2)/5;
+const boxWidth = (windowWidth - 0 * 2)/2.4;
+
+import Feather from 'react-native-vector-icons/Feather';
+import ViewBox from '../../components/view/ViewBox'
+
+const Profile = ({navigation}) => {
   return (
-    <View>
-      <Text>Profile</Text>
-    </View>
+    <ScrollView style={styles.profileView}>
+      <LinearGradient  colors={['#cfd9df', '#e2ebf0', '#e6dee9', '#fff']} style={styles.container1}>
+        <HeaderBar/>
+        <View style={styles.view1}>
+          <View style={styles.profileview1}>
+            <ProfileImage />
+            <View style={styles.rightview}>
+              <AppText style={styles.displayName}>John, manager</AppText>
+              <View style={styles.chatbtn}>
+                <MaterialIcons name="verified" size={16} color={colors.greenheavy} />
+                <AppText>verified</AppText>
+              </View>
+            </View>
+          </View>
+          <View style={styles.descript}>
+            <View style={styles.itemcol}>
+              <Feather name="package" size={24} color={colors.heavyblue} />
+              <AppText style={styles.value}>234</AppText>
+              <AppText>My Items</AppText>
+            </View>
+            <View style={styles.verticleLine}></View>
+            <View style={styles.itemcol}>
+              <Feather name="calendar" size={24} color={colors.heavyblue} />
+              <AppText style={styles.value}>22 jan 2023</AppText>
+              <AppText>Joined in</AppText>
+            </View>
+            <View style={styles.verticleLine}></View>
+            <View style={styles.itemcol}>
+              <Feather name="bar-chart-2" size={24} color={colors.heavyblue} />
+              <AppText style={styles.value}>24 days</AppText>
+              <AppText>My Activity</AppText>
+            </View>
+          </View>
+          <View>
+            <View style={styles.viewinventory}>
+              <Image
+                style={styles.tinyLogo1}
+                source={require('../../assets/img/mesh-51.png')}
+              />
+            </View>
+            <View style={styles.viewshop}>
+              <Image
+                style={styles.tinyLogo2}
+                source={require('../../assets/img/icons8.png')}
+              />
+              <AppText style={styles.viewinventorytext}>View my Inventories</AppText>
+            </View>
+            
+          </View>
+        </View>
+      </LinearGradient>
+      <View style={styles.container2}>
+        <View style={styles.container12}>
+          <ViewBox height={boxHeight} width={boxWidth} viewboxStyle={styles.boxview}>
+            <Image
+                style={styles.profilebanner}
+                source={require('../../assets/img/details.png')}
+            />
+            <AppText style={styles.profiletext}>Your Details</AppText>
+          </ViewBox>
+          <ViewBox height={boxHeight} width={boxWidth } viewboxStyle={styles.boxview}>
+            <Image
+                  style={styles.profilebanner}
+                  source={require('../../assets/img/track-order.png')}
+            />
+            <AppText style={styles.profiletext}>Track Orders</AppText>
+          </ViewBox>
+          <ViewBox height={boxHeight} width={boxWidth } viewboxStyle={styles.boxview}>
+            <Image
+                    style={styles.profilebanner}
+                    source={require('../../assets/img/export.png')}
+            />
+            <AppText style={styles.profiletext}>Bulk Data export</AppText>
+          </ViewBox>
+          <ViewBox height={boxHeight} width={boxWidth } viewboxStyle={styles.boxview}>
+            <Image
+                    style={styles.profilebanner}
+                    source={require('../../assets/img/support.png')}
+            />
+            <AppText style={styles.profiletext}>Help & Support</AppText>
+          </ViewBox>
+        </View>
+      </View>
+    </ScrollView>
   )
 }
 
 export default memo(Profile)
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  profileView:{
+    flex: 1
+  },
+  container1:{
+    flex: 1.4,
+  },
+  view1:{
+    flexDirection: 'column',
+    gap: 16,
+    padding: 14
+  },
+  container2:{
+    flex: 1,
+    padding: 10,
+    alignItems: 'center'
+  },
+  profileview1:{
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  displayName:{
+    fontSize: 20,
+  },
+  chatbtn:{
+    flexDirection: 'row',
+    gap: 2,
+    alignItems: 'center',
+    borderRadius: 50,
+    paddingVertical: 2
+  },
+  descript:{
+    backgroundColor: colors.white,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: colors.grey100,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    paddingVertical: 16,
+    // margin: 14
+  },
+  itemcol:{
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  value:{
+    fontSize: 12,
+    fontWeight: '700',
+    padding: 4
+  },
+  verticleLine: {
+    height: '100%',
+    width: 1,
+    backgroundColor: colors.grey100,
+  },
+  rightview:{
+    paddingHorizontal: 10
+  },
+  viewinventory:{
+    opacity: 0.6,
+    backgroundColor: colors.white,
+    borderRadius: 50
+  },
+  tinyLogo1:{
+    width: '100%',
+    height: 60,
+    borderRadius: 50,
+  },
+  tinyLogo2:{
+    width: 40,
+    height: 40,
+  },
+  viewshop:{
+    position: 'absolute',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 20,
+    left: 20,
+    top: 7
+  },
+  viewinventorytext:{
+    fontSize: 18,
+    color: 'white',
+    fontWeight: '700'
+  },
+  container12:{
+    width: '95%',
+    flex: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    marginTop: 6,
+  },
+  boxview:{
+    marginTop: 26,
+    borderWidth: 0,
+    backgroundColor: colors.grey2100,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  profilebanner:{
+    width: 100,
+    height: 100,
+  },
+  profiletext:{
+    fontSize: 15,
+    fontWeight: '700',
+    paddingTop: 10
+  }
+})

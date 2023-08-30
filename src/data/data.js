@@ -91,6 +91,78 @@ export const products = [
     },
   ]
 
+
+  export const transactions = [
+    {
+      title: "April",
+      data: [
+        {
+          name: "books",
+          type: "purchase",
+          price: "480",
+          balance: "0"
+        },
+        {
+          name: "pens",
+          type: "sale",
+          price: "40",
+          balance: "20"
+        }
+      ]
+    },
+    {
+      title: "May",
+      data: [
+        {
+          name: "books",
+          type: "purchase",
+          price: "480",
+          balance: "0"
+        },
+        {
+          name: "pens",
+          type: "sale",
+          price: "40",
+          balance: "20"
+        }
+      ]
+    },
+    {
+      title: "Jun",
+      data: [
+        {
+          name: "books",
+          type: "purchase",
+          price: "480",
+          balance: "0"
+        },
+        {
+          name: "pens",
+          type: "sale",
+          price: "40",
+          balance: "20"
+        }
+      ]
+    },
+    {
+      title: "July",
+      data: [
+        {
+          name: "books",
+          type: "purchase",
+          price: "480",
+          balance: "0"
+        },
+        {
+          name: "pens",
+          type: "sale",
+          price: "40",
+          balance: "20"
+        }
+      ]
+    }
+  ]
+
 const users = [
   {
     mail: "abc@gmail.com",

@@ -8,12 +8,13 @@ const TextBtn = ({
     TextTitle,
     rightIcon=null,
     TextStyle,
-    onPress
+    onPress,
+    style
 }) => {
   return (
     <Pressable 
         android_ripple={{color: colors.grey1900, borderless: false}}
-        style={styles.TextBtnView}
+        style={[styles.TextBtnView, style]}
         onPress={onPress}
     >
         {leftIcon}

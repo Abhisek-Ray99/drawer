@@ -8,10 +8,11 @@ const Tag = ({
     boxColor=colors.grey100,
     titleColor=colors.heavyblue,
     borderColor=null,
-    borderW=null
+    borderW=null,
+    style
 }) => {
   return (
-    <View style={[{ backgroundColor: boxColor, borderWidth:borderW , borderColor: borderColor}, styles.tagStyle]}>
+    <View style={[{ backgroundColor: boxColor, borderWidth:borderW , borderColor: borderColor}, styles.tagStyle, style]}>
       <AppText style={[{color: titleColor}, styles.tagText]}>{children.toUpperCase()}</AppText>
     </View>
   )
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
         borderRadius: 7
     },
     tagText:{
-        fontSize: 12,
+        fontSize: 10,
         fontWeight: '700',
         textAlign: 'center',
         paddingHorizontal: 10,

@@ -15,6 +15,9 @@ import InventoryNavigation from './InventoryNavigation';
 import CreateInventoryScreen from '../screens/Inventory/CreateInventory.screen';
 import ViewMembersScreen from '../screens/members/ViewMembers.screen';
 import PreferencesScreen from '../screens/preferences/Preferences.screen';
+import InvoiceScreen from '../screens/transactions/Invoice.screen';
+import SettingsScreen from '../screens/settings/Settings.screen';
+import ProfileScreenEdit from '../screens/profile/Profile.Screen.edit';
 
 
 const RootStack = createStackNavigator()
@@ -107,6 +110,33 @@ const RootNavigation = () => {
                 component={PreferencesScreen} 
                 options={{
                     headerTitle: 'Preferences',
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                }}
+                
+                />
+            <RootStack.Screen
+                name="invoice"
+                component={InvoiceScreen} 
+                options={{
+                    headerTitle: 'Invoice',
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                }}
+                
+                />
+            <RootStack.Screen
+                name="settings"
+                component={SettingsScreen} 
+                options={{
+                    headerTitle: 'Settings',
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                }}
+                
+                />
+            <RootStack.Screen
+                name="profile-edit"
+                component={ProfileScreenEdit} 
+                options={{
+                    headerTitle: 'Edit Profile',
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                 }}
                 

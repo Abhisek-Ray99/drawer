@@ -5,6 +5,7 @@ import { products } from '../../data/data'
 
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
 import SearchFilter from '../../components/input/Search&Filter';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Category = ({navigation}) => {
 
@@ -65,13 +66,13 @@ const Category = ({navigation}) => {
   }));
 
   return (
-    <View style={styles.categoryContainer}>
+    <SafeAreaView style={styles.categoryContainer}>
       <Animated.View style={actionBarStyle}>
         <SearchFilter/>
       </Animated.View>
-      <FlatList
+      <Animated.FlatList
         data={categoriesData }
-        contentContainerStyle={{ paddingBottom: 50, paddingTop: 50 }}
+        contentContainerStyle={{ paddingBottom: 100, paddingTop: 60 }}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         renderItem={({item}) =>(
@@ -85,7 +86,7 @@ const Category = ({navigation}) => {
         scrollEventThrottle={16}
         onScroll={scrollHandler}
       />
-    </View>
+    </SafeAreaView>
   )
 }
 

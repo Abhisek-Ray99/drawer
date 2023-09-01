@@ -3,13 +3,14 @@ import React, {memo} from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profile from '../screens/profile/Profile';
 import Dashboard from '../screens/dashboard/Dashboard';
-import Sales from '../screens/sale/Sales';
+import Reports from '../screens/Reports/Reports';
 
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Feather from 'react-native-vector-icons/Feather'
 import Octicons from 'react-native-vector-icons/Octicons'
 import TopTabNavigation from './TopTabNavigation';
 import Transactions from '../screens/transactions/Transactions';
+import { colors } from '../constants/colors';
 
 
 const Tab = createBottomTabNavigator();
@@ -21,21 +22,29 @@ const BottomTabNavigation = () => {
             initialRouteName: "dashboard",  
             tabBarActiveTintColor: 'blue',
             tabBarStyle: { 
-                height: 56, 
+                height: 70, 
+                borderTopLeftRadius: 24,
+                borderTopRightRadius: 24,
+                borderLeftWidth: 1,
+                borderRightWidth: 1,
+                position: 'absolute',
+                overflow: 'hidden',
+                borderTopWidth: 1,
+                borderColor: colors.grey100,
             },
             tabBarLabelStyle: {
                 fontSize: 12,
-                fontWeight: '600'
+                fontWeight: '600',
+                marginBottom: 6
             },
+            
         }}
     >
       <Tab.Screen 
         name="dashboard" 
         component={Dashboard} 
         options={{
-            tabBarLabel: "Dashboard",
-            headerTitle: "Dashboard",
-            headerLeft: null,
+            headerShown: false,
             tabBarIcon: ({focused}) => (
                 <Icons name="view-dashboard-outline" size={22} color={focused? 'blue':'grey'} />
             ),
@@ -47,18 +56,22 @@ const BottomTabNavigation = () => {
             headerShown: false,
             tabBarIcon: ({focused}) => (
                 <Feather name="shopping-bag" size={22} color={focused? 'blue':'grey'} />
-            )
+            ),
+
         }} />
       <Tab.Screen 
-        name="sales" 
-        component={Sales}
+        name="reports" 
+        component={Reports}
         options={{
             tabBarLabel: "Reports",
             headerTitle: "Reports",
             headerLeft: null,
             tabBarIcon: ({focused}) => (
                 <Octicons name="graph" size={22} color={focused? 'blue':'grey'} />
-            )
+            ),
+            headerStyle: {
+                backgroundColor: '#cfd9df'
+            }, 
         }} />
       <Tab.Screen 
         name="transactions" 
@@ -69,7 +82,10 @@ const BottomTabNavigation = () => {
             headerLeft: null,
             tabBarIcon: ({focused}) => (
                 <Octicons name="history" size={22} color={focused? 'blue':'grey'} />
-            )
+            ),
+            headerStyle: {
+                backgroundColor: '#cfd9df'
+            },  
         }} />
       <Tab.Screen 
         name="profile" 

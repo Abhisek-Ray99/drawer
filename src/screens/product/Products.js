@@ -1,26 +1,25 @@
-import { StyleSheet, Text, View, FlatList, SafeAreaView } from 'react-native'
-import React, { useCallback, useRef, useMemo,useState, memo } from 'react'
+import { StyleSheet, View, SafeAreaView, } from 'react-native'
+import React, { useEffect, useCallback, useRef, useMemo,useState, memo } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import {
   BottomSheetModalProvider,
-} from '@gorhom/bottom-sheet';
-
-import ActionButton from '../items/components/ActionButton'
-
-import {
   BottomSheetModal,
 } from '@gorhom/bottom-sheet';
+import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
+import { useRoute } from '@react-navigation/native';
+
+
+import ActionButton from '../items/components/ActionButton'
 import Button from '../items/components/Button';
 import { colors } from '../../constants/colors';
 import ProductElement from './components/ProductElement';
-
 import { products } from '../../data/data';
-
-import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
 import SearchFilter from '../../components/input/Search&Filter';
 
 
 const Products = ({navigation}) => {
+  
+  const route = useRoute();
   // ref
   const bottomSheetModalRef = useRef(null);
 
@@ -61,32 +60,19 @@ const Products = ({navigation}) => {
     };
   });
 
-  const searchFilterStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateY: withTiming(translateY.value , {
-            duration: 300,
-            easing: Easing.inOut(Easing.ease),
-          }),
-        },
-      ],
-    };
-  });
-
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
       if (
         lastContentOffset.value > event.contentOffset.y &&
         isScrolling.value
       ) {
-        translateY.value = 0;
+        translateY.value = -2;
         // console.log("scrolling up");
       } else if (
         lastContentOffset.value < event.contentOffset.y &&
         isScrolling.value
       ) {
-        translateY.value = 110;
+        translateY.value = 101;
         // console.log("scrolling down");
       }
       lastContentOffset.value = event.contentOffset.y;
@@ -99,15 +85,16 @@ const Products = ({navigation}) => {
     },
   });
 
+
   return (
       <GestureHandlerRootView style={{flex: 1}}>
         <BottomSheetModalProvider>
           <SafeAreaView style={[styles.container, ]}>
-              <Animated.View style={searchFilterStyle}>
+              <View>
                 <SearchFilter/>
-              </Animated.View>
+              </View>
               <Animated.FlatList
-                contentContainerStyle={{ paddingBottom: 50, paddingTop: 50 }}
+                contentContainerStyle={{ paddingBottom: 100, paddingTop: 50 }}
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 data={products}

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
 import React, {memo} from 'react'
 
 import AppBtn from '../../components/button/AppBtn'

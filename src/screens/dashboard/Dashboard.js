@@ -1,67 +1,176 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, {memo} from 'react'
-import ViewBox from '../../components/view/ViewBox'
+import React, { useCallback, useRef, useMemo, useState } from "react";
+import { StyleSheet, View, StatusBar } from "react-native";
+import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
+import LottieView from 'lottie-react-native'
 
-import { windowWidth, windowHeight } from '../../utils/Dimension';
-import { colors } from '../../constants/colors';
+import LinearGradient from 'react-native-linear-gradient';
+import ViewBox from "../../components/view/ViewBox";
+import Summary from "./components/Summary";
+import DashBoardHeader from "./components/DashBoardHeader";
+import PurchaseView from "./components/PurchaseView";
+import SaleView from "./components/SaleView";
 
-import { products } from '../../data/data';
-import Summary from './components/Summary';
+import { windowHeight, windowWidth } from "../../utils/Dimension";
+import AppBtn from "../../components/button/AppBtn";
+import { colors } from "../../constants/colors";
 
-const boxHeight = (windowHeight - 0 * 2)/5.8;
-const boxWidth = (windowWidth - 0 * 2)/2.24;
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
-const Dashboard = () => {
+import { ThemedButton } from 'react-native-really-awesome-button';
+import { Modal, Portal} from 'react-native-paper';
+import ViewItem from "./components/ViewItem";
+
+
+
+const App = ({navigation}) => {
+  const [visible, setVisible] = React.useState(false);
+
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = {
+    backgroundColor: 'white', 
+    marginHorizontal: 20,
+    height: windowHeight/2,
+    borderRadius: 7,
+    marginTop: 350,
+    paddingVertical: 10,
+    paddingHorizontal: 14
+  };
+
+  // hooks
+  const sheetRef = useRef(null);
+
+  // variables
+  const data = useMemo(
+    () =>
+      Array(50)
+        .fill(0)
+        .map((_, index) => `index-${index}`),
+    []
+  );
+  const snapPoints = useMemo(() => ["70%", "70%", "92%"], []);
+
+  StatusBar.setBackgroundColor('#cfd9df')
+  StatusBar.setTranslucent(false)
+  StatusBar.setBarStyle('dark-content')
+
   return (
     <View style={styles.container}>
-      <View style={styles.container1}>
+      <LinearGradient  colors={['#cfd9df', '#e2ebf0', '#e6dee9' ]} style={styles.container1}>
+        <View style={styles.dashboardheader}>
+          <DashBoardHeader/>
+            <ThemedButton 
+              name="rick" 
+              type="primary"
+              width={80}
+              height={40}
+              style={styles.sbutton}
+              onPress={showModal}
+            >
+              Create
+            </ThemedButton>
+            <Portal>
+              <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+                <View style={styles.view1}>
+                  <ViewItem 
+                    icon={<Ionicons name="bag-outline" size={22} color={colors.dodgerblue2} />}
+                    title="New Purchase"
+                    descript="Quicky add your purchases"
+                    bgColor={colors.antiflashwhite1}
+                    borderC={colors.aliceblue2}
+                  />
+                  <ViewItem 
+                    icon={<AntDesign name="shoppingcart" size={22} color={colors.amethyst} />}
+                    title="New Sale"
+                    descript="Start saling you product"
+                    bgColor={colors.antiflashwhite2}
+                    borderC={colors.lavender}
+                  />
+                  <ViewItem 
+                    icon={<Ionicons name="receipt-outline" size={22} color={colors.bondiblue} />}
+                    title="New Invoice"
+                    descript="Add Today's your invoices"
+                    bgColor={colors.antiflashwhite3}
+                    borderC={colors.aliceblue3}
+                  />
+                  
+                </View>
+                <View style={styles.view2}>
+                  <LottieView source={require("../../assets/img/animation_llju8kt9.json")} autoPlay loop />
+                </View>
+              </Modal>
+            </Portal>
+        </View>
         <View style={styles.container11}>
           <ViewBox height={'100%'} viewboxStyle={styles.mainview}>
             <Summary/>
           </ViewBox>
         </View>
-        <View style={styles.container12}>
-          <ViewBox height={boxHeight} width={boxWidth} viewboxStyle={styles.boxview}/>
-          <ViewBox height={boxHeight} width={boxWidth } viewboxStyle={styles.boxview}/>
-          <ViewBox height={boxHeight} width={boxWidth } viewboxStyle={styles.boxview}/>
-          <ViewBox height={boxHeight} width={boxWidth } viewboxStyle={styles.boxview}/>
-        </View>
-      </View>
-      <View style={styles.container2}>
-
-      </View>
+      </LinearGradient>
+      <BottomSheet
+        ref={sheetRef}
+        index={1}
+        snapPoints={snapPoints}
+      >
+        <BottomSheetScrollView contentContainerStyle={styles.contentContainer}>
+          <View style={styles.pursale}>
+            <PurchaseView/>
+            <SaleView/>
+          </View>
+        </BottomSheetScrollView>
+      </BottomSheet>
     </View>
-  )
-}
-
-export default memo(Dashboard)
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  container1: {
-    flex: 2,
-    padding: 16,
-    backgroundColor: colors.grey2000
+  contentContainer: {
+    backgroundColor: "white",
+    borderRadius: 50
   },
-  container2: {
-    flex: 1
+  itemContainer: {
+    padding: 6,
+    margin: 6,
+    backgroundColor: "#eee",
+  },
+  container1:{
+    flex: 1.4,
   },
   container11: {
-    flex: 2,
-  },
-  container12:{
-    flex: 5,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    marginTop: 6
+    flex: 0.16,
+    padding: 20
   },
   mainview:{
-    top: -4
+    flex: 1,
   },
-  boxview:{
-    marginTop: 10
+  pursale:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly'
+  },
+  dashboardheader:{
+    marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: "space-between",
+  },
+  sbutton:{
+    right: 10
+  },
+  view1:{
+    flex: 2,
+    flexDirection: 'column',
+    justifyContent: 'space-evenly'
+  },
+  view2:{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
-})
+});
+
+export default App;

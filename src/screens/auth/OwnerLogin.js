@@ -1,46 +1,65 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, {memo} from 'react'
+import { StyleSheet, Text, View, Image, StatusBar, Pressable } from 'react-native'
+import React, {memo, useState} from 'react'
+import AnimatedCheckbox from 'react-native-checkbox-reanimated'
 
 import AppText from '../../components/text/AppText'
 import AppBtn from '../../components/button/AppBtn'
 import { colors } from '../../constants/colors'
 import InputField from '../../components/input/InputField'
 import TextLink from '../../components/text/TextLink'
+import { windowHeight, windowWidth } from '../../utils/Dimension'
+import ImgBtn from '../../components/button/ImgBtn'
+import LottieView from "lottie-react-native";
+
+StatusBar.setTranslucent(true)
+StatusBar.setBarStyle('light-content')
 
 const Login = ({navigation}) => {
+
+  const [checked, setChecked] = useState(false)
+
+  const handleCheckboxPress = () => {
+    setChecked(prev => {
+      return !prev
+    })
+  }
+
   
   return (
-    <View 
-      style={styles.ownerLoginContainer} >
-      <View style={styles.ownerLoginView1}>
-        <AppText style={styles.ownerLoginTitle1} >Welcome to Drawer</AppText>
-        <AppText style={styles.ownerLoginTitle2}>Owner Login</AppText>
-      </View>
-      <View style={styles.ownerLoginView2}>
-        <InputField placeholder={"Email"}/>
-        <InputField placeholder={"Password"} password={true} />
-        <TextLink title="Forgot Password?" titleStyle={[styles.forgot, {paddingVertical: 10}]}/>
-        <AppBtn
-          title="Continue"
-          onPress={()=> navigation.navigate('home')}
-          BtnStyle={styles.OwnerContinueBtn}
-          titleStyle={[styles.forgot]}
+    <View style={styles.ownerLoginContainer} >
+      <View style={styles.LoginView1}>
+        <Image
+          style={styles.loginImg}
+          source={require('../../assets/img/mesh-51.png')}
         />
       </View>
-      <View style={{flex: 0.2,flexDirection: 'row', alignItems: 'center'}}>
-        <View style={{flex: 1, height: 1, backgroundColor: '#D3D3D3'}} />
-          <View>
-            <Text style={{width: 50, textAlign: 'center'}}>OR</Text>
-          </View>
-          <View style={{flex: 1, height: 1, backgroundColor: '#D3D3D3'}} />
+      <View style={styles.LoginView2}>
+        <View style={styles.loginTitle}>
+          <AppText style={styles.ownerLoginTitle1} >Welcome Back</AppText>
+          <AppText style={styles.ownerLoginTitle2}>To keep connected with us please login with your info</AppText>
         </View>
-      <View style={styles.ownerLoginView3}>
-        <AppBtn 
-          title="I am a Staff" 
-          BtnStyle={styles.OwnerLoginBtn} 
-          titleStyle={styles.OwnerLoginBtnTitle}
-          onPress={()=> navigation.navigate('staff-login')}
-        />
+        <View style={styles.loginfields}>
+          <InputField placeholder={"Email"}/>
+          <InputField placeholder={"Password"} password={true} />
+          <View style={styles.infoview}>
+            <Pressable onPress={handleCheckboxPress} style={styles.checkboxview}>
+              <View style={styles.checkbox} >
+                <AnimatedCheckbox
+                  checked={checked}
+                  highlightColor="#4444ff"
+                  checkmarkColor="#ffffff"
+                  boxOutlineColor="#4444ff"
+                />
+              </View>
+              <Text style={styles.remember}>Stay Signed</Text>
+            </Pressable>
+            <TextLink title="Forgot Password?" titleStyle={[styles.forgot, {paddingVertical: 10}]}/>
+          </View>
+          <ImgBtn Title="Sign in" onPress={()=> navigation.navigate('home')} />
+        </View>
+        <View style={styles.loginfields}>
+
+        </View>
       </View>
     </View>
   )
@@ -52,42 +71,61 @@ const styles = StyleSheet.create({
   ownerLoginContainer: {
     flex: 1,
   },
-  ownerLoginView1: {
+  LoginView1: {
+    flex: 0.3,
+  },
+  LoginView2: {
     flex: 1,
-    padding: 22,
-  },
-  ownerLoginView2: {
-    flex: 2,
+    position: 'absolute',
+    height: windowHeight/ 1.3,
+    width: windowWidth,
+    backgroundColor: colors.white,
     justifyContent: 'space-around',
-    padding: 22,
+    paddingHorizontal: 22,
+    borderTopLeftRadius: 18,
+    borderTopRightRadius: 18,
+    bottom: 0,
   },
-  ownerLoginView3: {
-    flex: 1.5,
-    justifyContent: 'flex-start',
-    padding: 22,
+  loginTitle:{
+    flex: 1,
+    marginTop: 40
   },
   ownerLoginTitle1: {
-    fontSize: 36
+    fontSize: 26,
+    fontWeight: '700',
   },
   ownerLoginTitle2: {
-    fontSize: 28, 
-    paddingTop: 16,
+    fontSize: 16, 
   },
-  OwnerLoginBtn: {
-    backgroundColor: colors.lightblue,
-    elevation: 0
+  loginfields:{
+    flex: 2,
+    flexDirection: 'column',
+    gap: 10
   },
-  OwnerLoginBtnTitle: {
-    color: colors.heavyblue,
-    fontSize: 16,
-    fontWeight: 'bold'
-  },
-  OwnerContinueBtn: {
-    height: 60,
+  infoview:{
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   forgot:{
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  loginImg:{
+    width: '100%',
+    height: '100%'
+  },
+  checkboxview:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10
+  },
+  checkbox: {
+    width: 30,
+    height: 30,
+    flexDirection: 'row',
+  },
+  remember:{
+    fontWeight: '700'
   }
 })

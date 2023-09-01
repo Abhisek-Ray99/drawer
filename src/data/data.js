@@ -89,6 +89,60 @@ export const products = [
       price: "200",
       category: "Computer Supplied"
     },
+    {
+      img: null,
+      id: "NMOTJOLEP98",
+      name: "charger",
+      count: "1",
+      unit: "units",
+      price: "200",
+      category: "Electronics"
+    },
+    {
+      img: null,
+      id: "FEHJOLEP98",
+      name: "charger",
+      count: "2",
+      unit: "units",
+      price: "15000",
+      category: "Kitchen Supplied"
+    },
+    {
+      img: null,
+      id: "FQWETLEP98",
+      name: "Godrej Chairs",
+      count: "1",
+      unit: "units",
+      price: "200",
+      category: "Office"
+    },
+    {
+      img: null,
+      id: "FQWETL89658",
+      name: "Garam Masala",
+      count: "1",
+      unit: "kg",
+      price: "200",
+      category: "Hotel Suplied"
+    },
+    {
+      img: null,
+      id: "FANBTY8978",
+      name: "Godrej Chairs",
+      count: "1",
+      unit: "units",
+      price: "200",
+      category: "Office"
+    },
+    {
+      img: null,
+      id: "CVXDF68658",
+      name: "Natraj Color pen",
+      count: "1",
+      unit: "kg",
+      price: "200",
+      category: "Drawing Supplied"
+    },
   ]
 
 
@@ -171,15 +225,15 @@ const users = [
     invetories: [
       {
         name: "shop1",
-        items: products.slice(0,3)
+        items: products.slice(0,7)
       },
       {
         name: "shop2",
-        items: products.slice(0,2)
+        items: products.slice(0,10)
       },
       {
         name: "shop3",
-        items: products.slice(0,6)
+        items: products.slice(0,4)
       }
     ]
   },
@@ -190,7 +244,7 @@ const users = [
     invetories: [
       {
         name: "shop1",
-        items: products.slice(0,2)
+        items: products.slice(0,12)
       },
       {
         name: "shop3",

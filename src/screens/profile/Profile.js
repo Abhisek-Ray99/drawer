@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Pressable, StatusBar, Image, ScrollView } from 'react-native'
-import React, {memo} from 'react'
+import React, {memo, useEffect} from 'react'
 import HeaderBar from './components/HeaderBar'
 import ProfileImage from './components/ProfileImage'
 import AppText from '../../components/text/AppText'
@@ -18,8 +18,12 @@ import Feather from 'react-native-vector-icons/Feather';
 import ViewBox from '../../components/view/ViewBox'
 
 const Profile = ({navigation}) => {
+
+  StatusBar.setBackgroundColor('#cfd9df')
+  StatusBar.setBarStyle('dark-content')
+
   return (
-    <ScrollView style={styles.profileView}>
+    <View style={styles.profileView}>
       <LinearGradient  colors={['#cfd9df', '#e2ebf0', '#e6dee9', '#fff']} style={styles.container1}>
         <HeaderBar/>
         <View style={styles.view1}>
@@ -70,7 +74,7 @@ const Profile = ({navigation}) => {
           </View>
         </View>
       </LinearGradient>
-      <View style={styles.container2}>
+      <ScrollView contentContainerStyle={styles.container2} >
         <View style={styles.container12}>
           <ViewBox height={boxHeight} width={boxWidth} viewboxStyle={styles.boxview}>
             <Image
@@ -101,8 +105,8 @@ const Profile = ({navigation}) => {
             <AppText style={styles.profiletext}>Help & Support</AppText>
           </ViewBox>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   )
 }
 
@@ -110,10 +114,10 @@ export default memo(Profile)
 
 const styles = StyleSheet.create({
   profileView:{
-    flex: 1
+    flex: 1,
   },
   container1:{
-    flex: 1.4,
+    flex: 1,
   },
   view1:{
     flexDirection: 'column',
@@ -122,8 +126,9 @@ const styles = StyleSheet.create({
   },
   container2:{
     flex: 1,
-    padding: 10,
-    alignItems: 'center'
+    paddingHorizontal: 10,
+    alignItems: 'center',
+    paddingBottom: 100
   },
   profileview1:{
     flexDirection: 'row',

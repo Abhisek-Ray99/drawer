@@ -7,12 +7,12 @@ import {
   useColorScheme,
 } from 'react-native';
 import RootNavigation from './src/navigation/RootNavigation';
+import { NativeBaseProvider } from "native-base";
 
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import RNBootSplash from "react-native-bootsplash";
-import { globalstyles } from './src/styles/global.style';
 import { colors } from './src/constants/colors';
-
+import NetInfo from './src/components/network/NetInfo';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -24,14 +24,16 @@ function App() {
     },
   };
   return (
-    
-    <NavigationContainer theme={MyTheme} onReady={() => RNBootSplash.hide()}>
+    <NativeBaseProvider>
+      <NavigationContainer theme={MyTheme} onReady={() => RNBootSplash.hide()}>
         <StatusBar
           barStyle={isDarkMode ? 'light-content' : 'dark-content'}
           backgroundColor="transparent"
         />
         <RootNavigation />
-    </NavigationContainer>
+        <NetInfo/>
+      </NavigationContainer>
+    </NativeBaseProvider>
     
   );
 }

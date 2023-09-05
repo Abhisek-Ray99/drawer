@@ -6,26 +6,27 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const ProfileImage = ({
     image=null,
-    width=80,
-    height=80,
+    imgwidth=80,
+    imgheight=80,
+    size=40,
     style
 }) => {
   return (
-    <View style={style}>
+    <>
         {
             image ? (
                 <Pressable>
-                    <Image source={{ uri:'https://i.pravatar.cc/300'}} style={[{width: width, height: height},styles.profileimg]}/>
+                    <Image source={{ uri:'https://i.pravatar.cc/300'}} style={[styles.profileimg]}/>
                 </Pressable>
             ) : (
                 <Pressable>
-                    <View style={styles.imageview}>
-                        <Ionicons name="person" size={40} color={colors.white} />
+                    <View style={[{width: imgwidth, height: imgheight},styles.imageview, style]}>
+                        <Ionicons name="person" size={size} color={colors.white} />
                     </View>
                 </Pressable>
             )
         }
-    </View>
+    </>
   )
 }
 
@@ -36,8 +37,6 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
     imageview:{
-        width: 80,
-        height: 80,
         borderRadius: 50,
         backgroundColor: colors.profileblue,
         alignItems: 'center',

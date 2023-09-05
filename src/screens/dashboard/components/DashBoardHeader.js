@@ -11,7 +11,7 @@ const boxHeight = (windowHeight - 0 * 2)/23;
 const boxWidth = (windowWidth - 0 * 2)/11;
 
 const DashBoardHeader = ({
-  ItemTitle="D",
+  ItemTitle,
   DrawerName="Drawer Shop"
 }) => {
   const navigation = useNavigation();

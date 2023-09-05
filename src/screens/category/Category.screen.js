@@ -12,7 +12,7 @@ const CategoryScreen = ({route, navigation}) => {
   const [visible, setVisible] = useState(false);
   const show = () => {
     setVisible(true)
-    console.log("hide")
+    // console.log("hide")
   }
   const hide = () => {
     setVisible(false)

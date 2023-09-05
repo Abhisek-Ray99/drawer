@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, StatusBar } from 'react-native'
 import React, {memo} from 'react'
 
 import { 
@@ -12,31 +12,33 @@ import CustomDrawerContent from './components/CustomDrawerContent';
 const Drawer = createDrawerNavigator();
 
 
-const InventoryNavigation = () => {
+const InventoryNavigation = ({route}) => {
+  const { inventories } = route.params.userData
+  // console.log(inventories)
   return (
     <Drawer.Navigator
-        drawerContent={(props) => <CustomDrawerContent /> }
+        drawerContent={(props) => <CustomDrawerContent inventories={inventories} userData={route.params.userData} /> }
         screenOptions={{
             headerShown: false,
             drawerType: 'slide',
             drawerStyle: { width: '85%' },
-            swipeEdgeWidth: 350
+            swipeEdgeWidth: 350,
         }}
+        initialRouteName={inventories[0].name}
     >
-      <Drawer.Screen 
-        name="shop1" 
-        component={BottomTabNavigation} 
-        options={{
-             
-        }}
-      />
-      <Drawer.Screen 
-        name="shop2" 
-        component={BottomTabNavigation} 
-        options={{
-            
-        }}
-      />
+      {
+        inventories.map((inventory,index) => (
+          <Drawer.Screen 
+            key={index}
+            name={inventory.name} 
+            initialParams={{params: inventories.filter(shopData => shopData.name == inventory.name)}}
+            component={BottomTabNavigation} 
+            options={{
+                
+            }}
+          />
+        ))
+      }
     </Drawer.Navigator>
   )
 }

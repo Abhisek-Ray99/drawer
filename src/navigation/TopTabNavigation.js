@@ -7,7 +7,8 @@ import { colors } from '../constants/colors';
 
 const Tab = createMaterialTopTabNavigator();
 
-const TopTabNavigation = () => {
+const TopTabNavigation = ({route}) => {
+  // console.log(route)
   return (
     <Tab.Navigator
       screenOptions={{
@@ -26,6 +27,9 @@ const TopTabNavigation = () => {
         <Tab.Screen 
             name="products" 
             component={Products}   
+            initialParams={{
+              products: route.params
+            }}
             options={{
               
             }}
@@ -33,6 +37,9 @@ const TopTabNavigation = () => {
         <Tab.Screen 
             name="categories" 
             component={Category} 
+            initialParams={{
+              products: route.params
+            }}
             options={{
               
             }}

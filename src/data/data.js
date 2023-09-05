@@ -217,53 +217,63 @@ export const products = [
     }
   ]
 
-const users = [
+export const users = [
   {
     mail: "abc@gmail.com",
     password: "abcdefg",
+    fullname: "Landon Mccallum",
     type: "owner",
-    invetories: [
+    inventories: [
       {
         name: "shop1",
-        items: products.slice(0,7)
+        items: products.slice(0,7),
+        transactions: transactions.slice(0,2)
       },
       {
         name: "shop2",
-        items: products.slice(0,10)
+        items: products.slice(0,10),
+        transactions: transactions.slice(0,1)
       },
       {
         name: "shop3",
-        items: products.slice(0,4)
+        items: products.slice(0,4),
+        transactions: transactions.slice(0,3)
       }
     ]
   },
   {
     mail: "def@gmail.com",
     password: "defghij",
+    fullname: "Avery Mcguffin",
     type: "staff",
-    invetories: [
+    inventories: [
       {
         name: "shop1",
-        items: products.slice(0,12)
+        items: products.slice(0,12),
+        transactions: transactions.slice(0,1)
       },
       {
         name: "shop3",
-        items: products
+        items: products,
+        transactions: transactions.slice(0,3)
       },
     ]
   },
   {
     mail: "ghi@gmail.com",
     password: "ghijklm",
+    fullname: "Jazmine Mcginn",
     type: "staff",
-    invetories: [
+    inventories: [
       {
         name: "shop1",
-        items: products.slice(2,10)
+        items: products.slice(2,10),
+        transactions: transactions.slice(0,2)
       },
       {
         name: "shop2",
-        items: products
+        items: products,
+        transactions: transactions.slice(0,2)
       },
     ]
   }

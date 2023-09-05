@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import React, { useState, useEffect, memo } from 'react'
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -6,9 +6,9 @@ import { colors } from '../../../constants/colors'
 import AppText from '../../../components/text/AppText'
 import Dataview from './Dataview'
 
-import { products } from '../../../data/data'
+const Summary = ({products}) => {
 
-const Summary = () => {
+  // console.log(products)
 
   const [quantity, setQuantity] = useState(0)
   const [category, setCategory] = useState(0)

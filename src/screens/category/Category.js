@@ -1,13 +1,14 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React, {memo} from 'react'
 import CategoryElement from './components/CategoryElement'
-import { products } from '../../data/data'
 
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
 import SearchFilter from '../../components/input/Search&Filter';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const Category = ({navigation}) => {
+const Category = ({route, navigation}) => {
+
+  const products = Object.values(route.params.products);
 
   const lastContentOffset = useSharedValue(0);
   const isScrolling = useSharedValue(false);
@@ -59,6 +60,8 @@ const Category = ({navigation}) => {
       categoriesList[item.category] = 1;
     }
   })
+
+  // console.log(categoriesList)
 
   const categoriesData = Object.keys(categoriesList).map(categoryName => ({
     categoryName,

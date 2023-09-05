@@ -23,7 +23,10 @@ import ViewItem from "./components/ViewItem";
 
 
 
-const App = ({navigation}) => {
+const App = ({route, navigation}) => {
+
+  const { name, items } = route.params.params[0]
+
   const [visible, setVisible] = React.useState(false);
 
   const showModal = () => setVisible(true);
@@ -59,7 +62,7 @@ const App = ({navigation}) => {
     <View style={styles.container}>
       <LinearGradient  colors={['#cfd9df', '#e2ebf0', '#e6dee9' ]} style={styles.container1}>
         <View style={styles.dashboardheader}>
-          <DashBoardHeader/>
+          <DashBoardHeader DrawerName={name} ItemTitle={name[0]} />
             <ThemedButton 
               name="rick" 
               type="primary"
@@ -104,7 +107,7 @@ const App = ({navigation}) => {
         </View>
         <View style={styles.container11}>
           <ViewBox height={'100%'} viewboxStyle={styles.mainview}>
-            <Summary/>
+            <Summary  products={items} />
           </ViewBox>
         </View>
       </LinearGradient>

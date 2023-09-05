@@ -1,15 +1,16 @@
-import { StyleSheet, Text, View, Image, StatusBar, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Image, StatusBar, Pressable, Alert } from 'react-native'
 import React, {memo, useState} from 'react'
 import AnimatedCheckbox from 'react-native-checkbox-reanimated'
 
 import AppText from '../../components/text/AppText'
-import AppBtn from '../../components/button/AppBtn'
 import { colors } from '../../constants/colors'
 import InputField from '../../components/input/InputField'
 import TextLink from '../../components/text/TextLink'
 import { windowHeight, windowWidth } from '../../utils/Dimension'
 import ImgBtn from '../../components/button/ImgBtn'
-import LottieView from "lottie-react-native";
+
+import { users } from '../../data/data'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 StatusBar.setTranslucent(true)
 StatusBar.setBarStyle('light-content')
@@ -22,6 +23,40 @@ const Login = ({navigation}) => {
     setChecked(prev => {
       return !prev
     })
+  }
+
+  const [mail, setMail] = useState('')
+  const [pwd, setPwd] = useState('')
+
+  const handleLogin = async() => {
+    if(mail.length < 6 || pwd.length < 6){
+      Alert.alert("Warning !", "id and password length should be atleast 6 character")
+    }else{
+      try {
+        const result = users.filter(data => data.mail === mail && data.password === pwd)
+        if(Array.isArray(result) && !result.length){
+          Alert.alert("Error !", "Wrong Email or Password")
+        }else{
+          navigation.navigate('home', {
+            userData: result[0]
+          })
+        }
+
+
+
+
+
+
+        // var user = {
+        //   Name: mail,
+        //   Password: pwd,
+        //   remember: checked
+        // }
+        // await AsyncStorage.setItem("Users", JSON.stringify(user))
+      } catch (error) {
+        console.warn("got error")
+      }
+    }
   }
 
   
@@ -39,8 +74,8 @@ const Login = ({navigation}) => {
           <AppText style={styles.ownerLoginTitle2}>To keep connected with us please login with your info</AppText>
         </View>
         <View style={styles.loginfields}>
-          <InputField placeholder={"Email"}/>
-          <InputField placeholder={"Password"} password={true} />
+          <InputField placeholder={"Email"}  onChangeText={value => setMail(value)} />
+          <InputField placeholder={"Password"} password={true} onChangeText={value => setPwd(value)}/>
           <View style={styles.infoview}>
             <Pressable onPress={handleCheckboxPress} style={styles.checkboxview}>
               <View style={styles.checkbox} >
@@ -55,7 +90,7 @@ const Login = ({navigation}) => {
             </Pressable>
             <TextLink title="Forgot Password?" titleStyle={[styles.forgot, {paddingVertical: 10}]}/>
           </View>
-          <ImgBtn Title="Sign in" onPress={()=> navigation.navigate('home')} />
+          <ImgBtn Title="Sign in" onPress={handleLogin} />
         </View>
         <View style={styles.loginfields}>
 

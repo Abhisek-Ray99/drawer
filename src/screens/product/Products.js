@@ -17,9 +17,11 @@ import { products } from '../../data/data';
 import SearchFilter from '../../components/input/Search&Filter';
 
 
-const Products = ({navigation}) => {
+const Products = ({route, navigation}) => {
+
+  // console.log(route.params.products)
   
-  const route = useRoute();
+  const sheetroute = useRoute();
   // ref
   const bottomSheetModalRef = useRef(null);
 
@@ -97,9 +99,9 @@ const Products = ({navigation}) => {
                 contentContainerStyle={{ paddingBottom: 100, paddingTop: 50 }}
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
-                data={products}
-                renderItem={({item}) => <ProductElement item={item} onPress={()=> navigation.navigate('product-screen')} show={show} hide={hide} visible={visible} />}
-                keyExtractor={item => item.id}
+                data={Object.keys(route.params.products)}
+                renderItem={({item}) => <ProductElement item={route.params.products[item]} onPress={()=> navigation.navigate('product-screen')} show={show} hide={hide} visible={visible} />}
+                keyExtractor={item => item.toString()}
                 style={styles.productflatlist}
                 scrollEventThrottle={16}
                 onScroll={scrollHandler}

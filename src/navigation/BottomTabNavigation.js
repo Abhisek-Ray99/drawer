@@ -15,7 +15,8 @@ import { colors } from '../constants/colors';
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabNavigation = () => {
+const BottomTabNavigation = ({route}) => {
+    const { items } = route.params.params[0]
   return (
     <Tab.Navigator
         screenOptions={{
@@ -43,6 +44,7 @@ const BottomTabNavigation = () => {
       <Tab.Screen 
         name="dashboard" 
         component={Dashboard} 
+        initialParams={route.params}
         options={{
             headerShown: false,
             tabBarIcon: ({focused}) => (
@@ -52,6 +54,7 @@ const BottomTabNavigation = () => {
       <Tab.Screen 
         name="item" 
         component={TopTabNavigation}
+        initialParams={items}
         options={{
             headerShown: false,
             tabBarIcon: ({focused}) => (
@@ -87,7 +90,7 @@ const BottomTabNavigation = () => {
                 backgroundColor: '#cfd9df'
             },  
         }} />
-      <Tab.Screen 
+      {/* <Tab.Screen 
         name="profile" 
         component={Profile}
         options={{
@@ -95,7 +98,7 @@ const BottomTabNavigation = () => {
             tabBarIcon: ({focused}) => (
                 <Octicons name="person" size={22} color={focused? 'blue':'grey'} />
             )
-        }} />
+        }} /> */}
     </Tab.Navigator>
   )
 }

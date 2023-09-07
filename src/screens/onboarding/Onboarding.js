@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'absolute',
     textAlign: 'center',
-    fontSize: 120,
+    fontSize: 0.31*windowWidth,
     top: 40,
     fontWeight: '700'
   },

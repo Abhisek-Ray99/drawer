@@ -5,9 +5,7 @@ import { colors } from '../../../constants/colors'
 
 const SaleView = () => {
   return (
-    <View>
       <PurSaleView bgColor={colors.pastelpink} BtnTitle="View sale" img={require('../../../assets/img/outline-mobile-bank.png')} />
-    </View>
   )
 }
 

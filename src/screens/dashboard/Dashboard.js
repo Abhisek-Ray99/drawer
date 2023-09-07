@@ -1,7 +1,6 @@
 import React, { useCallback, useRef, useMemo, useState, useEffect } from "react";
 import { StyleSheet, View, StatusBar, BackHandler, Alert } from "react-native";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-import LottieView from 'lottie-react-native'
 
 import LinearGradient from 'react-native-linear-gradient';
 import ViewBox from "../../components/view/ViewBox";
@@ -121,7 +120,7 @@ const App = ({route, navigation}) => {
                   
                 </View>
                 <View style={styles.view2}>
-                  <LottieView source={require("../../assets/img/animation_llju8kt9.json")} autoPlay loop />
+                  
                 </View>
               </Modal>
             </Portal>

@@ -4,9 +4,5 @@ include ':app'
 includeBuild('../node_modules/@react-native/gradle-plugin')
 
 
-// new packages
-include ':react-native-bootsplash'
-project(':react-native-bootsplash').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-bootsplash/android')
-
 include ':react-native-vector-icons'
 project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')

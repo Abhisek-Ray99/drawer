@@ -75,13 +75,14 @@ const Login = ({navigation}) => {
             secureTextEntry={show ? false : true} 
             onChangeText={value => setPwd(value)}
             InputRightElement={
-              <Pressable onPress={() => setShow(!show)} style={styles.inputicon}>
+              pwd && 
+              (<Pressable onPress={() => setShow(!show)} style={styles.inputicon}>
                   <MaterialCommunityIcons
                     name={show ? "eye-outline" : "eye-off-outline"}
                     color={colors.grey1500}
                     size={24}
                   />
-              </Pressable>
+              </Pressable>)
             }
           />
           <View style={styles.infoview}>

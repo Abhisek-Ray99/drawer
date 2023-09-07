@@ -107,7 +107,6 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 
-    implementation project(':react-native-bootsplash')  // <- new package
     implementation("androidx.core:core-splashscreen:1.0.0")
     implementation project(':react-native-vector-icons')
 

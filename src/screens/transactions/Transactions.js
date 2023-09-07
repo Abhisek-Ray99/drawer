@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, SectionList } from 'react-native'
-import React, {memo} from 'react'
+import { StyleSheet, Text, View, SectionList, BackHandler } from 'react-native'
+import React, {memo, useEffect} from 'react'
 import InvoiceElement from './components/InvoiceElement'
 import { colors } from '../../constants/colors'
 
@@ -57,6 +57,18 @@ const Transactions = () => {
       isScrolling.value = false;
     },
   });
+
+  function handleBackButtonClick() {
+    navigation.navigate('dashboard');
+    return true;
+  }
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
+    };
+  }, []);
 
   return (
     <View style={styles.searchview}>

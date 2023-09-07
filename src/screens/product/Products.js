@@ -1,4 +1,4 @@
-import { StyleSheet, View, SafeAreaView, } from 'react-native'
+import { StyleSheet, View, SafeAreaView, BackHandler} from 'react-native'
 import React, { useEffect, useCallback, useRef, useMemo,useState, memo } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import {
@@ -86,6 +86,18 @@ const Products = ({route, navigation}) => {
       isScrolling.value = false;
     },
   });
+
+  function handleBackButtonClick() {
+    navigation.navigate('dashboard');
+    return true;
+  }
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
+    };
+  }, []);
 
 
   return (

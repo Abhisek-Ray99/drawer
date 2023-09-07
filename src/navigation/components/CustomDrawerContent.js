@@ -5,12 +5,12 @@ import { useNavigation } from '@react-navigation/native';
 import {
     DrawerContentScrollView,
   } from '@react-navigation/drawer';
-  import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import AppText from '../../components/text/AppText';
 import DrawerItem from './DrawerItem';
 import { colors } from '../../constants/colors';
-import AppBtn from '../../components/button/AppBtn';
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import TextBtn from '../../components/button/TextBtn';
@@ -18,16 +18,22 @@ import { windowHeight, windowWidth } from '../../utils/Dimension';
 import ProfileImage from '../../screens/profile/components/ProfileImage';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
+import { useDispatch } from '../../redux/store';
+import { setLogout } from '../../redux/slices/user';
+
 const CustomDrawerContent = ({inventories, userData}) => {
 
-    const { fullname, mail } = userData
+    const dispatch = useDispatch();
+
+    const { fullname, mail, type } = userData
+
 
     const navigation = useNavigation();
     return (
         <View style={styles.drawerContainer}>
             <LinearGradient  colors={['#cfd9df', '#e2ebf0', '#e6dee9', '#fff']} style={styles.toprofile}>
                 <Pressable
-                    onPress={()=> navigation.navigate('profile')}
+                    onPress={()=> navigation.navigate('profile', {fullname})}
                 >
                     <Image
                         style={styles.Img}
@@ -62,25 +68,38 @@ const CustomDrawerContent = ({inventories, userData}) => {
                 }
             </DrawerContentScrollView>
             <View style={styles.preferenceView}>
-                <TextBtn 
-                    TextTitle="Create a new inventory" 
-                    onPress={()=> navigation.navigate('create-inventory')}
-                    leftIcon={
-                        <Ionicons name="add-circle-outline" size={24} />
-                    } 
-                />
-                <TextBtn 
-                    TextTitle="View Members" 
-                    onPress={()=> navigation.navigate('view-members')}
-                    leftIcon={
-                        <Ionicons name="people-outline" size={24} />
-                    } 
-                />
+                {
+                    type === "owner" ? (
+                        <>
+                            <TextBtn 
+                                TextTitle="Create a new inventory" 
+                                onPress={()=> navigation.navigate('create-inventory')}
+                                leftIcon={
+                                    <Ionicons name="add-circle-outline" size={24} />
+                                } 
+                            />
+                            <TextBtn 
+                                TextTitle="View Members" 
+                                onPress={()=> navigation.navigate('view-members')}
+                                leftIcon={
+                                    <Ionicons name="people-outline" size={24} />
+                                } 
+                            />
+                        </>
+                    ) : null
+                }
                 <TextBtn 
                     TextTitle="Preferences" 
                     onPress={()=> navigation.navigate('preferences')}
                     leftIcon={
                         <Ionicons name="settings-outline" size={24} />
+                    } 
+                />
+                <TextBtn 
+                    TextTitle="Sign out" 
+                    onPress={()=> dispatch(setLogout())}
+                    leftIcon={
+                        <Ionicons name="arrow-forward-circle-outline" size={24} />
                     } 
                 />
             </View>

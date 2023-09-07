@@ -1,5 +1,5 @@
-import React, { useCallback, useRef, useMemo, useState } from "react";
-import { StyleSheet, View, StatusBar } from "react-native";
+import React, { useCallback, useRef, useMemo, useState, useEffect } from "react";
+import { StyleSheet, View, StatusBar, BackHandler, Alert } from "react-native";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import LottieView from 'lottie-react-native'
 
@@ -20,7 +20,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { Modal, Portal} from 'react-native-paper';
 import ViewItem from "./components/ViewItem";
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 const App = ({route, navigation}) => {
@@ -57,6 +57,27 @@ const App = ({route, navigation}) => {
   StatusBar.setBackgroundColor('#cfd9df')
   StatusBar.setTranslucent(false)
   StatusBar.setBarStyle('dark-content')
+
+  useEffect(() => {
+    const backAction = () => {
+      Alert.alert('Hold on!', 'Are you sure you want to Exit?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {text: 'YES', onPress: () => BackHandler.exitApp()},
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
 
   return (
     <View style={styles.container}>

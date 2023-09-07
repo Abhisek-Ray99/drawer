@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, StatusBar, Pressable, Alert } from 'react-native'
 import React, {memo, useState} from 'react'
 import AnimatedCheckbox from 'react-native-checkbox-reanimated'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import AppText from '../../components/text/AppText'
 import { colors } from '../../constants/colors'
@@ -8,57 +9,51 @@ import InputField from '../../components/input/InputField'
 import TextLink from '../../components/text/TextLink'
 import { windowHeight, windowWidth } from '../../utils/Dimension'
 import ImgBtn from '../../components/button/ImgBtn'
-
 import { users } from '../../data/data'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+
+import { useDispatch, useSelector } from '../../redux/store'
+import { setLoggedIn } from '../../redux/slices/user'
 
 StatusBar.setTranslucent(true)
 StatusBar.setBarStyle('light-content')
 
 const Login = ({navigation}) => {
 
+  const dispatch = useDispatch();
+
+
   const [checked, setChecked] = useState(false)
+  const [show, setShow] = useState(false);
 
   const handleCheckboxPress = () => {
     setChecked(prev => {
       return !prev
     })
   }
+  
 
-  const [mail, setMail] = useState('')
-  const [pwd, setPwd] = useState('')
+  const [mail, setMail] = useState('');
+  const [pwd, setPwd] = useState('');
+  // console.log(user)
 
-  const handleLogin = async() => {
-    if(mail.length < 6 || pwd.length < 6){
-      Alert.alert("Warning !", "id and password length should be atleast 6 character")
-    }else{
-      try {
-        const result = users.filter(data => data.mail === mail && data.password === pwd)
-        if(Array.isArray(result) && !result.length){
+  const handleLogin = () => {
+    try{
+      if(mail.length < 6 || pwd.length < 6){
+        Alert.alert("Warning !", "id and password length should be atleast 6 character")
+      }else{
+        const user = users?.filter(data => data?.mail === mail && data?.password === pwd)
+        if(Array.isArray(user) && !user.length){
           Alert.alert("Error !", "Wrong Email or Password")
         }else{
-          navigation.navigate('home', {
-            userData: result[0]
-          })
+          dispatch(setLoggedIn(user))
         }
-
-
-
-
-
-
-        // var user = {
-        //   Name: mail,
-        //   Password: pwd,
-        //   remember: checked
-        // }
-        // await AsyncStorage.setItem("Users", JSON.stringify(user))
-      } catch (error) {
-        console.warn("got error")
       }
+    }catch(error){
+      console.warn("got error")
     }
   }
-
   
   return (
     <View style={styles.ownerLoginContainer} >
@@ -75,7 +70,20 @@ const Login = ({navigation}) => {
         </View>
         <View style={styles.loginfields}>
           <InputField placeholder={"Email"}  onChangeText={value => setMail(value)} />
-          <InputField placeholder={"Password"} password={true} onChangeText={value => setPwd(value)}/>
+          <InputField 
+            placeholder={"Password"} 
+            secureTextEntry={show ? false : true} 
+            onChangeText={value => setPwd(value)}
+            InputRightElement={
+              <Pressable onPress={() => setShow(!show)} style={styles.inputicon}>
+                  <MaterialCommunityIcons
+                    name={show ? "eye-outline" : "eye-off-outline"}
+                    color={colors.grey1500}
+                    size={24}
+                  />
+              </Pressable>
+            }
+          />
           <View style={styles.infoview}>
             <Pressable onPress={handleCheckboxPress} style={styles.checkboxview}>
               <View style={styles.checkbox} >
@@ -162,5 +170,8 @@ const styles = StyleSheet.create({
   },
   remember:{
     fontWeight: '700'
+  },
+  inputicon:{
+    padding: 10,
   }
 })

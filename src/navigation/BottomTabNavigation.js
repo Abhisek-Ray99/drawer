@@ -1,7 +1,6 @@
 import React, {memo} from 'react'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Profile from '../screens/profile/Profile';
 import Dashboard from '../screens/dashboard/Dashboard';
 import Reports from '../screens/Reports/Reports';
 
@@ -46,6 +45,7 @@ const BottomTabNavigation = ({route}) => {
         component={Dashboard} 
         initialParams={route.params}
         options={{
+            tabBarLabel: "Dashboard",
             headerShown: false,
             tabBarIcon: ({focused}) => (
                 <Icons name="view-dashboard-outline" size={22} color={focused? 'blue':'grey'} />
@@ -56,6 +56,7 @@ const BottomTabNavigation = ({route}) => {
         component={TopTabNavigation}
         initialParams={items}
         options={{
+            tabBarLabel: "Items",
             headerShown: false,
             tabBarIcon: ({focused}) => (
                 <Feather name="shopping-bag" size={22} color={focused? 'blue':'grey'} />
@@ -90,15 +91,6 @@ const BottomTabNavigation = ({route}) => {
                 backgroundColor: '#cfd9df'
             },  
         }} />
-      {/* <Tab.Screen 
-        name="profile" 
-        component={Profile}
-        options={{
-            headerShown: false,
-            tabBarIcon: ({focused}) => (
-                <Octicons name="person" size={22} color={focused? 'blue':'grey'} />
-            )
-        }} /> */}
     </Tab.Navigator>
   )
 }

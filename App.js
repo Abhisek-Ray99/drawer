@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useEffect} from 'react';
 import {
   View,
   StatusBar,
@@ -10,11 +10,21 @@ import RootNavigation from './src/navigation/RootNavigation';
 import { NativeBaseProvider } from "native-base";
 
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import RNBootSplash from "react-native-bootsplash";
 import { colors } from './src/constants/colors';
 import NetInfo from './src/components/network/NetInfo';
+import AppStack from './src/navigation/AppStack';
+import BootSplash from "react-native-bootsplash";
 
 function App() {
+  useEffect(() => {
+    const init = async () => {
+      // …do multiple sync or async tasks
+    };
+
+    init().finally(async () => {
+      await BootSplash.hide({ fade: true });
+    });
+  }, []);
   const isDarkMode = useColorScheme() === 'dark';
   const MyTheme = {
     ...DefaultTheme,
@@ -25,12 +35,12 @@ function App() {
   };
   return (
     <NativeBaseProvider>
-      <NavigationContainer theme={MyTheme} onReady={() => RNBootSplash.hide()}>
+      <NavigationContainer theme={MyTheme} onReady={() => BootSplash.hide()}>
         <StatusBar
           barStyle={isDarkMode ? 'light-content' : 'dark-content'}
           backgroundColor="transparent"
         />
-        <RootNavigation />
+        <AppStack/>
         <NetInfo/>
       </NavigationContainer>
     </NativeBaseProvider>

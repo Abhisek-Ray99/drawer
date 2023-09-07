@@ -13,11 +13,11 @@ const Drawer = createDrawerNavigator();
 
 
 const InventoryNavigation = ({route}) => {
-  const { inventories } = route.params.userData
-  // console.log(inventories)
+  const { inventories } = route.params[0]
+  // console.log(route)
   return (
     <Drawer.Navigator
-        drawerContent={(props) => <CustomDrawerContent inventories={inventories} userData={route.params.userData} /> }
+        drawerContent={(props) => <CustomDrawerContent inventories={inventories} userData={route.params[0]} /> }
         screenOptions={{
             headerShown: false,
             drawerType: 'slide',

@@ -3,8 +3,6 @@ import React, {memo} from 'react'
 
 import { CardStyleInterpolators, createStackNavigator, TransitionSpecs, HeaderStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 
-import Onboarding from '../screens/onboarding/Onboarding';
-import OwnerLogin from '../screens/auth/Login';
 import AddItem from '../screens/items/AddItem';
 import BarcodeItem from '../screens/items/BarcodeItem'
 import CategoryScreen from '../screens/category/Category.screen';
@@ -22,25 +20,14 @@ import Profile from '../screens/profile/Profile';
 
 const RootStack = createStackNavigator()
 
-const RootNavigation = () => {
+const RootNavigation = ({userData}) => {
+    // console.log(userData)
     return (
         <RootStack.Navigator
         >
             <RootStack.Screen
-                name="onboarding"
-                component={Onboarding}
-                options={{
-                    headerShown: false,
-                }} 
-            />
-            <RootStack.Screen
-                name="owner-login"
-                component={OwnerLogin}
-                options={{
-                    headerShown: false,
-                }} />
-            <RootStack.Screen
                 name="home"
+                initialParams={userData}
                 component={InventoryNavigation} 
                 options={{
                     headerShown: false,

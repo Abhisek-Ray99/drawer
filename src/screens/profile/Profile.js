@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, StatusBar, Image, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Pressable, StatusBar, Image, ScrollView, BackHandler } from 'react-native'
 import React, {memo, useEffect} from 'react'
 import HeaderBar from './components/HeaderBar'
 import ProfileImage from './components/ProfileImage'
@@ -17,10 +17,24 @@ const boxWidth = (windowWidth - 0 * 2)/2.4;
 import Feather from 'react-native-vector-icons/Feather';
 import ViewBox from '../../components/view/ViewBox'
 
-const Profile = ({navigation}) => {
+const Profile = ({route, navigation}) => {
+
+  const { fullname } = route.params
 
   StatusBar.setBackgroundColor('#cfd9df')
   StatusBar.setBarStyle('dark-content')
+
+  function handleBackButtonClick() {
+    navigation.goBack();
+    return true;
+  }
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
+    };
+  }, []);
 
   return (
     <View style={styles.profileView}>
@@ -30,7 +44,7 @@ const Profile = ({navigation}) => {
           <View style={styles.profileview1}>
             <ProfileImage />
             <View style={styles.rightview}>
-              <AppText style={styles.displayName}>John, manager</AppText>
+              <AppText style={styles.displayName}>{fullname}</AppText>
               <View style={styles.chatbtn}>
                 <MaterialIcons name="verified" size={16} color={colors.greenheavy} />
                 <AppText>verified</AppText>

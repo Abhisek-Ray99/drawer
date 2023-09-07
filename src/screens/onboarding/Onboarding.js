@@ -33,7 +33,7 @@ const Onboarding = ({navigation}) => {
           rightIcon={(
            <Icon name="arrow-right-l" size={30} color="#fff" /> 
           )} 
-          onPress={()=> navigation.navigate('owner-login')}
+          onPress={()=> navigation.navigate('login')}
           />
       </View> 
     </View>

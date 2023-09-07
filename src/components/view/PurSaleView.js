@@ -15,15 +15,17 @@ const PurSaleView = ({
     <View style={[{backgroundColor: bgColor}, styles.Container]}>
 
         <Image source={img} style={styles.img} />
-        <AppBtn 
-            BtnStyle={styles.btn} 
-            title={BtnTitle}  
-            rightIcon={
-                <View style={styles.icon}>
-                    <FontAwesome6 name="arrow-right-long" color={colors.white} size={16}  />
-                </View>
-            }
-        />
+        <View style={styles.viewbtn}>
+            <AppBtn 
+                BtnStyle={styles.btn} 
+                title={BtnTitle}  
+                rightIcon={
+                    <View style={styles.icon}>
+                        <FontAwesome6 name="arrow-right-long" color={colors.white} size={16}  />
+                    </View>
+                }
+            />
+        </View>
     </View>
   )
 }
@@ -38,14 +40,8 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     btn:{
-        position: 'absolute',
         backgroundColor: colors.sapphire,
         opacity: 0.9,
-        borderRadius: 10,
-        bottom: 4,
-        left: 0,
-        right: 0,
-        margin: 12
     },
     icon:{
         backgroundColor: colors.asenic,
@@ -59,5 +55,14 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         bottom: -10,
         right: -4
+    },
+    viewbtn:{
+        borderRadius: 10, 
+        overflow: 'hidden', 
+        position: 'absolute', 
+        bottom: 4,
+        left: 0,
+        right: 0,
+        margin: 12
     }
 })

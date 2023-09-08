@@ -12,27 +12,31 @@ const boxWidth = (windowWidth - 0 * 2)/6;
 const DrawerItem = ({
     ItemTitle,
     onPress,
-    img=null
+    img=null,
+    style
 }) => {
   return (
-    <View style={{ borderRadius: 10, overflow: 'hidden' }}>
+    <View style={[{ borderRadius: 10, overflow: 'hidden' }]}>
         <Pressable 
             onPress={onPress} 
             android_ripple={{color: colors.grey1900, borderless: false}}
             style={styles.drawerItemView}>
-            <View style={styles.drawerItemView2}>
-                {img ? 
-                    <Image
-                        style={styles.tinyLogo}
-                        source={{
-                        uri: item.img,
-                        }}
-                    /> 
-                : 
-                    <View style={styles.imgstyle}>
-                        <AppText style={{fontSize: 22, fontWeight: '700'}}>{ItemTitle.charAt(0).toUpperCase()}</AppText>
-                    </View> 
-                }
+            <View style={[styles.drawerItemView2]}>
+                <View style={[styles.activeView, style]}>
+                    {img ? 
+                        <Image
+                            style={styles.tinyLogo}
+                            source={{
+                            uri: item.img,
+                            }}
+                        /> 
+                    : 
+                        <View style={[styles.imgstyle]}>
+                            <AppText style={{fontSize: 22, fontWeight: '700'}}>{ItemTitle.charAt(0).toUpperCase()}</AppText>
+                        </View> 
+                        
+                    }
+                </View>
                 <AppText style={styles.itemText}>{ItemTitle}</AppText>
             </View>
             <View>
@@ -74,5 +78,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
+    },
+    activeView:{
+        padding: 6
     }
 })

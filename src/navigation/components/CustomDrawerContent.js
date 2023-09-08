@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
-import React, {memo} from 'react'
+import React, {memo, useState} from 'react'
 
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -22,11 +22,14 @@ import { useDispatch } from '../../redux/store';
 import { setLogout } from '../../redux/slices/user';
 
 const CustomDrawerContent = ({inventories, userData}) => {
-
     const dispatch = useDispatch();
 
     const { fullname, mail, type } = userData
 
+    const [selected, setSelected] = useState(inventories[0].name);
+    const handleName = (item) => {
+        setSelected(item.name);
+    };
 
     const navigation = useNavigation();
     return (
@@ -62,7 +65,12 @@ const CustomDrawerContent = ({inventories, userData}) => {
                         <DrawerItem 
                             key={index}
                             ItemTitle={inventory.name} 
-                            onPress={() => navigation.navigate(inventory.name)} 
+                            onPress={() => {navigation.navigate(inventory.name), handleName(inventory)}} 
+                            style={
+                                inventory.name === selected
+                                  ? { borderColor: 'blue', borderWidth: 3, borderRadius: 27 }
+                                  : null
+                            }
                         />
                     ))
                 }

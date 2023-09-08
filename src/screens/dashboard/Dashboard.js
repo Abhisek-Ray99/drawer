@@ -117,7 +117,6 @@ const App = ({route, navigation}) => {
                     bgColor={colors.antiflashwhite3}
                     borderC={colors.aliceblue3}
                   />
-                  
                 </View>
                 <View style={styles.view2}>
                   
@@ -138,8 +137,8 @@ const App = ({route, navigation}) => {
       >
         <BottomSheetScrollView contentContainerStyle={styles.contentContainer}>
           <View style={styles.pursale}>
-            <PurchaseView/>
-            <SaleView/>
+            <PurchaseView onPress={()=> navigation.navigate('purchase')}/>
+            <SaleView onPress={()=> navigation.navigate('sales')}/>
           </View>
         </BottomSheetScrollView>
       </BottomSheet>

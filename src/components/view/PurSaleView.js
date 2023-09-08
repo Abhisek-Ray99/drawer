@@ -9,7 +9,8 @@ import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 const PurSaleView = ({
     bgColor="grey",
     BtnTitle,
-    img
+    img,
+    onPress
 }) => {
   return (
     <View style={[{backgroundColor: bgColor}, styles.Container]}>
@@ -19,6 +20,7 @@ const PurSaleView = ({
             <AppBtn 
                 BtnStyle={styles.btn} 
                 title={BtnTitle}  
+                onPress={onPress}
                 rightIcon={
                     <View style={styles.icon}>
                         <FontAwesome6 name="arrow-right-long" color={colors.white} size={16}  />

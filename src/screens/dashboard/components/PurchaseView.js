@@ -3,9 +3,11 @@ import React, {memo} from 'react'
 import PurSaleView from '../../../components/view/PurSaleView'
 import { colors } from '../../../constants/colors'
 
-const PurchaseView = () => {
+const PurchaseView = ({
+  onPress
+}) => {
   return (
-      <PurSaleView bgColor={colors.paleblue} BtnTitle="View purchase" img={require('../../../assets/img/simplistic-mobile-bank.png')} />
+      <PurSaleView bgColor={colors.paleblue} BtnTitle="View purchase" img={require('../../../assets/img/simplistic-mobile-bank.png')} onPress={onPress}  />
   )
 }
 

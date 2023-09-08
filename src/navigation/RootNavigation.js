@@ -18,9 +18,23 @@ import ProfileScreenEdit from '../screens/profile/Profile.screen.edit';
 import Profile from '../screens/profile/Profile';
 import NewPurchaseScreen from '../screens/purchase/NewPurchase.screen';
 import NewSaleScreen from '../screens/sale/NewSale.screen';
+import Sales from '../screens/sale/Sales';
+import Purchase from '../screens/purchase/Purchase';
 
 
 const RootStack = createStackNavigator()
+
+const config = {
+    animation: 'spring',
+    config: {
+      stiffness: 1000,
+      damping: 500,
+      mass: 3,
+      overshootClamping: true,
+      restDisplacementThreshold: 0.01,
+      restSpeedThreshold: 10,
+    },
+  };
 
 const RootNavigation = ({userData}) => {
     // console.log(userData)
@@ -166,6 +180,30 @@ const RootNavigation = ({userData}) => {
                     // headerShown: false,
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                     ...TransitionPresets.FadeFromBottomAndroid,
+                }}
+                
+                />
+            <RootStack.Screen
+                name="sales"
+                component={Sales} 
+                options={{
+                    // headerShown: false,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                    ...TransitionPresets.FadeFromBottomAndroid,
+                }}
+                
+                />
+            <RootStack.Screen
+                name="purchase"
+                component={Purchase} 
+                options={{
+                    // headerShown: false,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                    ...TransitionPresets.FadeFromBottomAndroid,
+                    transitionSpec: {
+                        open: config,
+                        close: config,
+                      },
                 }}
                 
                 />

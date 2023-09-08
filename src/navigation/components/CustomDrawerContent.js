@@ -6,26 +6,28 @@ import {
     DrawerContentScrollView,
   } from '@react-navigation/drawer';
 import LinearGradient from 'react-native-linear-gradient';
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Modal } from "./Modal";
 
 import AppText from '../../components/text/AppText';
 import DrawerItem from './DrawerItem';
 import { colors } from '../../constants/colors';
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import TextBtn from '../../components/button/TextBtn';
 import { windowHeight, windowWidth } from '../../utils/Dimension';
 import ProfileImage from '../../screens/profile/components/ProfileImage';
-import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import { useDispatch } from '../../redux/store';
 import { setLogout } from '../../redux/slices/user';
 
 const CustomDrawerContent = ({inventories, userData}) => {
     const dispatch = useDispatch();
+    const [isModalVisible, setIsModalVisible] = React.useState(false);
+
+    const handleModal = () => setIsModalVisible(() => !isModalVisible);
 
     const { fullname, mail, type } = userData
-
     const [selected, setSelected] = useState(inventories[0].name);
     const handleName = (item) => {
         setSelected(item.name);
@@ -34,7 +36,7 @@ const CustomDrawerContent = ({inventories, userData}) => {
     const navigation = useNavigation();
     return (
         <View style={styles.drawerContainer}>
-            <LinearGradient  colors={['#cfd9df', '#e2ebf0', '#e6dee9', '#fff']} style={styles.toprofile}>
+            <LinearGradient  colors={['#cfd9df', '#e2ebf0', '#fff']} style={styles.toprofile}>
                 <Pressable
                     onPress={()=> navigation.navigate('profile', {fullname})}
                 >
@@ -52,24 +54,23 @@ const CustomDrawerContent = ({inventories, userData}) => {
                             </AppText>
                             <AppText style={[styles.thumbtext, styles.thumbtext_tail]}>{mail}</AppText>
                         </View>
-                        <AntDesign name="doubleright" size={24} style={styles.righticon} />
                     </View>
                 </Pressable>
             </LinearGradient >
-            <View style={styles.TitleView}>
-                <AppText style={styles.drawerTitle}>Goods available in</AppText>
-            </View>
             <DrawerContentScrollView style={styles.drawerListView}>
+                <View style={styles.TitleView}>
+                    <AppText style={styles.drawerTitle}>Inventories</AppText>
+                </View>
                 {
                     inventories.map((inventory,index) => (
                         <DrawerItem 
                             key={index}
                             ItemTitle={inventory.name} 
                             onPress={() => {navigation.navigate(inventory.name), handleName(inventory)}} 
-                            style={
+                            borderColor={
                                 inventory.name === selected
-                                  ? { borderColor: 'blue', borderWidth: 3, borderRadius: 27 }
-                                  : null
+                                  ? colors.heavyblue
+                                  : "transparent"
                             }
                         />
                     ))
@@ -80,13 +81,15 @@ const CustomDrawerContent = ({inventories, userData}) => {
                     type === "owner" ? (
                         <>
                             <TextBtn 
+                                TextStyle={styles.txtbtn}
                                 TextTitle="Create a new inventory" 
                                 onPress={()=> navigation.navigate('create-inventory')}
                                 leftIcon={
-                                    <Ionicons name="add-circle-outline" size={24} />
+                                    <Ionicons name="add-circle-outline" size={26} />
                                 } 
                             />
                             <TextBtn 
+                                TextStyle={styles.txtbtn}
                                 TextTitle="View Members" 
                                 onPress={()=> navigation.navigate('view-members')}
                                 leftIcon={
@@ -97,6 +100,7 @@ const CustomDrawerContent = ({inventories, userData}) => {
                     ) : null
                 }
                 <TextBtn 
+                    TextStyle={styles.txtbtn}
                     TextTitle="Preferences" 
                     onPress={()=> navigation.navigate('preferences')}
                     leftIcon={
@@ -104,13 +108,26 @@ const CustomDrawerContent = ({inventories, userData}) => {
                     } 
                 />
                 <TextBtn 
+                    TextStyle={styles.txtbtn}
                     TextTitle="Sign out" 
-                    onPress={()=> dispatch(setLogout())}
+                    onPress={handleModal}
                     leftIcon={
-                        <Ionicons name="arrow-forward-circle-outline" size={24} />
+                        <AntDesign name="logout" size={22} />
                     } 
                 />
             </View>
+            <Modal isVisible={isModalVisible}>
+            <Modal.Container>
+                <Modal.Header title="Are you sure you want to sign out?" />
+                <Modal.Body>
+                    <Text style={styles.text}>Please ensure your items & folders have synced before signing out.</Text>
+                </Modal.Body>
+                <Modal.Footer>
+                    <TextBtn TextStyle={[styles.popupBtn, {color: colors.heavyblue}]} TextTitle="Cancel" onPress={handleModal} />
+                    <TextBtn TextStyle={[styles.popupBtn, {color: colors.redheavy100}]} TextTitle="Sign Out" onPress={() => dispatch(setLogout())} />
+                </Modal.Footer>
+            </Modal.Container>
+            </Modal>
         </View>
     )
 }
@@ -120,12 +137,13 @@ export default memo(CustomDrawerContent)
 const styles = StyleSheet.create({
     drawerContainer:{
         flex:1,
-        overflow: 'hidden'
+        overflow: 'hidden',
     },
     toprofile:{
         width: windowWidth/1.17,
-        height: windowHeight/10,
-        padding: 10,
+        height: windowHeight/8,
+        paddingHorizontal: 10,
+        paddingTop: 34
     },
     Img:{
         width: '100%',
@@ -133,12 +151,11 @@ const styles = StyleSheet.create({
         borderRadius: 7,
     },
     TitleView:{
-        padding: 14,
-       
+        paddingHorizontal: 10,
+        paddingBottom: 10
     },
     drawerListView:{
-        flex: 1,
-        padding: 10,
+        paddingHorizontal: 10,
     },
     drawerTitle:{
         fontSize: 22,
@@ -178,5 +195,11 @@ const styles = StyleSheet.create({
         top: 0,
         bottom: 0,
         left: 70
+    },
+    popupBtn:{
+        fontWeight: 'bold',
+    },
+    txtbtn:{
+        marginLeft: 16,
     }
 })

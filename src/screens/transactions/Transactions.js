@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
 import SearchFilter from '../../components/input/Search&Filter'
+import EmptyView from '../../components/view/EmptyView';
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList);
 
@@ -105,6 +106,9 @@ const Transactions = ({route}) => {
           <Text style={styles.header}>{title}</Text>
         )}
         scrollEventThrottle={16}
+        ListEmptyComponent={
+          <EmptyView imagesource={require('../../assets/img/details.png')} />
+        }
         onScroll={scrollHandler}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}

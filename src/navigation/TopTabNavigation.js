@@ -14,7 +14,11 @@ const TopTabNavigation = ({route}) => {
       screenOptions={{
         tabBarBounces: true,
         tabBarPressOpacity: 0,
-        tabBarStyle: { backgroundColor: '#cfd9df' },
+        tabBarStyle: { 
+          backgroundColor: '#cfd9df' ,
+          paddingTop: 36,
+          elevation: 0
+        },
         tabBarActiveTintColor: '#1D5DFF',
         tabBarInactiveTintColor: colors.grey900,
         tabBarLabelStyle:{

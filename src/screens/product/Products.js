@@ -15,6 +15,8 @@ import { colors } from '../../constants/colors';
 import ProductElement from './components/ProductElement';
 import SearchFilter from '../../components/input/Search&Filter';
 import { windowHeight } from '../../utils/Dimension';
+import AppText from '../../components/text/AppText';
+import EmptyView from '../../components/view/EmptyView';
 
 
 const Products = ({route, navigation}) => {
@@ -128,7 +130,12 @@ const Products = ({route, navigation}) => {
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 data={filteredData}
-                renderItem={({item}) => <ProductElement item={item} onPress={()=> navigation.navigate('product-screen')} show={show} hide={hide} visible={visible} />}
+                renderItem={({item}) =>
+                    <ProductElement item={item} onPress={()=> navigation.navigate('product-screen')} show={show} hide={hide} visible={visible} />
+                }
+                ListEmptyComponent={
+                  <EmptyView imagesource={require('../../assets/img/details.png')} />
+                }
                 keyExtractor={item => item.id}
                 style={styles.productflatlist}
                 scrollEventThrottle={16}

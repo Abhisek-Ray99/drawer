@@ -9,10 +9,11 @@ const ViewItem = ({
     bgColor="grey",
     borderC="black",
     TxtColor,
-    style
+    style,
+    onPress
 }) => {
   return (
-    <Pressable>
+    <Pressable onPress={onPress}>
       <View style={[{backgroundColor: bgColor, borderColor: borderC}, styles.container, style]}>
       {icon}
         <View style={[styles.textview, {color: TxtColor}]}>

@@ -13,7 +13,8 @@ const DrawerItem = ({
     ItemTitle,
     onPress,
     img=null,
-    style
+    style, 
+    borderColor
 }) => {
   return (
     <View style={[{ borderRadius: 10, overflow: 'hidden' }]}>
@@ -22,7 +23,7 @@ const DrawerItem = ({
             android_ripple={{color: colors.grey1900, borderless: false}}
             style={styles.drawerItemView}>
             <View style={[styles.drawerItemView2]}>
-                <View style={[styles.activeView, style]}>
+                <View style={[{borderColor: borderColor},styles.activeView, style]}>
                     {img ? 
                         <Image
                             style={styles.tinyLogo}
@@ -40,7 +41,12 @@ const DrawerItem = ({
                 <AppText style={styles.itemText}>{ItemTitle}</AppText>
             </View>
             <View>
-                <MaterialIcons name="more-vert" size={26} color={colors.grey300} />
+                <Pressable 
+                    android_ripple={{color: colors.grey1900, borderless: true}}
+                    pressRetentionOffset={{bottom: 300, left: 200, right: 200, top: 200}}
+                >
+                    <MaterialIcons name="more-vert" size={26} color={colors.grey300} />
+                </Pressable>
             </View>
         </Pressable>
     </View>
@@ -52,19 +58,19 @@ export default memo(DrawerItem)
 
 const styles = StyleSheet.create({
     drawerItemView: {
-        padding: 10,
+        padding: 2,
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: 18,
+        borderRadius: 15,
         justifyContent: 'space-between'
     },
     imgstyle:{
         backgroundColor: colors.flashWhite,
-        height: boxHeight,
-        width: boxWidth,
+        height: boxHeight/1.2,
+        width: boxWidth/1.2,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 18
+        borderRadius: 15
     },
     tinyLogo:{
         height: boxHeight,
@@ -80,6 +86,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     activeView:{
-        padding: 6
+        borderWidth: 3, 
+        borderRadius: 21,
+        padding: 4
     }
 })

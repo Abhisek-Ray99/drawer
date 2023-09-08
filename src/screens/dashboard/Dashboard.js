@@ -51,10 +51,8 @@ const App = ({route, navigation}) => {
         .map((_, index) => `index-${index}`),
     []
   );
-  const snapPoints = useMemo(() => ["70%", "70%", "92%"], []);
+  const snapPoints = useMemo(() => ["70%", "70%", "89%"], []);
 
-  StatusBar.setBackgroundColor('#cfd9df')
-  StatusBar.setTranslucent(false)
   StatusBar.setBarStyle('dark-content')
 
   useEffect(() => {
@@ -102,6 +100,7 @@ const App = ({route, navigation}) => {
                     descript="Quicky add your purchases"
                     bgColor={colors.antiflashwhite1}
                     borderC={colors.aliceblue2}
+                    onPress={()=> {hideModal(), navigation.navigate("new-purchase")}}
                   />
                   <ViewItem 
                     icon={<AntDesign name="shoppingcart" size={22} color={colors.amethyst} />}
@@ -109,6 +108,7 @@ const App = ({route, navigation}) => {
                     descript="Start saling you product"
                     bgColor={colors.antiflashwhite2}
                     borderC={colors.lavender}
+                    onPress={()=> {hideModal(), navigation.navigate("new-sale")}}
                   />
                   <ViewItem 
                     icon={<Ionicons name="receipt-outline" size={22} color={colors.bondiblue} />}
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly'
   },
   dashboardheader:{
-    marginTop: 10,
+    marginTop: 34,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: "space-between",

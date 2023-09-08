@@ -21,7 +21,6 @@ const Profile = ({route, navigation}) => {
 
   const { fullname } = route.params
 
-  StatusBar.setBackgroundColor('#cfd9df')
   StatusBar.setBarStyle('dark-content')
 
   function handleBackButtonClick() {

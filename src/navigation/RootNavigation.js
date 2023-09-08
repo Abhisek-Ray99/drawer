@@ -14,8 +14,10 @@ import ViewMembersScreen from '../screens/members/ViewMembers.screen';
 import PreferencesScreen from '../screens/preferences/Preferences.screen';
 import InvoiceScreen from '../screens/transactions/Invoice.screen';
 import SettingsScreen from '../screens/settings/Settings.screen';
-import ProfileScreenEdit from '../screens/profile/Profile.Screen.edit';
+import ProfileScreenEdit from '../screens/profile/Profile.screen.edit';
 import Profile from '../screens/profile/Profile';
+import NewPurchaseScreen from '../screens/purchase/NewPurchase.screen';
+import NewSaleScreen from '../screens/sale/NewSale.screen';
 
 
 const RootStack = createStackNavigator()
@@ -72,7 +74,7 @@ const RootNavigation = ({userData}) => {
                 name="create-inventory"
                 component={CreateInventoryScreen} 
                 options={{
-                    headerTitle: 'Create a new inventory',
+                    headerShown: false,
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                     ...TransitionPresets.FadeFromBottomAndroid,
                 }}
@@ -144,6 +146,26 @@ const RootNavigation = ({userData}) => {
                         close: TransitionSpecs.TransitionIOSSpec,
                     },
                     headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
+                }}
+                
+                />
+            <RootStack.Screen
+                name="new-purchase"
+                component={NewPurchaseScreen} 
+                options={{
+                    // headerShown: false,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                    ...TransitionPresets.FadeFromBottomAndroid,
+                }}
+                
+                />
+            <RootStack.Screen
+                name="new-sale"
+                component={NewSaleScreen} 
+                options={{
+                    // headerShown: false,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                    ...TransitionPresets.FadeFromBottomAndroid,
                 }}
                 
                 />

@@ -16,8 +16,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useDispatch, useSelector } from '../../redux/store'
 import { setLoggedIn } from '../../redux/slices/user'
 
-StatusBar.setTranslucent(true)
-StatusBar.setBarStyle('light-content')
 
 const Login = ({navigation}) => {
 

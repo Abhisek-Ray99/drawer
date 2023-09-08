@@ -34,6 +34,5 @@ const styles = StyleSheet.create({
     },
     TextBtnText:{
         fontSize: 16,
-        marginLeft: 16
     }
 })

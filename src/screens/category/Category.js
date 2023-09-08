@@ -5,6 +5,7 @@ import CategoryElement from './components/CategoryElement'
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
 import SearchFilter from '../../components/input/Search&Filter';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import EmptyView from '../../components/view/EmptyView';
 
 const Category = ({route, navigation}) => {
 
@@ -97,6 +98,9 @@ const Category = ({route, navigation}) => {
             onPress={()=> navigation.navigate('category-screen', { categoryName: item.categoryName})} />
         )}
         keyExtractor={(item) => item.categoryName}
+        ListEmptyComponent={
+          <EmptyView imagesource={require('../../assets/img/details.png')} />
+        }
         style={styles.flat}
         scrollEventThrottle={16}
         onScroll={scrollHandler}
@@ -111,6 +115,7 @@ export default memo(Category)
 const styles = StyleSheet.create({
   categoryContainer:{
     flex:1,
+    marginTop: -28
   },
   flat:{
     zIndex: -10

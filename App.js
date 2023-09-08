@@ -25,7 +25,7 @@ function App() {
       <NavigationContainer theme={MyTheme}>
         <StatusBar
           barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor="transparent"
+          translucent backgroundColor="transparent"
         />
         <AppStack/>
         <NetInfo/>

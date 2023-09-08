@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, {memo} from 'react'
 
-const CreateInventoryScreen = () => {
+const NewPurchaseScreen = () => {
   return (
-    <View style>
-      
+    <View>
+      <Text>NewPurchase.screen</Text>
     </View>
   )
 }
 
-export default memo(CreateInventoryScreen)
+export default memo(NewPurchaseScreen)
 
 const styles = StyleSheet.create({})

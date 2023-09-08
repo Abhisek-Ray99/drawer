@@ -15,7 +15,7 @@ import { colors } from '../constants/colors';
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigation = ({route}) => {
-    const { items } = route.params.params[0]
+    const { items, transactions } = route.params.params[0]
   return (
     <Tab.Navigator
         screenOptions={{
@@ -80,6 +80,7 @@ const BottomTabNavigation = ({route}) => {
       <Tab.Screen 
         name="transactions" 
         component={Transactions}
+        initialParams={transactions}
         options={{
             tabBarLabel: "Transactions",
             headerTitle: "Transactions History",

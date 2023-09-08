@@ -13,13 +13,29 @@ import ActionButton from '../items/components/ActionButton'
 import Button from '../items/components/Button';
 import { colors } from '../../constants/colors';
 import ProductElement from './components/ProductElement';
-import { products } from '../../data/data';
 import SearchFilter from '../../components/input/Search&Filter';
+import { windowHeight } from '../../utils/Dimension';
 
 
 const Products = ({route, navigation}) => {
 
-  // console.log(route.params.products)
+  const data = Object.values(route.params.products)
+
+  const [searchTerm, setSearchTerm] = useState("")
+  const [filteredData, setFilteredData] = useState(data)
+
+  const handleInputChange = (value) => {
+    setSearchTerm(value);
+    filterData(value)
+  }
+
+  const filterData = (searchTerm) => {
+    const filteredData = Object.values(route.params.products).filter((item) => 
+      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.category.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    setFilteredData(filteredData)
+  }
   
   const sheetroute = useRoute();
   // ref
@@ -74,7 +90,7 @@ const Products = ({route, navigation}) => {
         lastContentOffset.value < event.contentOffset.y &&
         isScrolling.value
       ) {
-        translateY.value = 101;
+        translateY.value = windowHeight;
         // console.log("scrolling down");
       }
       lastContentOffset.value = event.contentOffset.y;
@@ -105,15 +121,15 @@ const Products = ({route, navigation}) => {
         <BottomSheetModalProvider>
           <SafeAreaView style={[styles.container, ]}>
               <View>
-                <SearchFilter/>
+                <SearchFilter onChangeText={value => handleInputChange(value)} value={searchTerm} />
               </View>
               <Animated.FlatList
                 contentContainerStyle={{ paddingBottom: 100, paddingTop: 50 }}
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
-                data={Object.keys(route.params.products)}
-                renderItem={({item}) => <ProductElement item={route.params.products[item]} onPress={()=> navigation.navigate('product-screen')} show={show} hide={hide} visible={visible} />}
-                keyExtractor={item => item.toString()}
+                data={filteredData}
+                renderItem={({item}) => <ProductElement item={item} onPress={()=> navigation.navigate('product-screen')} show={show} hide={hide} visible={visible} />}
+                keyExtractor={item => item.id}
                 style={styles.productflatlist}
                 scrollEventThrottle={16}
                 onScroll={scrollHandler}

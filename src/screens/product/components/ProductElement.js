@@ -30,11 +30,11 @@ const ProductElement = ({
       <View style={[styles.productContainer]}>
         <View style={[styles.productContainer1, productStyle]}>
           <View>
-            {item.img ? 
+            {item?.img ? 
             <Image
             style={styles.tinyLogo}
             source={{
-              uri: item.img,
+              uri: item?.img,
             }}
           />
           : (
@@ -44,14 +44,14 @@ const ProductElement = ({
             )}
           </View>
           <View style={styles.desc}>
-              <AppText style={styles.idstyle}>{item.id}</AppText>
-              <AppText style={styles.productName}>{item.name}</AppText>
+              <AppText style={styles.idstyle}>{item?.id}</AppText>
+              <AppText style={styles.productName}>{item?.name}</AppText>
               <View style={styles.tags}>
                 <View style={styles.unitPrice}>
-                  <Tag>{item.count +" "+item.unit}</Tag>
-                  <AppText style={styles.amountStyle}>${item.price}</AppText>
+                  <Tag>{item?.count +" "+item?.unit}</Tag>
+                  <AppText style={styles.amountStyle}>${item?.price}</AppText>
                 </View>
-                <Tag boxColor={colors.green100} titleColor={colors.greenheavy} borderColor={colors.greenheavy} borderW={0.5}>{item.category}</Tag>
+                <Tag boxColor={colors.green100} titleColor={colors.greenheavy} borderColor={colors.greenheavy} borderW={0.5}>{item?.category}</Tag>
               </View>
           </View>
         </View>

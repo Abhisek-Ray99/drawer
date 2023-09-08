@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         bottom: 100,
         right: 25,
         alignItems: 'center',
-        borderRadius: 35,
+        borderRadius: Math.round(windowWidth+windowHeight)
     },
     Actionstyle: {
         

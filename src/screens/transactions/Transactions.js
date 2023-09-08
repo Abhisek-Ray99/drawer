@@ -1,20 +1,37 @@
+
+
 import { StyleSheet, Text, View, SectionList, BackHandler } from 'react-native'
-import React, {memo, useEffect} from 'react'
+import React, {memo, useEffect, useState} from 'react'
 import InvoiceElement from './components/InvoiceElement'
 import { colors } from '../../constants/colors'
 
 import { useNavigation } from '@react-navigation/native';
-
-import { transactions } from '../../data/data'
 
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
 import SearchFilter from '../../components/input/Search&Filter'
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList);
 
-const Transactions = () => {
-  const navigation = useNavigation();
+const Transactions = ({route}) => {
 
+  const transactions = Object.values(route.params)
+
+  const [searchTerm, setSearchTerm] = useState("")
+  const [filteredData, setFilteredData] = useState(transactions)
+
+  const handleInputChange = (value) => {
+    setSearchTerm(value);
+    filterData(value)
+  }
+
+  const filterData = (searchTerm) => {
+    const filteredData = transactions.filter((item) => 
+      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    setFilteredData(filteredData)
+  }
+
+  const navigation = useNavigation();
 
   const lastContentOffset = useSharedValue(0);
   const isScrolling = useSharedValue(false);
@@ -73,11 +90,11 @@ const Transactions = () => {
   return (
     <View style={styles.searchview}>
       <Animated.View style={actionBarStyle}>
-        <SearchFilter/>
+        <SearchFilter onChangeText={value => handleInputChange(value)} value={searchTerm} />
       </Animated.View>
       <AnimatedSectionList
         contentContainerStyle={{ paddingBottom: 100, paddingTop: 50 }}
-        sections={transactions}
+        sections={filteredData}
         keyExtractor={(item, index) => index}
         renderItem={({item}) => (
           <View style={styles.transactionslist}>

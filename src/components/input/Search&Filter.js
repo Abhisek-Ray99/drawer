@@ -6,11 +6,13 @@ import SearchField from './SearchField'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { colors } from '../../constants/colors'
 
-const SearchFilter = () => {
+const SearchFilter = ({
+  ...other
+}) => {
   return (
     <View style={styles.searchContainer}>
       <View style={styles.searchinput}>
-        <SearchField placeholder="search or filter payments" InputStyle={styles.input} /> 
+        <SearchField placeholder="search or filter payments" InputStyle={styles.input} {...other} /> 
       </View>
       <View style={styles.filterview}>
         <Pressable>

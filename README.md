@@ -60,4 +60,7 @@ todo:
 - Total Purchase Graph (1D, 1W, 1M, 1Y, All)
 
 **Transactions**
-- search transactions by name of the product and apply filter
+- search transactions by name of the month
+todo: 
+- showing transaction in UI will convert to sections
+- search should be dummy array of transactions data

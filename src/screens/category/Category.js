@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import React, {memo} from 'react'
+import React, {memo, useState} from 'react'
 import CategoryElement from './components/CategoryElement'
 
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
@@ -61,20 +61,32 @@ const Category = ({route, navigation}) => {
     }
   })
 
-  // console.log(categoriesList)
-
   const categoriesData = Object.keys(categoriesList).map(categoryName => ({
     categoryName,
     totalItems: categoriesList[categoryName]
   }));
+  const [searchTerm, setSearchTerm] = useState("")
+  const [filteredData, setFilteredData] = useState(categoriesData)
+
+  const handleInputChange = (value) => {
+    setSearchTerm(value);
+    filterData(value)
+  }
+
+  const filterData = (searchTerm) => {
+    const filteredData = categoriesData.filter((item) => 
+      item.categoryName.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    setFilteredData(filteredData)
+  }
 
   return (
     <SafeAreaView style={styles.categoryContainer}>
       <Animated.View style={actionBarStyle}>
-        <SearchFilter/>
+        <SearchFilter onChangeText={value => handleInputChange(value)} value={searchTerm} />
       </Animated.View>
       <Animated.FlatList
-        data={categoriesData }
+        data={ filteredData }
         contentContainerStyle={{ paddingBottom: 100, paddingTop: 60 }}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}

@@ -54,15 +54,6 @@ const Products = ({route, navigation}) => {
     // console.log('handleSheetChanges', index);
   }, []);
 
-  const [visible, setVisible] = useState(false);
-  const show = () => {
-    setVisible(true)
-    // console.log("hide")
-  }
-  const hide = () => {
-    setVisible(false)
-  }
-
   const lastContentOffset = useSharedValue(0);
   const isScrolling = useSharedValue(false);
   const translateY = useSharedValue(0);
@@ -131,7 +122,7 @@ const Products = ({route, navigation}) => {
                 showsHorizontalScrollIndicator={false}
                 data={filteredData}
                 renderItem={({item}) =>
-                    <ProductElement item={item} onPress={()=> navigation.navigate('product-screen')} show={show} hide={hide} visible={visible} />
+                    <ProductElement item={item} onPress={()=> navigation.navigate('product-screen')} />
                 }
                 ListEmptyComponent={
                   <EmptyView imagesource={require('../../assets/img/details.png')} />

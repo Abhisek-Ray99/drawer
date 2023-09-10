@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View, Image } from 'react-native'
 import React, {memo} from 'react'
-import AppText from '../../components/text/AppText'
 
+import AppText from '../../components/text/AppText'
 import { windowHeight, windowWidth } from '../../utils/Dimension';
 import { colors } from '../../constants/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -14,11 +14,15 @@ const DrawerItem = ({
     onPress,
     img=null,
     style, 
-    borderColor
+    borderColor,
+    onLongPress,
+    disabled
 }) => {
   return (
-    <View style={[{ borderRadius: 10, overflow: 'hidden' }]}>
+    <View style={styles.container} elevation={disabled ? 4 : 0}>
         <Pressable 
+            onLongPress={onLongPress}
+            disabled={disabled}
             onPress={onPress} 
             android_ripple={{color: colors.grey1900, borderless: false}}
             style={styles.drawerItemView}>
@@ -57,6 +61,13 @@ const DrawerItem = ({
 export default memo(DrawerItem)
 
 const styles = StyleSheet.create({
+    container:{
+        borderRadius: 10, 
+        overflow: 'hidden',
+        backgroundColor: colors.white,
+        marginVertical: 4,
+        marginHorizontal: 12
+    },
     drawerItemView: {
         padding: 2,
         flexDirection: 'row',

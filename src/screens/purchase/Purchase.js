@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { memo } from 'react'
+import Animated from 'react-native-reanimated'
+import { colors } from '../../constants/colors'
 
 const Purchase = () => {
   return (
-    <View>
+    <Animated.View  style={{ backgroundColor: colors.paleblue, flex: 1 }}>
+      
       <Text>Purchase</Text>
-    </View>
+    </Animated.View>
   )
 }
 

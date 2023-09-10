@@ -1,11 +1,12 @@
-import { StyleSheet, Pressable, View, Modal, Text, Image } from 'react-native'
-import React, {useState, memo} from 'react'
+import { StyleSheet, Pressable, View, Text, Image } from 'react-native'
+import React, {useState, memo, useRef } from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { colors } from '../../../constants/colors'
 
 import { windowHeight, windowWidth } from '../../../utils/Dimension'
 import AppText from '../../../components/text/AppText'
 import Tag from '../../../components/tags/Tag'
+import BottomPopup from '../../../components/popup/BottomPopup'
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
@@ -18,10 +19,17 @@ const ProductElement = ({
   productImg=null,
   productStyle,
   onPress,
-  show,
-  hide,
-  visible
 }) => {
+
+  const popupRef = useRef(); // Use useRef
+
+  const onShowPopup = () => {
+    popupRef.current.show();
+  }
+
+  const onClosePopup = () => {
+    popupRef.current.close();
+  }
 
   return (
     <Pressable
@@ -60,21 +68,14 @@ const ProductElement = ({
           hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
           android_ripple={{color: colors.grey1900, borderless: true}}
           pressRetentionOffset={100}
-          onPress={show}>
+          onPress={onShowPopup}
+        >
             <MaterialIcons name="more-vert" size={26} color={colors.grey300} />
         </Pressable>
-        <Modal
-          animationType="slide"
-          visible={visible}
-          onRequestClose={hide}
-          transparent
-        >
-          <Pressable style={styles.upper} onPress={hide}  />
-          <View style={styles.lower}>
-                <Text onPress={hide}>hide</Text>
-          </View>
-        </Modal>
       </View>
+      <BottomPopup 
+        ref={popupRef} onTouchOutside={onClosePopup}
+      />
     </Pressable>
 
   )
@@ -121,15 +122,6 @@ const styles = StyleSheet.create({
   },
   fill:{
     flex: 1,
-  },
-  upper:{
-    height: 155,
-  },
-  lower:{
-    flex:1,
-    backgroundColor: colors.white,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
   },
   tinyLogo: {
     height: boxHeight,

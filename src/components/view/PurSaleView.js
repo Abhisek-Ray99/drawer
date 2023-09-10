@@ -1,5 +1,8 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React, {memo} from 'react'
+import Animated from 'react-native-reanimated'
+
+
 import { windowWidth, windowHeight } from '../../utils/Dimension'
 import AppBtn from '../button/AppBtn'
 import { colors } from '../../constants/colors'
@@ -13,7 +16,7 @@ const PurSaleView = ({
     onPress
 }) => {
   return (
-    <View style={[{backgroundColor: bgColor}, styles.Container]}>
+    <Animated.View style={[{backgroundColor: bgColor}, styles.Container]}>
 
         <Image source={img} style={styles.img} />
         <View style={styles.viewbtn}>
@@ -28,7 +31,7 @@ const PurSaleView = ({
                 }
             />
         </View>
-    </View>
+    </Animated.View>
   )
 }
 

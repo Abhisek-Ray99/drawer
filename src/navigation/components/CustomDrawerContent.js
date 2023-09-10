@@ -1,13 +1,11 @@
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Image, Pressable, FlatList } from 'react-native'
 import React, {memo, useState} from 'react'
 
 import { useNavigation } from '@react-navigation/native';
-import {
-    DrawerContentScrollView,
-  } from '@react-navigation/drawer';
 import LinearGradient from 'react-native-linear-gradient';
-import { Modal } from "./Modal";
+import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist';
 
+import { Modal } from "./Modal";
 import AppText from '../../components/text/AppText';
 import DrawerItem from './DrawerItem';
 import { colors } from '../../constants/colors';
@@ -33,6 +31,8 @@ const CustomDrawerContent = ({inventories, userData}) => {
         setSelected(item.name);
     };
 
+    const [data, setData] = useState(inventories)
+
     const navigation = useNavigation();
     return (
         <View style={styles.drawerContainer}>
@@ -57,25 +57,31 @@ const CustomDrawerContent = ({inventories, userData}) => {
                     </View>
                 </Pressable>
             </LinearGradient >
-            <DrawerContentScrollView style={styles.drawerListView}>
+            <View style={styles.drawerListView}>
                 <View style={styles.TitleView}>
                     <AppText style={styles.drawerTitle}>Inventories</AppText>
                 </View>
-                {
-                    inventories.map((inventory,index) => (
-                        <DrawerItem 
-                            key={index}
-                            ItemTitle={inventory.name} 
-                            onPress={() => {navigation.navigate(inventory.name), handleName(inventory)}} 
-                            borderColor={
-                                inventory.name === selected
-                                  ? colors.heavyblue
-                                  : "transparent"
-                            }
-                        />
-                    ))
-                }
-            </DrawerContentScrollView>
+                <DraggableFlatList
+                    data={data}
+                    onDragEnd={({ data }) => setData(data)}
+                    keyExtractor={item => item.name}
+                    renderItem={({item, drag, isActive}) => (
+                        <ScaleDecorator>
+                            <DrawerItem 
+                                ItemTitle={item.name} 
+                                onPress={() => {navigation.navigate(item.name), handleName(item)}} 
+                                borderColor={
+                                    item.name === selected
+                                    ? colors.heavyblue
+                                    : "transparent"
+                                }
+                                onLongPress={drag}
+                                disabled={isActive}
+                            />
+                        </ScaleDecorator>
+                    )}
+                />
+            </View>
             <View style={styles.preferenceView}>
                 {
                     type === "owner" ? (
@@ -155,7 +161,8 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     drawerListView:{
-        paddingHorizontal: 10,
+        flex: 1,
+        paddingVertical: 10,
     },
     drawerTitle:{
         fontSize: 22,

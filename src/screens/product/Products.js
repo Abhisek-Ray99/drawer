@@ -88,7 +88,7 @@ const Products = ({route, navigation}) => {
         lastContentOffset.value < event.contentOffset.y &&
         isScrolling.value
       ) {
-        translateY.value = windowHeight*0.4;
+        translateY.value = 160;
         // console.log("scrolling down");
       }
       lastContentOffset.value = event.contentOffset.y;
@@ -102,7 +102,7 @@ const Products = ({route, navigation}) => {
   });
 
   function handleBackButtonClick() {
-    navigation.navigate('dashboard');
+    navigation.goBack();
     return true;
   }
 
@@ -121,7 +121,7 @@ const Products = ({route, navigation}) => {
             <View>
               {
               Array.isArray(data) && data?.length ? (
-                <>
+                <View style={styles.emptycontainer}>
                   <View>
                     <SearchFilter onChangeText={value => handleInputChange(value)} value={searchTerm} />
                   </View>
@@ -134,14 +134,14 @@ const Products = ({route, navigation}) => {
                         <ProductElement item={item} onPress={()=> navigation.navigate('product-screen')} />
                     }
                     ListEmptyComponent={
-                      <EmptyView imagesource={require('../../assets/img/details.png')} />
+                      <EmptyView imagesource={animation} />
                     }
                     keyExtractor={item => item.id}
                     style={styles.productflatlist}
                     scrollEventThrottle={16}
                     onScroll={scrollHandler}
                   />
-                </>
+                </View>
               ) : (
                 <View style={styles.emptycontainer}>
                   <View style={styles.containerlottie}>

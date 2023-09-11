@@ -24,7 +24,7 @@ const Profile = ({route, navigation}) => {
   StatusBar.setBarStyle('dark-content')
 
   function handleBackButtonClick() {
-    navigation.goBack();
+    navigation.navigate('dashboard');
     return true;
   }
 

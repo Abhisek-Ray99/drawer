@@ -105,7 +105,7 @@ const Category = ({route, navigation}) => {
               )}
               keyExtractor={(item) => item.categoryName}
               ListEmptyComponent={
-                <EmptyView imagesource={require('../../assets/img/details.png')} />
+                <EmptyView imagesource={animation} />
               }
               style={styles.flat}
               scrollEventThrottle={16}

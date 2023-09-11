@@ -27,9 +27,9 @@ const Summary = ({products}) => {
     ];
     const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
     var item = lookup.slice().reverse().find(function(item) {
-      return num >= item.value;
+      return num >= item?.value;
     });
-    return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
+    return item ? (num / item?.value).toFixed(digits).replace(rx, "$1") + item?.symbol : "0";
   }
 
 
@@ -37,14 +37,14 @@ const Summary = ({products}) => {
     const mySet = new Set();
     let count = 0;
     let price = 0;
-    products.map((item)=> {
-      mySet.add(item.category);
-      count += Number(item.count);
-      price += Number(item.price);
+    products?.map((item)=> {
+      mySet.add(item?.category);
+      count += Number(item?.count);
+      price += Number(item?.price);
     })
-    setCategory(mySet.size)
+    setCategory(mySet?.size)
     setQuantity(count)
-    setItems(products.length)
+    setItems(products?.length)
     setPrice(price)
   }, [])
 

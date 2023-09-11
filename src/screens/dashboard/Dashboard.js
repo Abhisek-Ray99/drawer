@@ -24,6 +24,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const App = ({route, navigation}) => {
 
+  // console.log(route)
+
   const { name, items } = route.params.params[0]
 
   const [visible, setVisible] = React.useState(false);

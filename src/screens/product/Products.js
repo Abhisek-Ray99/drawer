@@ -9,6 +9,8 @@ import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, w
 import { useRoute } from '@react-navigation/native';
 
 
+
+import animation from '../../assets/img/animation_1.json';
 import ActionButton from '../items/components/ActionButton'
 import Button from '../items/components/Button';
 import { colors } from '../../constants/colors';
@@ -16,12 +18,15 @@ import ProductElement from './components/ProductElement';
 import SearchFilter from '../../components/input/Search&Filter';
 import { windowHeight } from '../../utils/Dimension';
 import AppText from '../../components/text/AppText';
-import EmptyView from '../../components/view/EmptyView';
+import EmptyView from '../../components/view/LottieView';
+import LottieView from '../../components/view/LottieView';
 
 
 const Products = ({route, navigation}) => {
 
   const data = Object.values(route.params.products)
+
+  // console.log(Array.isArray(data) && !data.length)
 
   const [searchTerm, setSearchTerm] = useState("")
   const [filteredData, setFilteredData] = useState(data)
@@ -83,7 +88,7 @@ const Products = ({route, navigation}) => {
         lastContentOffset.value < event.contentOffset.y &&
         isScrolling.value
       ) {
-        translateY.value = windowHeight;
+        translateY.value = windowHeight*0.4;
         // console.log("scrolling down");
       }
       lastContentOffset.value = event.contentOffset.y;
@@ -113,28 +118,49 @@ const Products = ({route, navigation}) => {
       <GestureHandlerRootView style={{flex: 1}}>
         <BottomSheetModalProvider>
           <SafeAreaView style={[styles.container, ]}>
-              <View>
-                <SearchFilter onChangeText={value => handleInputChange(value)} value={searchTerm} />
-              </View>
-              <Animated.FlatList
-                contentContainerStyle={{ paddingBottom: 100, paddingTop: 50 }}
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-                data={filteredData}
-                renderItem={({item}) =>
-                    <ProductElement item={item} onPress={()=> navigation.navigate('product-screen')} />
-                }
-                ListEmptyComponent={
-                  <EmptyView imagesource={require('../../assets/img/details.png')} />
-                }
-                keyExtractor={item => item.id}
-                style={styles.productflatlist}
-                scrollEventThrottle={16}
-                onScroll={scrollHandler}
-              />
+            <View>
+              {
+              Array.isArray(data) && data?.length ? (
+                <>
+                  <View>
+                    <SearchFilter onChangeText={value => handleInputChange(value)} value={searchTerm} />
+                  </View>
+                  <Animated.FlatList
+                    contentContainerStyle={{ paddingBottom: 100, paddingTop: 50 }}
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
+                    data={filteredData}
+                    renderItem={({item}) =>
+                        <ProductElement item={item} onPress={()=> navigation.navigate('product-screen')} />
+                    }
+                    ListEmptyComponent={
+                      <EmptyView imagesource={require('../../assets/img/details.png')} />
+                    }
+                    keyExtractor={item => item.id}
+                    style={styles.productflatlist}
+                    scrollEventThrottle={16}
+                    onScroll={scrollHandler}
+                  />
+                </>
+              ) : (
+                <View style={styles.emptycontainer}>
+                  <View style={styles.containerlottie}>
+                      <LottieView
+                        title="It's empty here"
+                        imagesource={animation}
+                        description="Add your item by tapping the '+' "
+                        size={200}
+                      />
+                    </View>
+                </View>
+              )
+            }
+            </View>
             <Animated.View style={actionBarStyle}>
               <ActionButton
-                onPress={handlePresentModalPress}
+                onPress={()=> {
+                  handlePresentModalPress()
+                }}
                 title="Present Modal"
                 color="black"
               />
@@ -170,4 +196,18 @@ const styles = StyleSheet.create({
     padding: 10,
     zIndex: -10
   },
+  containerlottie: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    left:0,
+    right: 0,
+    margin: 'auto',
+  },
+  actbtn:{
+    
+  },
+  emptycontainer:{
+    height: windowHeight/1.1,
+  }
 })

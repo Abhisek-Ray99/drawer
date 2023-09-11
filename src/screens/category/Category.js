@@ -1,11 +1,14 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import React, {memo, useState} from 'react'
-import CategoryElement from './components/CategoryElement'
-
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
-import SearchFilter from '../../components/input/Search&Filter';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import EmptyView from '../../components/view/EmptyView';
+
+import CategoryElement from './components/CategoryElement'
+import SearchFilter from '../../components/input/Search&Filter';
+import EmptyView from '../../components/view/LottieView';
+import AppText from '../../components/text/AppText';
+import animation from '../../assets/img/animation_2.json';
+import LottieView from '../../components/view/LottieView';
 
 const Category = ({route, navigation}) => {
 
@@ -83,28 +86,43 @@ const Category = ({route, navigation}) => {
 
   return (
     <SafeAreaView style={styles.categoryContainer}>
-      <Animated.View style={actionBarStyle}>
-        <SearchFilter onChangeText={value => handleInputChange(value)} value={searchTerm} />
-      </Animated.View>
-      <Animated.FlatList
-        data={ filteredData }
-        contentContainerStyle={{ paddingBottom: 100, paddingTop: 60 }}
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        renderItem={({item}) =>(
-          <CategoryElement 
-            categoryName={item.categoryName} 
-            totalItems={item.totalItems}  
-            onPress={()=> navigation.navigate('category-screen', { categoryName: item.categoryName})} />
-        )}
-        keyExtractor={(item) => item.categoryName}
-        ListEmptyComponent={
-          <EmptyView imagesource={require('../../assets/img/details.png')} />
-        }
-        style={styles.flat}
-        scrollEventThrottle={16}
-        onScroll={scrollHandler}
-      />
+      {
+        Array.isArray(products) && products?.length ? (
+          <>
+            <Animated.View style={actionBarStyle}>
+              <SearchFilter onChangeText={value => handleInputChange(value)} value={searchTerm} />
+            </Animated.View>
+            <Animated.FlatList
+              data={ filteredData }
+              contentContainerStyle={{ paddingBottom: 100, paddingTop: 60 }}
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              renderItem={({item}) =>(
+                <CategoryElement 
+                  categoryName={item.categoryName} 
+                  totalItems={item.totalItems}  
+                  onPress={()=> navigation.navigate('category-screen', { categoryName: item.categoryName})} />
+              )}
+              keyExtractor={(item) => item.categoryName}
+              ListEmptyComponent={
+                <EmptyView imagesource={require('../../assets/img/details.png')} />
+              }
+              style={styles.flat}
+              scrollEventThrottle={16}
+              onScroll={scrollHandler}
+            />
+          </>
+        ) : (
+          <View style={styles.containerlottie}>
+              <LottieView
+                title="No category present here"
+                imagesource={animation}
+                size={140}
+                description="Add your first category by clicking 'add' button "
+              />
+          </View>
+        )
+      }
     </SafeAreaView>
   )
 }
@@ -119,5 +137,15 @@ const styles = StyleSheet.create({
   },
   flat:{
     zIndex: -10
-  }
+  },
+  containerlottie: {
+    position: 'absolute',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    left:0,
+    right: 0,
+    margin: 'auto',
+    marginTop: 80
+  },
 })

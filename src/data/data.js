@@ -276,5 +276,23 @@ export const users = [
         transactions: transactions.slice(0,2)
       },
     ]
+  },
+  {
+    mail: "newuser@gmail.com",
+    password: "newpassword",
+    fullname: "New User",
+    type: "staff",
+    inventories: [
+      {
+        name: "shop1",
+        items: [],
+        transactions: transactions.slice(0,2)
+      },
+      {
+        name: "shop2",
+        items: products,
+        transactions: transactions.slice(0,2)
+      },
+    ]
   }
 ]

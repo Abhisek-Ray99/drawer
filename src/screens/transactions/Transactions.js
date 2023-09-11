@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
 import SearchFilter from '../../components/input/Search&Filter'
-import EmptyView from '../../components/view/EmptyView';
+import EmptyView from '../../components/view/LottieView';
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList);
 

@@ -6,7 +6,7 @@ import { colors } from '../../../constants/colors'
 import { windowHeight, windowWidth } from '../../../utils/Dimension'
 import AppText from '../../../components/text/AppText'
 import Tag from '../../../components/tags/Tag'
-import BottomPopup from '../../../components/popup/BottomPopup'
+import BottomPopup from '../../items/components/BottomPopup'
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
@@ -16,7 +16,6 @@ const boxWidth = (windowWidth - 0 * 2)/5;
 
 const ProductElement = ({
   item,
-  productImg=null,
   productStyle,
   onPress,
 }) => {
@@ -39,17 +38,17 @@ const ProductElement = ({
         <View style={[styles.productContainer1, productStyle]}>
           <View>
             {item?.img ? 
-            <Image
-            style={styles.tinyLogo}
-            source={{
-              uri: item?.img,
-            }}
-          />
-          : (
-              <View style={styles.imgstyle}>
-                <MaterialCommunityIcons name="package" size={44} color={colors.grey1900} />
-              </View>
-            )}
+              <Image
+                style={styles.tinyLogo}
+                source={{
+                  uri: item?.img,
+                }}
+              />
+            : (
+                <View style={styles.imgstyle}>
+                  <MaterialCommunityIcons name="package" size={44} color={colors.grey1900} />
+                </View>
+              )}
           </View>
           <View style={styles.desc}>
               <AppText style={styles.idstyle}>{item?.id}</AppText>
@@ -70,11 +69,13 @@ const ProductElement = ({
           pressRetentionOffset={100}
           onPress={onShowPopup}
         >
-            <MaterialIcons name="more-vert" size={26} color={colors.grey300} />
+            <MaterialIcons name="more-vert" size={26} color={colors?.grey300} />
         </Pressable>
       </View>
       <BottomPopup 
         ref={popupRef} onTouchOutside={onClosePopup}
+        productImg={item?.img}
+        productName={item?.name}
       />
     </Pressable>
 

@@ -1,5 +1,5 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React, {memo, useState} from 'react'
+import { FlatList, StyleSheet, Text, View, BackHandler } from 'react-native'
+import React, {memo, useState, useEffect} from 'react'
 import { colors } from '../../constants/colors'
 
 import { products } from '../../data/data'
@@ -17,6 +17,18 @@ const CategoryScreen = ({route, navigation}) => {
   const hide = () => {
     setVisible(false)
   }
+
+  function handleBackButtonClick() {
+    navigation.goBack();
+    return true;
+  }
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
+    };
+  }, []);
 
   return (
     <View style={styles.CategoryScreenContainer}>

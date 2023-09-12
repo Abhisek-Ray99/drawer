@@ -5,6 +5,7 @@ export const colors = {
     black: 'black',
     lightblue: '#D6D8FE',
     heavyblue: '#5b57d1',
+    royalblue: '#655AE4',
     profileblue: '#486BD5',
     blue100: '#D0BFFF',
     white: 'white',
@@ -46,6 +47,7 @@ export const colors = {
     dodgerblue1: '#0886F8',
     red100: '#FFE4DD',
     redheavy100: '#F07C62',
+    redheavy200: '#F44F39',
     green200: '#D1F2E7',
     greenheavy100: '#25C48B',
     sapphire: '#1C052C',
@@ -58,5 +60,7 @@ export const colors = {
     aliceblue3: '#DFEAEC',
     dodgerblue2: '#3A77E1',
     amethyst: '#A15AD4',
-    bondiblue: '#5BADC5'
+    bondiblue: '#5BADC5',
+    green300: '#63AAAE',
+    yellow100: '#E8C95C'
   };

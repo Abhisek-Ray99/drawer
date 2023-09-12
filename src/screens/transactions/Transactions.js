@@ -1,11 +1,11 @@
 
 
 import { StyleSheet, Text, View, SectionList, BackHandler } from 'react-native'
-import React, {memo, useEffect, useState} from 'react'
+import React, {memo, useState, useCallback} from 'react'
 import InvoiceElement from './components/InvoiceElement'
 import { colors } from '../../constants/colors'
 
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
 import SearchFilter from '../../components/input/Search&Filter'
@@ -13,7 +13,30 @@ import EmptyView from '../../components/view/LottieView';
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList);
 
-const Transactions = ({route}) => {
+const Transactions = ({route, navigation}) => {
+
+  useFocusEffect(
+    useCallback(() => {
+      const onBackPress = () => {
+        navigation.navigate('dashboard');
+        return true;
+      };
+
+      // Add Event Listener for hardwareBackPress
+      BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => {
+        // Once the Screen gets blur Remove Event Listener
+        BackHandler.removeEventListener(
+          'hardwareBackPress',
+          onBackPress
+        );
+      };
+    }, []),
+  );
 
   const transactions = Object.values(route.params)
 
@@ -31,8 +54,6 @@ const Transactions = ({route}) => {
     )
     setFilteredData(filteredData)
   }
-
-  const navigation = useNavigation();
 
   const lastContentOffset = useSharedValue(0);
   const isScrolling = useSharedValue(false);
@@ -76,17 +97,7 @@ const Transactions = ({route}) => {
     },
   });
 
-  function handleBackButtonClick() {
-    navigation.navigate('dashboard');
-    return true;
-  }
-
-  useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
-    return () => {
-      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
-    };
-  }, []);
+  
 
   return (
     <View style={styles.searchview}>

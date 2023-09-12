@@ -1,7 +1,8 @@
-import { StyleSheet, View } from 'react-native'
-import React, {memo, useState} from 'react'
+import { StyleSheet, View, BackHandler } from 'react-native'
+import React, {memo, useState, useCallback} from 'react'
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useFocusEffect } from '@react-navigation/native';
 
 import CategoryElement from './components/CategoryElement'
 import SearchFilter from '../../components/input/Search&Filter';
@@ -11,6 +12,29 @@ import animation from '../../assets/img/animation_2.json';
 import LottieView from '../../components/view/LottieView';
 
 const Category = ({route, navigation}) => {
+
+  useFocusEffect(
+    useCallback(() => {
+      const onBackPress = () => {
+        navigation.navigate('dashboard');
+        return true;
+      };
+
+      // Add Event Listener for hardwareBackPress
+      BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => {
+        // Once the Screen gets blur Remove Event Listener
+        BackHandler.removeEventListener(
+          'hardwareBackPress',
+          onBackPress
+        );
+      };
+    }, []),
+  );
 
   const products = Object.values(route.params.products);
 
@@ -84,6 +108,8 @@ const Category = ({route, navigation}) => {
     setFilteredData(filteredData)
   }
 
+
+
   return (
     <SafeAreaView style={styles.categoryContainer}>
       {
@@ -105,7 +131,10 @@ const Category = ({route, navigation}) => {
               )}
               keyExtractor={(item) => item.categoryName}
               ListEmptyComponent={
-                <EmptyView imagesource={animation} />
+                <EmptyView 
+                  title="no category found"
+                  imagesource={animation} 
+                />
               }
               style={styles.flat}
               scrollEventThrottle={16}

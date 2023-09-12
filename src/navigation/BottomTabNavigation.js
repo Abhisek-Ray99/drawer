@@ -1,9 +1,9 @@
 import React, {memo} from 'react'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import Dashboard from '../screens/dashboard/Dashboard';
 import Reports from '../screens/Reports/Reports';
-
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Feather from 'react-native-vector-icons/Feather'
 import Octicons from 'react-native-vector-icons/Octicons'
@@ -15,7 +15,11 @@ import { colors } from '../constants/colors';
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigation = ({route}) => {
-    const { items, transactions } = route.params.params[0]
+  const { items, transactions } = route.params.params[0]
+
+
+  
+
   return (
     <Tab.Navigator
         screenOptions={{

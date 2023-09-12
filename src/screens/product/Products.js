@@ -1,12 +1,12 @@
 import { StyleSheet, View, SafeAreaView, BackHandler} from 'react-native'
-import React, { useEffect, useCallback, useRef, useMemo,useState, memo } from 'react'
+import React, { useCallback, useRef, useMemo,useState, memo } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import {
   BottomSheetModalProvider,
   BottomSheetModal,
 } from '@gorhom/bottom-sheet';
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useFocusEffect } from '@react-navigation/native';
 
 
 
@@ -17,7 +17,6 @@ import { colors } from '../../constants/colors';
 import ProductElement from './components/ProductElement';
 import SearchFilter from '../../components/input/Search&Filter';
 import { windowHeight } from '../../utils/Dimension';
-import AppText from '../../components/text/AppText';
 import EmptyView from '../../components/view/LottieView';
 import LottieView from '../../components/view/LottieView';
 
@@ -49,7 +48,7 @@ const Products = ({route, navigation}) => {
   const bottomSheetModalRef = useRef(null);
 
   // variables
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
+  const snapPoints = useMemo(() => ['12%', '35%'], []);
 
   // callbacks
   const handlePresentModalPress = useCallback(() => {
@@ -101,17 +100,29 @@ const Products = ({route, navigation}) => {
     },
   });
 
-  function handleBackButtonClick() {
-    navigation.goBack();
-    return true;
-  }
+  useFocusEffect(
+    useCallback(() => {
+      const onBackPress = () => {
+        navigation.navigate('dashboard');
+        return true;
+      };
 
-  useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
-    return () => {
-      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
-    };
-  }, []);
+      // Add Event Listener for hardwareBackPress
+      BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => {
+        // Once the Screen gets blur Remove Event Listener
+        BackHandler.removeEventListener(
+          'hardwareBackPress',
+          onBackPress
+        );
+      };
+    }, []),
+  );
+
 
 
   return (
@@ -134,7 +145,10 @@ const Products = ({route, navigation}) => {
                         <ProductElement item={item} onPress={()=> navigation.navigate('product-screen')} />
                     }
                     ListEmptyComponent={
-                      <EmptyView imagesource={animation} />
+                      <EmptyView 
+                        title="no product found"
+                        imagesource={animation} 
+                      />
                     }
                     keyExtractor={item => item.id}
                     style={styles.productflatlist}

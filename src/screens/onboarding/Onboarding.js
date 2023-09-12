@@ -22,7 +22,12 @@ const Onboarding = ({navigation}) => {
       </LinearGradient>
       <AppText style={styles.text}>Drawer</AppText>
       <View style={styles.descriptText}>
-         <AppText style={styles.text1}>Create, Customize & Manage your Inventories</AppText>
+          <AppText style={styles.text1}>{`Picture this: a \ninventory management app`}</AppText>
+          <AppText style={styles.word}>
+            <AppText style={[{color: colors.royalblue}, styles.word]}>Create</AppText>,
+            <AppText style={[{color: colors.redheavy200}, styles.word]}> Customize</AppText> & 
+            <AppText style={[{color: colors.green300}, styles.word]}> Manage</AppText>
+          </AppText>
       </View>
       <View style={styles.onboardView}>
         <AppBtn 
@@ -87,10 +92,14 @@ const styles = StyleSheet.create({
 
   },
   text1:{
-    width: windowWidth/2,
+    width: windowWidth/1.2,
     color: colors.black,
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: '700',
-    textAlign: 'center'
+  },
+  word:{
+    width: windowWidth/1.2,
+    fontSize: 20,
+    fontWeight: 'bold'
   }
 })

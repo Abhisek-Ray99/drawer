@@ -8,13 +8,14 @@ const InputField = ({
     underlinecolor,
     password=false,
     InputStyle,
+    InputViewStyle,
     focusColor,
     InputRightElement=null,
     ...other
 }) => {
   const [isFocused, setIsFocused] = useState(false)
   return (
-    <View style={styles.inputContainer}>
+    <View style={[styles.inputContainer, InputViewStyle]}>
       <TextInput
         placeholder={placeholder}
         underlineColorAndroid={underlinecolor}
@@ -37,14 +38,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.grey500,
     borderRadius: 7,
-    backgroundColor: colors.grey1400
   },
   input: {
     flex: 1,
     height: 60,
-    borderColor: colors.grey500,
-    borderRadius: 7,
     paddingHorizontal: 16,
     fontSize: 16,
+    color: colors.grey1900
   }
 })

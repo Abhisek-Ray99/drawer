@@ -1,19 +1,31 @@
-import { StyleSheet, Text, View, BackHandler, Alert } from 'react-native'
-import React, { useEffect } from 'react'
+import { StyleSheet, Text, View, BackHandler } from 'react-native'
+import React, {useCallback} from 'react'
+import { useFocusEffect } from '@react-navigation/native';
 
 const Reports = ({navigation}) => {
 
-  function handleBackButtonClick() {
-    navigation.navigate('dashboard');
-    return true;
-  }
+  useFocusEffect(
+    useCallback(() => {
+      const onBackPress = () => {
+        navigation.navigate('dashboard');
+        return true;
+      };
 
-  useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
-    return () => {
-      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
-    };
-  }, []);
+      // Add Event Listener for hardwareBackPress
+      BackHandler.addEventListener(
+        'hardwareBackPress',
+        onBackPress
+      );
+
+      return () => {
+        // Once the Screen gets blur Remove Event Listener
+        BackHandler.removeEventListener(
+          'hardwareBackPress',
+          onBackPress
+        );
+      };
+    }, []),
+  );
 
   return (
     <View>

@@ -20,6 +20,7 @@ import NewPurchaseScreen from '../screens/purchase/NewPurchase.screen';
 import NewSaleScreen from '../screens/sale/NewSale.screen';
 import Sales from '../screens/sale/Sales';
 import Purchase from '../screens/purchase/Purchase';
+import WelcomeInventoryScreen from '../screens/Inventory/WelcomeInventory.screen';
 
 
 const RootStack = createStackNavigator()
@@ -37,10 +38,25 @@ const config = {
   };
 
 const RootNavigation = ({userData}) => {
-    // console.log(userData)
+
+    const initialScreen = (Array.isArray(userData[0]?.inventories) && !userData[0]?.inventories?.length)
+    ? "welcome-inventory" : "home"
+
     return (
         <RootStack.Navigator
+            initialRouteName= {initialScreen}
         >
+            <RootStack.Screen
+                name="welcome-inventory"
+                initialParams={userData[0]}
+                component={WelcomeInventoryScreen} 
+                options={{
+                    headerShown: false,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                    ...TransitionPresets.FadeFromBottomAndroid,
+                }}
+                
+            />
             <RootStack.Screen
                 name="home"
                 initialParams={userData}
@@ -88,7 +104,7 @@ const RootNavigation = ({userData}) => {
                 name="create-inventory"
                 component={CreateInventoryScreen} 
                 options={{
-                    headerShown: false,
+                    // headerShown: false,
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                     ...TransitionPresets.FadeFromBottomAndroid,
                 }}

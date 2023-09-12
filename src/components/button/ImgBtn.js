@@ -5,13 +5,14 @@ import { colors } from '../../constants/colors'
 
 const ImgBtn = ({
     onPress,
-    Title
+    Title,
+    disabled
 }) => {
   return (
     <Pressable
         onPress={onPress}
     >
-        <View style={styles.container}>
+        <View style={[styles.container, {opacity: disabled ? 0.6 : 1}]}>
             <Image
             style={styles.img}
             source={require('../../assets/img/mesh-51.png')}
@@ -28,10 +29,8 @@ export default ImgBtn
 
 const styles = StyleSheet.create({
     container:{
-        // opacity: 0.6,
         backgroundColor: colors.white,
         borderRadius: 15,
-        elevation: 1,
         overflow: 'hidden'
     },
     img:{

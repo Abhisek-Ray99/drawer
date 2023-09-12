@@ -58,25 +58,17 @@ const App = ({route, navigation}) => {
   StatusBar.setBarStyle('dark-content')
 
   useEffect(() => {
-    const backAction = () => {
-      Alert.alert('Hold on!', 'Are you sure you want to Exit?', [
-        {
-          text: 'Cancel',
-          onPress: () => null,
-          style: 'cancel',
-        },
-        {text: 'YES', onPress: () => BackHandler.exitApp()},
-      ]);
-      return true;
+    function handleBackButton() {
+      if (navigation.isFocused()) {
+        BackHandler.exitApp();
+      }
     };
-
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
-      backAction,
+      handleBackButton,
     );
-
     return () => backHandler.remove();
-  }, []);
+  }, [navigation]);
 
   return (
     <View style={styles.container}>

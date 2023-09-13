@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, {memo} from 'react'
+import React, {memo, useState} from 'react'
 import AppText from '../../../components/text/AppText'
 import InputField from '../../../components/input/InputField'
 import { colors } from '../../../constants/colors'
@@ -8,7 +8,11 @@ import ImgBtn from '../../../components/button/ImgBtn'
 const SliderForm = ({
   title,
   placeholder,
+  changeStage
 }) => {
+
+  const [name, setName] = useState('')
+
   return (
     <>
       <AppText style={styles.formtitle}>{title}</AppText>
@@ -16,8 +20,13 @@ const SliderForm = ({
         <InputField 
             placeholder={placeholder}
             InputViewStyle={styles.inputstyle}
+            onChangeText={value => setName(value)}
         />
-        <ImgBtn Title="Next" disabled={true} />
+        <ImgBtn Title="Next" 
+          disabled={!name.length? true:false} 
+          onPress={changeStage} 
+          style={{borderRadius: 7}} 
+        />
       </View>
     </>
   )
@@ -38,8 +47,9 @@ const styles = StyleSheet.create({
         height: 50
     },
     inputview:{
-        padding: 10,
+        padding: 6,
         flexDirection: 'column',
-        gap: 20
+        gap: 20,
+        alignItems: 'center'
     }
 })

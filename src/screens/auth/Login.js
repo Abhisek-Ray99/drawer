@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, Image, StatusBar, Pressable, Alert } from 'react-native'
-import React, {memo, useState} from 'react'
+import React, {memo, useState, useEffect} from 'react'
 import AnimatedCheckbox from 'react-native-checkbox-reanimated'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import AppText from '../../components/text/AppText'
 import { colors } from '../../constants/colors'
@@ -38,18 +37,23 @@ const Login = ({navigation}) => {
 
   const handleLogin = () => {
     try{
-      if(mail.length < 6 || pwd.length < 6){
-        Alert.alert("Warning !", "id and password length should be atleast 6 character")
-      }else{
         const user = users?.filter(data => data?.mail === mail && data?.password === pwd)
         if(Array.isArray(user) && !user.length){
           Alert.alert("Error !", "Wrong Email or Password")
         }else{
           dispatch(setLoggedIn(user))
         }
-      }
     }catch(error){
       console.warn("got error")
+    }
+  }
+
+  function validateEmailPassword() {
+    var mailFormat =  /\S+@\S+\.\S+/;
+    if (mail.match(mailFormat) && pwd.length >= 6) {
+      return true;
+    } else {
+      return false;
     }
   }
   
@@ -97,7 +101,7 @@ const Login = ({navigation}) => {
             </Pressable>
             <TextLink title="Forgot Password?" titleStyle={[styles.forgot, {paddingVertical: 10}]}/>
           </View>
-          <ImgBtn Title="Sign in" onPress={handleLogin} />
+          <ImgBtn Title="Sign in" onPress={handleLogin} disabled={validateEmailPassword() ? false:true} />
         </View>
         <View style={styles.loginfields}>
 

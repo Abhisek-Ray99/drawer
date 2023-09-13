@@ -7,6 +7,8 @@ export const colors = {
     heavyblue: '#5b57d1',
     royalblue: '#655AE4',
     profileblue: '#486BD5',
+    royalblue100: '#3368F8',
+    darkviolet100: '#644E8E',
     blue100: '#D0BFFF',
     white: 'white',
     danger: '#E62E2E',

@@ -44,6 +44,6 @@ const styles = StyleSheet.create({
     height: 60,
     paddingHorizontal: 16,
     fontSize: 16,
-    color: colors.grey1900
+    color: colors.black
   }
 })

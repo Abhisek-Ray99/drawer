@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     formtitle:{
         fontSize: 24,
         textAlign: 'center',
-        paddingHorizontal: 20,
+        paddingHorizontal: 24,
         paddingVertical: 20,
         fontWeight: '700'
     },
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         height: 50
     },
     inputview:{
-        padding: 6,
+        paddingHorizontal: 24,
         flexDirection: 'column',
         gap: 20,
         alignItems: 'center'

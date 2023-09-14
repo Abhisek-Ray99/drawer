@@ -1,12 +1,41 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import React, {memo} from 'react'
+import React, {memo, useEffect} from 'react'
 import { windowHeight, windowWidth } from '../../utils/Dimension'
 
+import Animated, {
+  Easing,
+  useSharedValue,
+  withSpring,
+  useAnimatedStyle,
+  withTiming,
+  interpolate,
+} from 'react-native-reanimated';
+
 const SplashScreen = () => {
+
+  const imageScale = useSharedValue(0.5);
+
+  useEffect(() => {
+    imageScale.value = withTiming(1, {
+      duration: 1000,
+      easing: Easing.ease,
+    });
+  }, []);
+
+  const animatedImageStyle = useAnimatedStyle(() => {
+    const scale = interpolate(imageScale.value, [0.5, 1], [0.5, 1]);
+    return {
+      transform: [{ scale }],
+    };
+  });
+
   return (
     <View style={styles.container}>
-      <Image source={require('../../assets/img/splash.png')} style={{ height: windowHeight - 100, width: windowWidth - 100 }}
-        resizeMode='contain'/>
+      <Animated.Image 
+        source={require('../../assets/img/splash.png')} 
+        style={[{ height: windowHeight - 10, width: windowWidth - 10 }, animatedImageStyle]}
+        resizeMode='contain'
+      />
     </View>
   )
 }

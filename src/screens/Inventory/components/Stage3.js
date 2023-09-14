@@ -15,7 +15,7 @@ const Stage3 = ({
     <View style={styles.stagecontainer}>
       <AppText style={styles.stageheader}>Who else is working on this inventory?</AppText>
       <AppText style={styles.stagedes}>
-        To add teammates, you can either send a link or invite people from your contacts
+        Invite a few of your teammates to Drawer
       </AppText>
       <ImgBtn 
         Title="Share a Link" 
@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     gap: 25,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingHorizontal: 20
   },
   stageheader:{
     fontSize: 24,
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
     fontWeight: '700'
   },
   stagedes:{
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: 16
   }
 })

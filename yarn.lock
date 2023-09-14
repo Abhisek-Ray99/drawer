@@ -9424,6 +9424,11 @@ react-native-draggable-flatlist@^4.0.1:
   dependencies:
     "@babel/preset-typescript" "^7.17.12"
 
+react-native-error-boundary@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-error-boundary/-/react-native-error-boundary-1.2.3.tgz#0c9261c2f7ab97222e0a0101852189f140c5f6e7"
+  integrity sha512-Cg5sEToVpayv+s6mCPidRO48DswjOaaxbt1sOiVC+8nJ/tVUPXFkT1iCkZbG0E1eVr+LM9NXsAfOGiwvZZBCJA==
+
 react-native-fusioncharts@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/react-native-fusioncharts/-/react-native-fusioncharts-5.2.1.tgz#3bcdac4b3b10a58d37d81ec4e322972db0d8f470"

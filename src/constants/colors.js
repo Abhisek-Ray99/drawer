@@ -37,6 +37,7 @@ export const colors = {
     grey1900: '#A5A9BC',
     grey2000: '#F7F8FA',
     grey2100: '#DFE3E6',
+    grey2200: '#F2F3F5',
     wheat100: '#F5EFE6',
     alice: '#EFF6FF' ,
     flashWhite: '#E4E7EE',
@@ -64,5 +65,6 @@ export const colors = {
     amethyst: '#A15AD4',
     bondiblue: '#5BADC5',
     green300: '#63AAAE',
-    yellow100: '#E8C95C'
+    yellow100: '#E8C95C',
+    powderblue100: '#6EB0D4'
   };

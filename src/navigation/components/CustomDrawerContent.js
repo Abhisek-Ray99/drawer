@@ -59,7 +59,7 @@ const CustomDrawerContent = ({inventories, userData}) => {
             </LinearGradient >
             <View style={styles.drawerListView}>
                 <View style={styles.TitleView}>
-                    <AppText style={styles.drawerTitle}>Inventories</AppText>
+                    <AppText style={styles.drawerTitle}>Available Inventories</AppText>
                 </View>
                 <DraggableFlatList
                     data={data}
@@ -87,15 +87,13 @@ const CustomDrawerContent = ({inventories, userData}) => {
                     type === "owner" ? (
                         <>
                             <TextBtn 
-                                TextStyle={styles.txtbtn}
                                 TextTitle="Create a new inventory" 
-                                onPress={()=> navigation.navigate('create-inventory')}
+                                onPress={()=> navigation.navigate('welcome-inventory')}
                                 leftIcon={
                                     <Ionicons name="add-circle-outline" size={26} />
                                 } 
                             />
                             <TextBtn 
-                                TextStyle={styles.txtbtn}
                                 TextTitle="View Members" 
                                 onPress={()=> navigation.navigate('view-members')}
                                 leftIcon={
@@ -106,7 +104,6 @@ const CustomDrawerContent = ({inventories, userData}) => {
                     ) : null
                 }
                 <TextBtn 
-                    TextStyle={styles.txtbtn}
                     TextTitle="Preferences" 
                     onPress={()=> navigation.navigate('preferences')}
                     leftIcon={
@@ -114,7 +111,6 @@ const CustomDrawerContent = ({inventories, userData}) => {
                     } 
                 />
                 <TextBtn 
-                    TextStyle={styles.txtbtn}
                     TextTitle="Sign out" 
                     onPress={handleModal}
                     leftIcon={
@@ -206,7 +202,4 @@ const styles = StyleSheet.create({
     popupBtn:{
         fontWeight: 'bold',
     },
-    txtbtn:{
-        marginLeft: 16,
-    }
 })

@@ -9,7 +9,6 @@ import CategoryScreen from '../screens/category/Category.screen';
 import { colors } from '../constants/colors';
 import ProductDetailsScreen from '../screens/product/ProductDetails.screen';
 import InventoryNavigation from './InventoryNavigation';
-import CreateInventoryScreen from '../screens/Inventory/CreateInventory.screen';
 import ViewMembersScreen from '../screens/members/ViewMembers.screen';
 import PreferencesScreen from '../screens/preferences/Preferences.screen';
 import InvoiceScreen from '../screens/transactions/Invoice.screen';
@@ -97,16 +96,6 @@ const RootNavigation = ({userData}) => {
                 component={ProductDetailsScreen} 
                 options={{
                     cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
-                }}
-                
-                />
-            <RootStack.Screen
-                name="create-inventory"
-                component={CreateInventoryScreen} 
-                options={{
-                    // headerShown: false,
-                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-                    ...TransitionPresets.FadeFromBottomAndroid,
                 }}
                 
                 />

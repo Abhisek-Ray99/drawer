@@ -16,7 +16,7 @@ const AppStack = () => {
         // Simulate a loading delay
         setTimeout(() => {
             sethide(false);
-        }, 1500);
+        }, 1000);
     }, []);
 
     if (hide) {

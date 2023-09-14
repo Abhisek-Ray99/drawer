@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
   headerbuttonContainer:{
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    paddingHorizontal: 10
   },
   backcontainer:{
     width: windowWidth/7.6,
@@ -79,7 +80,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   progressview:{
-    paddingVertical: 30,
+    paddingVertical: 20,
+    paddingHorizontal: 10
   },
   text:{
     fontSize: 16

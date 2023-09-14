@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
-import React from 'react'
+import React, {memo} from 'react'
 import { colors } from '../../../constants/colors'
 
 import { windowHeight, windowWidth } from '../../../utils/Dimension'
 import AppText from '../../../components/text/AppText'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -22,6 +23,9 @@ const DashBoardHeader = ({
           <View style={styles.imgstyle}>
               <AppText style={{fontSize: 22, fontWeight: '700', color: colors.white}}>{ItemTitle.charAt(0).toUpperCase()}</AppText>
           </View>
+          <View style={styles.profileicon}>
+            <Ionicons name="settings-sharp" size={14} color={colors.powderblue100} style={styles.icon} />
+          </View>
         </Pressable>
         <AppText style={styles.headerStyle}>{DrawerName}</AppText>
       </View>
@@ -29,7 +33,7 @@ const DashBoardHeader = ({
   )
 }
 
-export default DashBoardHeader
+export default memo(DashBoardHeader)
 
 const styles = StyleSheet.create({
   headerContainer:{
@@ -53,5 +57,15 @@ const styles = StyleSheet.create({
   headerStyle:{
     fontSize: 16,
     fontWeight: '700',
+  },
+  profileicon:{
+    position: 'absolute',
+    alignItems: 'center',
+    bottom: 0,
+    right: -4,
+  },
+  icon: {
+    backgroundColor: colors.white,
+    borderRadius: 50
   }
 })

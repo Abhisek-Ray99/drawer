@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     flexDirection: 'column',
-    gap: 10
+    gap: 10,
+    paddingHorizontal: 24
   },
   view1:{
     flex: 2.4,

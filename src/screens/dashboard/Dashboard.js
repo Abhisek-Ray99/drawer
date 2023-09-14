@@ -19,12 +19,11 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { Modal, Portal} from 'react-native-paper';
 import ViewItem from "./components/ViewItem";
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import AppText from "../../components/text/AppText";
+import OrderView from "./components/OrderView";
 
 
 const App = ({route, navigation}) => {
-
-  // console.log(route)
 
   const { name, items } = route.params.params[0]
 
@@ -74,7 +73,7 @@ const App = ({route, navigation}) => {
     <View style={styles.container}>
       <LinearGradient  colors={['#cfd9df', '#e2ebf0', '#e6dee9' ]} style={styles.container1}>
         <View style={styles.dashboardheader}>
-          <DashBoardHeader DrawerName={name} ItemTitle={name[0]} />
+            <DashBoardHeader DrawerName={name} ItemTitle={name[0]} />
             <ThemedButton 
               name="rick" 
               type="primary"
@@ -134,6 +133,9 @@ const App = ({route, navigation}) => {
             <PurchaseView onPress={()=> navigation.navigate('purchase')}/>
             <SaleView onPress={()=> navigation.navigate('sales')}/>
           </View>
+          <View>
+            <OrderView/>
+          </View>
         </BottomSheetScrollView>
       </BottomSheet>
     </View>
@@ -186,7 +188,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
 });
 
 export default App;

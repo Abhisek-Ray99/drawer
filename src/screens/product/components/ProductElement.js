@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable, View, Text, Image } from 'react-native'
+import { StyleSheet, Pressable, View, Text, Image, Alert } from 'react-native'
 import React, {useState, memo, useRef } from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { colors } from '../../../constants/colors'
@@ -30,9 +30,30 @@ const ProductElement = ({
     popupRef.current.close();
   }
 
+  const showAlert = () =>
+  Alert.alert(
+    'Alert Title',
+    'My Alert Msg',
+    [
+      {
+        text: 'Cancel',
+        onPress: () => Alert.alert('Cancel Pressed'),
+        style: 'cancel',
+      },
+    ],
+    {
+      cancelable: true,
+      onDismiss: () =>
+        Alert.alert(
+          'This alert was dismissed by tapping outside of the alert dialog.',
+        ),
+    },
+  );
+
   return (
     <Pressable
       onPress={onPress}
+      onLongPress={showAlert}
     >
       <View style={[styles.productContainer]}>
         <View style={[styles.productContainer1, productStyle]}>

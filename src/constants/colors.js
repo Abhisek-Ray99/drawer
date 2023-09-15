@@ -44,6 +44,7 @@ export const colors = {
     green100: '#ECFDF5',
     greenheavy: '#1A9B74',
     aliceblue: '#E5F3FE',
+    aliceblue100: '#F2F6FB',
     paleblue: '#BAE5F4',
     pastelpink: '#FDCCCD',
     aliceblue1: '#F5F3FF',

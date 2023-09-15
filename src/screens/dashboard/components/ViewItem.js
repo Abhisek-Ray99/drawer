@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Pressable, Image } from 'react-native'
 import React, {memo} from 'react'
 import AppText from '../../../components/text/AppText'
 
@@ -10,7 +10,8 @@ const ViewItem = ({
     borderC="black",
     TxtColor,
     style,
-    onPress
+    onPress,
+    img=null
 }) => {
   return (
     <Pressable onPress={onPress}>
@@ -20,6 +21,8 @@ const ViewItem = ({
           <AppText style={styles.text1}>{title}</AppText>
           <Text>{descript}</Text>
         </View>
+        { img &&
+          <Image source={img} style={styles.img} />}
       </View>
     </Pressable>
   )
@@ -34,12 +37,20 @@ const styles = StyleSheet.create({
         borderRadius: 7,
         borderWidth: 1,
         paddingVertical: 14,
-        paddingHorizontal: 18
+        paddingHorizontal: 18,
+        overflow: 'hidden'
     },
     textview:{
         marginHorizontal: 20
     },
     text1:{
       fontSize: 20
+    },
+    img:{
+      position: 'absolute',
+      width: 80, 
+      height: 80,
+      right: -10,
+      bottom: -10
     }
 })

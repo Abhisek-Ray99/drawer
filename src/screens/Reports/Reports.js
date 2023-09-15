@@ -29,7 +29,7 @@ const Reports = ({navigation}) => {
 
   return (
     <View>
-      <Text>Reports</Text>
+      
     </View>
   )
 }

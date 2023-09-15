@@ -9,18 +9,19 @@ const EmptyView = ({
     imagesource,
     title,
     description,
-    size=200
+    size=200,
+    style
 }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
         <LottieView
             source={imagesource}
             autoPlay
             loop
             style={[{width: size, height: size}]}
         />
-        <AppText style={styles.title}>{title}</AppText>
-        <AppText style={styles.desc}>{description}</AppText>
+        {title && <AppText style={styles.title}>{title}</AppText>}
+        {description && <AppText style={styles.desc}>{description}</AppText>}
     </View>
   )
 }
@@ -32,7 +33,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 100
     },
     title:{
         fontSize: 16,

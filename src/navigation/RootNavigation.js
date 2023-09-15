@@ -95,6 +95,7 @@ const RootNavigation = ({userData}) => {
                 name="product-screen"
                 component={ProductDetailsScreen} 
                 options={{
+                    headerShown: false,
                     cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
                 }}
                 

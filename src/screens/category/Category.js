@@ -134,6 +134,7 @@ const Category = ({route, navigation}) => {
                 <EmptyView 
                   title="no category found"
                   imagesource={animation} 
+                  style={{marginTop: 100}} 
                 />
               }
               style={styles.flat}

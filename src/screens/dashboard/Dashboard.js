@@ -1,16 +1,13 @@
-import React, { useCallback, useRef, useMemo, useState, useEffect } from "react";
-import { StyleSheet, View, StatusBar, BackHandler, Alert } from "react-native";
+import React, { useRef, useMemo, useState, useEffect } from "react";
+import { StyleSheet, View, StatusBar, BackHandler } from "react-native";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 
 import LinearGradient from 'react-native-linear-gradient';
 import ViewBox from "../../components/view/ViewBox";
 import Summary from "./components/Summary";
 import DashBoardHeader from "./components/DashBoardHeader";
-import PurchaseView from "./components/PurchaseView";
-import SaleView from "./components/SaleView";
 
 import { windowHeight, windowWidth } from "../../utils/Dimension";
-import AppBtn from "../../components/button/AppBtn";
 import { colors } from "../../constants/colors";
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -19,15 +16,15 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { Modal, Portal} from 'react-native-paper';
 import ViewItem from "./components/ViewItem";
-import AppText from "../../components/text/AppText";
-import OrderView from "./components/OrderView";
+import Divider from "../../components/divider/Divider";
+import FirstView from "./components/FirstView";
 
 
 const App = ({route, navigation}) => {
 
   const { name, items } = route.params.params[0]
 
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
@@ -84,38 +81,6 @@ const App = ({route, navigation}) => {
             >
               Create
             </ThemedButton>
-            <Portal>
-              <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
-                <View style={styles.view1}>
-                  <ViewItem 
-                    icon={<Ionicons name="bag-outline" size={22} color={colors.dodgerblue2} />}
-                    title="New Purchase"
-                    descript="Quicky add your purchases"
-                    bgColor={colors.antiflashwhite1}
-                    borderC={colors.aliceblue2}
-                    onPress={()=> {hideModal(), navigation.navigate("new-purchase")}}
-                  />
-                  <ViewItem 
-                    icon={<AntDesign name="shoppingcart" size={22} color={colors.amethyst} />}
-                    title="New Sale"
-                    descript="Start saling you product"
-                    bgColor={colors.antiflashwhite2}
-                    borderC={colors.lavender}
-                    onPress={()=> {hideModal(), navigation.navigate("new-sale")}}
-                  />
-                  <ViewItem 
-                    icon={<Ionicons name="receipt-outline" size={22} color={colors.bondiblue} />}
-                    title="New Invoice"
-                    descript="Add Today's your invoices"
-                    bgColor={colors.antiflashwhite3}
-                    borderC={colors.aliceblue3}
-                  />
-                </View>
-                <View style={styles.view2}>
-                  
-                </View>
-              </Modal>
-            </Portal>
         </View>
         <View style={styles.container11}>
           <ViewBox height={'100%'} viewboxStyle={styles.mainview}>
@@ -129,15 +94,49 @@ const App = ({route, navigation}) => {
         snapPoints={snapPoints}
       >
         <BottomSheetScrollView contentContainerStyle={styles.contentContainer}>
-          <View style={styles.pursale}>
-            <PurchaseView onPress={()=> navigation.navigate('purchase')}/>
-            <SaleView onPress={()=> navigation.navigate('sales')}/>
-          </View>
-          <View>
-            <OrderView/>
-          </View>
+          <FirstView />
         </BottomSheetScrollView>
       </BottomSheet>
+      <Portal>
+          <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+            <View style={styles.view1}>
+              <ViewItem 
+                icon={<Ionicons name="bag-outline" size={22} color={colors.dodgerblue2} />}
+                title="New Purchase"
+                descript="Quicky add your purchases"
+                bgColor={colors.antiflashwhite1}
+                borderC={colors.aliceblue2}
+                onPress={()=> {hideModal(), navigation.navigate("new-purchase")}}
+              />
+              <ViewItem 
+                icon={<AntDesign name="shoppingcart" size={22} color={colors.amethyst} />}
+                title="New Sale"
+                descript="Start saling you product"
+                bgColor={colors.antiflashwhite2}
+                borderC={colors.lavender}
+                onPress={()=> {hideModal(), navigation.navigate("new-sale")}}
+              />
+              <ViewItem 
+                icon={<Ionicons name="receipt-outline" size={22} color={colors.bondiblue} />}
+                title="New Invoice"
+                descript="Add Today's your invoices"
+                bgColor={colors.antiflashwhite3}
+                borderC={colors.aliceblue3}
+              />
+            </View>
+            <Divider dashed/>
+            <View style={styles.view2}>
+              <ViewItem 
+                  icon={<Ionicons name="receipt-outline" size={22} color={colors.bondiblue} />}
+                  title="Explore more"
+                  descript="Tap to find more features"
+                  bgColor={colors.grey1600}
+                  borderC={colors.grey100}
+                  img={require('../../assets/img/more.png')}
+              />
+            </View>
+          </Modal>
+        </Portal>
     </View>
   );
 };
@@ -182,13 +181,13 @@ const styles = StyleSheet.create({
   view1:{
     flex: 2,
     flexDirection: 'column',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    paddingBottom: 10
   },
   view2:{
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
-  },
+  }
 });
 
 export default App;

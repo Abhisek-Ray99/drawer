@@ -127,13 +127,16 @@ const styles = StyleSheet.create({
   welcomecontainer:{
     flexDirection: 'column',
     paddingHorizontal: 20,
-    paddingVertical: 20
+    paddingVertical: 20,
   },
   existingcontainer:{
     paddingHorizontal: 20,
   },
   view1:{
     flexDirection: 'column',
+  },
+  view2:{
+    
   },
   btnview:{
     alignItems: 'center',

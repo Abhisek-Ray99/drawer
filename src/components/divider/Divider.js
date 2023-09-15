@@ -4,19 +4,20 @@ import { windowHeight, windowWidth } from '../../utils/Dimension'
 import { colors } from '../../constants/colors'
 
 const Divider = ({
-
+  dashed=false,
 }) => {
   return (
-    <View style={styles.divider}/>
+    <View 
+      style={[{
+        borderBottomWidth:1, 
+        borderStyle: dashed ? 'dashed' : 'solid', 
+        borderColor: colors.grey1500
+       },
+      ]}
+    />
   )
 }
 
 export default Divider
 
-const styles = StyleSheet.create({
-    divider:{
-        width: windowWidth,
-        height: 1,
-        backgroundColor: colors.grey400
-    }
-})
+const styles = StyleSheet.create({})

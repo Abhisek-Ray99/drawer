@@ -147,7 +147,8 @@ const Products = ({route, navigation}) => {
                     ListEmptyComponent={
                       <EmptyView 
                         title="no product found"
-                        imagesource={animation} 
+                        imagesource={animation}
+                        style={{marginTop: 100}} 
                       />
                     }
                     keyExtractor={item => item.id}

@@ -1,7 +1,7 @@
 import { Modal, StyleSheet, View, Text, Pressable } from "react-native";
 import React from "react";
 
-import { windowHeight } from "../../utils/Dimension";
+import { windowHeight, windowWidth } from "../../utils/Dimension";
 import AppText from "../text/AppText";
 
 
@@ -43,7 +43,7 @@ export class BottomPopup extends React.Component{
 
     render(){
         let {show} = this.state
-        const {onTouchOutside, renderContent} = this.props
+        const {onTouchOutside, renderContent, bottom, borderradius} = this.props
         
         return(
             <Modal
@@ -52,23 +52,18 @@ export class BottomPopup extends React.Component{
                 visible={show}
                 onRequestClose={this.close}
             >
-                {/* <View
-                    style={{
-                        flex: 1,
-                        backgroundColor: '#333333AA',
-                        justifyContent: 'flex-end'
-                    }}
-                > */}
                     {this.renderOutsideTouchable(onTouchOutside)}
                     <View
                         style={{
                             position: 'absolute',
                             backgroundColor: '#fff',
-                            width: '100%',
-                            borderTopRightRadius: 10,
-                            borderTopLeftRadius: 10,
+                            width: windowWidth,
+                            borderTopRightRadius: borderradius ? borderradius : 10,
+                            borderTopLeftRadius: borderradius ? borderradius : 10,
+                            borderBottomLeftRadius: borderradius,
+                            borderBottomRightRadius: borderradius,
                             paddingHorizontal: 10,
-                            bottom: 0
+                            bottom: bottom,
                         }}
                     >
                         {renderContent()}

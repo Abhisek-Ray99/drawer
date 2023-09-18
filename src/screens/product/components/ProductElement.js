@@ -1,14 +1,15 @@
-import { StyleSheet, Pressable, View, Text, Image, Alert } from 'react-native'
-import React, {useState, memo, useRef } from 'react'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { colors } from '../../../constants/colors'
+import { StyleSheet, Pressable, View, Image } from 'react-native'
+import React, { memo, useRef } from 'react'
 
+import { colors } from '../../../constants/colors'
 import { windowHeight, windowWidth } from '../../../utils/Dimension'
 import AppText from '../../../components/text/AppText'
 import Tag from '../../../components/tags/Tag'
-import BottomPopup from '../../items/components/BottomPopup'
+import { BottomPopup } from '../../../components/popup/BottomPopup'
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import ContentModal from './ContentModal'
 
 const boxHeight = (windowHeight - 0 * 2)/12;
 const boxWidth = (windowWidth - 0 * 2)/5;
@@ -20,40 +21,26 @@ const ProductElement = ({
   onPress,
 }) => {
 
-  const popupRef = useRef(); // Use useRef
-
+  let popupRef = useRef();
   const onShowPopup = () => {
     popupRef.current.show();
   }
-
   const onClosePopup = () => {
     popupRef.current.close();
   }
 
-  const showAlert = () =>
-  Alert.alert(
-    'Alert Title',
-    'My Alert Msg',
-    [
-      {
-        text: 'Cancel',
-        onPress: () => Alert.alert('Cancel Pressed'),
-        style: 'cancel',
-      },
-    ],
-    {
-      cancelable: true,
-      onDismiss: () =>
-        Alert.alert(
-          'This alert was dismissed by tapping outside of the alert dialog.',
-        ),
-    },
-  );
+  const content = () => {
+    return (
+      <ContentModal productImg={item?.img} productName={item?.name} onClosePopup={onClosePopup} />
+    )
+  }
+
 
   return (
     <Pressable
       onPress={onPress}
-      onLongPress={showAlert}
+      // onLongPress={onShowPopup}
+      delayLongPress={200}
     >
       <View style={[styles.productContainer]}>
         <View style={[styles.productContainer1, productStyle]}>
@@ -94,9 +81,10 @@ const ProductElement = ({
         </Pressable>
       </View>
       <BottomPopup 
-        ref={popupRef} onTouchOutside={onClosePopup}
-        productImg={item?.img}
-        productName={item?.name}
+          ref={popupRef}
+          onTouchOutside={onClosePopup}
+          renderContent={content}
+          bottom={0}
       />
     </Pressable>
 
@@ -153,5 +141,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between'
-  }
+  },
+  
 })

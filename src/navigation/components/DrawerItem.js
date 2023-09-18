@@ -100,6 +100,7 @@ const DrawerItem = ({
             ref={(target) => popupRef = target}
             onTouchOutside={onClosePopup}
             renderContent={content}
+            bottom={0}
         />
 
     </View>

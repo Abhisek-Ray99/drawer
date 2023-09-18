@@ -77,6 +77,7 @@ const CustomDrawerContent = ({inventories, userData}) => {
                                 }
                                 onLongPress={drag}
                                 disabled={isActive}
+                                type={type}
                             />
                         </ScaleDecorator>
                     )}

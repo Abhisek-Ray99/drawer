@@ -127,7 +127,7 @@ const App = ({route, navigation}) => {
             <Divider dashed/>
             <View style={styles.view2}>
               <ViewItem 
-                  icon={<Ionicons name="receipt-outline" size={22} color={colors.bondiblue} />}
+                  icon={<Ionicons name="receipt-outline" size={22} color={colors.redheavy100} />}
                   title="Explore more"
                   descript="Tap to find more features"
                   bgColor={colors.grey1600}

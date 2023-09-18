@@ -14,6 +14,7 @@ import { windowHeight, windowWidth } from '../../../utils/Dimension'
 import { colors } from '../../../constants/colors'
 import PurSaleView from '../../../components/view/PurSaleView';
 
+
 const width = windowWidth
 
 const FirstView = () => {
@@ -144,7 +145,10 @@ const FirstView = () => {
                     </View>
                 </Animated.View>:
                 <Animated.View>
-                    <Text>Sales</Text>
+                    <View style={styles.absoluteview1}>
+                        <PurSaleView bgColor={'#613FBA'} BtnTitle="View Sale" img={require('../../../assets/img/outline-mobile-bank.png')} onPress={()=> navigation.navigate('sales')} />
+                        <PurSaleView bgColor={'#ECFF8D'} BtnTitle="Customers" img={require('../../../assets/img/simplistic-mobile-bank.png')} onPress={()=> navigation.navigate('purchase')}  />
+                    </View>
                 </Animated.View>
             }
         </View>

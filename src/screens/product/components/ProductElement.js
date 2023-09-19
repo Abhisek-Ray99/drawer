@@ -19,6 +19,8 @@ const ProductElement = ({
   item,
   productStyle,
   onPress,
+  onLongPress,
+  activebar
 }) => {
 
   let popupRef = useRef();
@@ -28,21 +30,19 @@ const ProductElement = ({
   const onClosePopup = () => {
     popupRef.current.close();
   }
-
   const content = () => {
     return (
       <ContentModal productImg={item?.img} productName={item?.name} onClosePopup={onClosePopup} />
     )
   }
 
-
   return (
     <Pressable
       onPress={onPress}
-      // onLongPress={onShowPopup}
-      delayLongPress={200}
+      onLongPress={onLongPress}
+      delayLongPress={100}
     >
-      <View style={[styles.productContainer]}>
+      <View style={[styles.productContainer, {backgroundColor: activebar ? colors.grey1500: colors.alice}]}>
         <View style={[styles.productContainer1, productStyle]}>
           <View>
             {item?.img ? 
@@ -56,7 +56,8 @@ const ProductElement = ({
                 <View style={styles.imgstyle}>
                   <MaterialCommunityIcons name="package" size={44} color={colors.grey1900} />
                 </View>
-              )}
+              )
+            }
           </View>
           <View style={styles.desc}>
               <AppText style={styles.idstyle}>{item?.id}</AppText>
@@ -95,7 +96,6 @@ export default memo(ProductElement)
 
 const styles = StyleSheet.create({
   productContainer:{
-    backgroundColor: colors.alice,
     borderRadius: 7,
     padding: 10,
     flexDirection: 'row',

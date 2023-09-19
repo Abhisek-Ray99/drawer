@@ -1,5 +1,5 @@
 import { StyleSheet, View, SafeAreaView, BackHandler} from 'react-native'
-import React, { useCallback, useRef, useMemo,useState, memo } from 'react'
+import React, { useCallback, useRef, useMemo,useState, memo, useEffect } from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import {
   BottomSheetModalProvider,
@@ -19,16 +19,37 @@ import SearchFilter from '../../components/input/Search&Filter';
 import { windowHeight } from '../../utils/Dimension';
 import EmptyView from '../../components/view/LottieView';
 import LottieView from '../../components/view/LottieView';
+import Popup from '../../components/popup/Popup';
 
 
 const Products = ({route, navigation}) => {
 
   const data = Object.values(route.params.products)
 
-  // console.log(Array.isArray(data) && !data.length)
-
   const [searchTerm, setSearchTerm] = useState("")
   const [filteredData, setFilteredData] = useState(data)
+  const [selectedData, setSelectedData] = useState([])
+
+  // Create an array to track the active state for each item
+  const [activeStates, setActiveStates] = useState([]);
+
+  useEffect(() => {
+    setActiveStates(filteredData.map(() => false));
+  }, [filteredData]);
+
+  useEffect(() => {
+    // Update selectedData whenever activeStates changes
+    setSelectedData(filteredData.filter((_, index) => activeStates[index]));
+  }, [activeStates]);
+
+  const toggleActiveState = (index) => {
+    // Update the active state for the specific item
+    setActiveStates((prevStates) => {
+      const newActiveStates = [...prevStates];
+      newActiveStates[index] = !newActiveStates[index];
+      return newActiveStates;
+    })
+  };
 
   const handleInputChange = (value) => {
     setSearchTerm(value);
@@ -123,7 +144,57 @@ const Products = ({route, navigation}) => {
     }, []),
   );
 
+  const popupTranslateX = useSharedValue(0);
+  const popupTranslateY = useSharedValue(0);
 
+  const handlePress = () => {
+    if(activeStates.every(element => element === false)){
+      popupTranslateY.value = 0;
+    }else{
+      popupTranslateY.value = -84;
+    }
+  };
+  handlePress();
+
+  const handlePressdown = () => {
+      popupTranslateX.value = 0
+      popupTranslateY.value = 0;
+      setActiveStates(filteredData.map(() => false))
+  }
+  
+  const popupBarStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateY: withTiming(popupTranslateY.value, {
+            duration: 300,
+            easing: Easing.inOut(Easing.quad),
+          }),
+        },
+      ],
+    };
+  });
+
+  const handlePressRight = () => {
+    if (popupTranslateX.value === 0) {
+      popupTranslateX.value = -100;
+    } else {
+      popupTranslateX.value = 0;
+    }
+  };
+  const popupBarRightStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateX: withTiming(popupTranslateX.value, {
+            duration: 300,
+            easing: Easing.inOut(Easing.quad),
+          }),
+        },
+      ],
+    };
+  });
+  
 
   return (
       <GestureHandlerRootView style={{flex: 1}}>
@@ -137,12 +208,19 @@ const Products = ({route, navigation}) => {
                     <SearchFilter onChangeText={value => handleInputChange(value)} value={searchTerm} />
                   </View>
                   <Animated.FlatList
-                    contentContainerStyle={{ paddingBottom: 100, paddingTop: 50 }}
+                    contentContainerStyle={{ paddingBottom: 140, paddingTop: 50 }}
                     showsVerticalScrollIndicator={false}
                     showsHorizontalScrollIndicator={false}
                     data={filteredData}
-                    renderItem={({item}) =>
-                        <ProductElement item={item} onPress={()=> navigation.navigate('product-screen')} />
+                    renderItem={({item, index}) =>
+                        <ProductElement 
+                          item={item} 
+                          onPress={()=> navigation.navigate('product-screen')} 
+                          onLongPress={()=> {
+                            toggleActiveState(index);
+                          }}
+                          activebar={activeStates[index]}
+                        />
                     }
                     ListEmptyComponent={
                       <EmptyView 
@@ -172,13 +250,15 @@ const Products = ({route, navigation}) => {
             }
             </View>
             <Animated.View style={actionBarStyle}>
-              <ActionButton
+              {
+                activeStates.every(element => element === false) && <ActionButton
                 onPress={()=> {
                   handlePresentModalPress()
                 }}
                 title="Present Modal"
                 color="black"
               />
+              }
             </Animated.View>
             <BottomSheetModal
               ref={bottomSheetModalRef}
@@ -191,6 +271,13 @@ const Products = ({route, navigation}) => {
                 <Button name="Add Item via Scan" IconName="barcode-scan" onPress={()=> navigation.navigate('barcode-item')}/>
               </View>
             </BottomSheetModal>
+              <Popup 
+                style={popupBarStyle} 
+                style2={popupBarRightStyle}
+                moveRight={handlePressRight} 
+                handledown={handlePressdown}
+              />
+              
           </SafeAreaView>
         </BottomSheetModalProvider>
       </GestureHandlerRootView>

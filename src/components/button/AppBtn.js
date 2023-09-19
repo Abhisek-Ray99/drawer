@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable, ActivityIndicator, } from 'react-native'
+import { StyleSheet, Pressable, ActivityIndicator, View } from 'react-native'
 import React, {memo} from 'react'
 
 import AppText from '../text/AppText'
@@ -13,43 +13,43 @@ const AppBtn = ({
     rightIcon = null,
     isLoading = false,
     disabled,
-    onPress
+    onPress,
+    gap=10
 }) => {
   return (
-    <Pressable
-        android_ripple={{color: colors.grey1900, borderless: false}}
-        style={[
-        styles.button,
-        {backgroundColor: colors[disabled ? 'grey300' : color]},
-        BtnStyle,
-      ]}
-        onPress={onPress}
-    >
-        {leftIcon}
-        {isLoading && <ActivityIndicator color={colors.white} />}
-        <AppText
-            fontWeight={'700'}
-            style={[styles.text, titleStyle]}
-        >
-            {title}
-        </AppText>
-        {rightIcon}
-    </Pressable>
+    <View style={[styles.container,{backgroundColor: colors[disabled ? 'grey300' : color]}, BtnStyle]}>
+            <Pressable
+                android_ripple={{color: colors.grey1900, borderless: true}}
+                style={[styles.button, {gap: gap}]}
+                onPress={onPress}
+            >
+                {leftIcon}
+                {isLoading && <ActivityIndicator color={colors.white} />}
+                <AppText
+                    fontWeight={'700'}
+                    style={[styles.text, titleStyle]}
+                >
+                    {title}
+                </AppText>
+                {rightIcon}
+            </Pressable>
+    </View>
   )
 }
 
 export default memo(AppBtn)
 
 const styles = StyleSheet.create({
+    container:{
+        backgroundColor: colors.primary,
+        elevation: 10, 
+        height: 50,
+        justifyContent: 'center',
+    },
     button: {
         flexDirection: 'row',
-        backgroundColor: colors.primary,
-        borderRadius: 4,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 10,
-        height: 50,
-        gap: 10,
     },
     text:{
         color: colors.white,

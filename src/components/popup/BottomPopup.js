@@ -51,6 +51,7 @@ export class BottomPopup extends React.Component{
                 transparent={true}
                 visible={show}
                 onRequestClose={this.close}
+                statusBarTranslucent={true}
             >
                     {this.renderOutsideTouchable(onTouchOutside)}
                     <View

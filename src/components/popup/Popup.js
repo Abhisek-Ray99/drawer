@@ -2,6 +2,8 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 import Animated from 'react-native-reanimated';
+import { useNavigation } from '@react-navigation/native';
+
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Octicons from 'react-native-vector-icons/Octicons'
@@ -16,8 +18,11 @@ const Popup = ({
   style,
   style2,
   moveRight,
-  handledown
+  handledown,
+  data
 }) => {
+
+  const navigation = useNavigation();
   
   return (
     <Animated.View
@@ -56,7 +61,7 @@ const Popup = ({
                   style={styles.dropdownview}
                 >
                   <Ionicons name="bag-handle-outline" size={25} color={colors.black} />
-                  <AppText style={{fontWeight: '700'}}>{`${1} item Added`.toUpperCase()}</AppText>
+                  <AppText style={{fontWeight: '700'}}>{`${data.length} item Added`.toUpperCase()}</AppText>
                 </Pressable>
                 <AppBtn 
                   title="Next" 
@@ -64,6 +69,7 @@ const Popup = ({
                   BtnStyle={styles.btn} 
                   titleStyle={styles.btntxt} 
                   rightIcon={<Octicons name="triangle-right" size={14} color={colors.white} />}
+                  onPress={() => navigation.navigate('selected-item')}
                 />
               </View>
               <View style={styles.contentView2}>

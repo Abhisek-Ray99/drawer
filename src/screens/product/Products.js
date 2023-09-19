@@ -1,12 +1,11 @@
 import { StyleSheet, View, SafeAreaView, BackHandler} from 'react-native'
 import React, { useCallback, useRef, useMemo,useState, memo, useEffect } from 'react'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import {
-  BottomSheetModalProvider,
   BottomSheetModal,
 } from '@gorhom/bottom-sheet';
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
 import { useRoute, useFocusEffect } from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 
@@ -69,11 +68,14 @@ const Products = ({route, navigation}) => {
   const bottomSheetModalRef = useRef(null);
 
   // variables
-  const snapPoints = useMemo(() => ['12%', '35%'], []);
+  const snapPoints = useMemo(() => ['25%', '25%'], []);
 
   // callbacks
   const handlePresentModalPress = useCallback(() => {
     bottomSheetModalRef.current?.present();
+  }, []);
+  const handleDismissModalPress = useCallback(() => {
+    bottomSheetModalRef.current?.dismiss();
   }, []);
   const handleSheetChanges = useCallback((index) => {
     // console.log('handleSheetChanges', index);
@@ -197,8 +199,6 @@ const Products = ({route, navigation}) => {
   
 
   return (
-      <GestureHandlerRootView style={{flex: 1}}>
-        <BottomSheetModalProvider>
           <SafeAreaView style={[styles.container, ]}>
             <View>
               {
@@ -266,21 +266,20 @@ const Products = ({route, navigation}) => {
               snapPoints={snapPoints}
               onChange={handleSheetChanges}
             >
-              <View style={styles.contentContainer}>
-                <Button name="Add a Item" IconName="package-variant" onPress={()=> navigation.navigate('add-item')} />
-                <Button name="Add Item via Scan" IconName="barcode-scan" onPress={()=> navigation.navigate('barcode-item')}/>
-              </View>
+              <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}  colors={['#cfd9df', '#e2ebf0', '#E1E1EC' ]} style={styles.contentContainer}>
+                <Button name="Add a Item" IconName="package-variant" onPress={()=> {handleDismissModalPress() ,navigation.navigate('add-item')}} />
+                <Button name="Add Item via Scan" IconName="barcode-scan" onPress={()=> {handleDismissModalPress() ,navigation.navigate('barcode-item')}}/>
+              </LinearGradient>
             </BottomSheetModal>
               <Popup 
                 style={popupBarStyle} 
                 style2={popupBarRightStyle}
                 moveRight={handlePressRight} 
                 handledown={handlePressdown}
+                data={selectedData}
               />
               
           </SafeAreaView>
-        </BottomSheetModalProvider>
-      </GestureHandlerRootView>
   )
 }
 

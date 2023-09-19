@@ -20,6 +20,7 @@ import NewSaleScreen from '../screens/sale/NewSale.screen';
 import Sales from '../screens/sale/Sales';
 import Purchase from '../screens/purchase/Purchase';
 import WelcomeInventoryScreen from '../screens/Inventory/WelcomeInventory.screen';
+import SelectItemScreen from '../screens/items/SelectItem.screen';
 
 
 const RootStack = createStackNavigator()
@@ -212,7 +213,19 @@ const RootNavigation = ({userData}) => {
                       },
                 }}
                 
-                />
+            />
+            <RootStack.Screen
+                name="selected-item"
+                component={SelectItemScreen} 
+                options={{
+                    headerShown: false,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                    transitionSpec: {
+                        open: config,
+                        close: config,
+                    },
+                }}
+            />
         </RootStack.Navigator>
     )
 }

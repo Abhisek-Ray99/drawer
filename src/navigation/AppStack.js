@@ -1,5 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useState, useEffect } from 'react'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import {
+    BottomSheetModalProvider,
+    // BottomSheetModal,
+} from '@gorhom/bottom-sheet';
 
 import SplashScreen from '../screens/splash/Splash.Screen';
 import RootNavigation from './RootNavigation';
@@ -28,7 +33,11 @@ const AppStack = () => {
             {
                 loggedIn ? 
                 (
-                    <RootNavigation userData={usersInfo} />
+                    <GestureHandlerRootView style={{flex: 1}}>
+                        <BottomSheetModalProvider>
+                            <RootNavigation userData={usersInfo} />
+                        </BottomSheetModalProvider>
+                    </GestureHandlerRootView>
                 ) : (
                     <AuthNavigation/>
                 )

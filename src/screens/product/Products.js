@@ -153,7 +153,7 @@ const Products = ({route, navigation}) => {
     if(activeStates.every(element => element === false)){
       popupTranslateY.value = 0;
     }else{
-      popupTranslateY.value = -84;
+      popupTranslateY.value = -72;
     }
   };
   handlePress();

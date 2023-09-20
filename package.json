@@ -34,6 +34,7 @@
     "react-native-error-boundary": "^1.2.3",
     "react-native-fusioncharts": "^5.2.1",
     "react-native-gesture-handler": "^2.12.1",
+    "react-native-gifted-charts": "^1.3.8",
     "react-native-linear-gradient": "^2.8.2",
     "react-native-modal": "^13.0.1",
     "react-native-pager-view": "^6.2.0",

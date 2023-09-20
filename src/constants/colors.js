@@ -49,6 +49,7 @@ export const colors = {
     pastelpink: '#FDCCCD',
     aliceblue1: '#F5F3FF',
     dodgerblue1: '#0886F8',
+    dodgerblue100: '#4294FD',
     red100: '#FFE4DD',
     redheavy100: '#F07C62',
     redheavy200: '#F44F39',

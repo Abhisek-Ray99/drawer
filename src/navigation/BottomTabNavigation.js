@@ -4,12 +4,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Dashboard from '../screens/dashboard/Dashboard';
 import Reports from '../screens/Reports/Reports';
-import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
-import Feather from 'react-native-vector-icons/Feather'
-import Octicons from 'react-native-vector-icons/Octicons'
 import TopTabNavigation from './TopTabNavigation';
 import Transactions from '../screens/transactions/Transactions';
 import { colors } from '../constants/colors';
+import TabIcon from './components/TabIcon';
 
 
 const Tab = createBottomTabNavigator();
@@ -24,9 +22,9 @@ const BottomTabNavigation = ({route}) => {
     <Tab.Navigator
         screenOptions={{
             initialRouteName: "dashboard",  
-            tabBarActiveTintColor: 'blue',
+            tabBarActiveTintColor: colors.dodgerblue100,
             tabBarStyle: { 
-                height: 70, 
+                height: 60, 
                 borderTopLeftRadius: 24,
                 borderTopRightRadius: 24,
                 borderLeftWidth: 1,
@@ -36,12 +34,14 @@ const BottomTabNavigation = ({route}) => {
                 borderTopWidth: 1,
                 borderColor: colors.grey100,
             },
-            tabBarLabelStyle: {
+            tabBarLabelStyle: ({}) => ({
                 fontSize: 12,
                 fontWeight: '600',
                 marginBottom: 6
-            },
-            
+            }),
+            tabBarIconStyle:{
+                marginTop: 10
+            }
         }}
     >
       <Tab.Screen 
@@ -52,7 +52,8 @@ const BottomTabNavigation = ({route}) => {
             tabBarLabel: "Dashboard",
             headerShown: false,
             tabBarIcon: ({focused}) => (
-                <Icons name="view-dashboard-outline" size={22} color={focused? 'blue':'grey'} />
+                focused ? <TabIcon img={require('../assets/img/dashboard-active.png')} size={28} /> :
+                <TabIcon img={require('../assets/img/dashboard-inactive.png')} size={28} />
             ),
         }} />
       <Tab.Screen 
@@ -63,7 +64,8 @@ const BottomTabNavigation = ({route}) => {
             tabBarLabel: "Items",
             headerShown: false,
             tabBarIcon: ({focused}) => (
-                <Feather name="shopping-bag" size={22} color={focused? 'blue':'grey'} />
+                focused ? <TabIcon img={require('../assets/img/items-active.png')} size={26} /> :
+                <TabIcon img={require('../assets/img/items-inactive.png')} size={26} />
             ),
 
         }} />
@@ -75,7 +77,8 @@ const BottomTabNavigation = ({route}) => {
             headerTitle: "Reports",
             headerLeft: null,
             tabBarIcon: ({focused}) => (
-                <Octicons name="graph" size={22} color={focused? 'blue':'grey'} />
+                focused ? <TabIcon img={require('../assets/img/report-active.png')} size={25} /> :
+                <TabIcon img={require('../assets/img/report-inactive.png')} size={25} />
             ),
             headerStyle: {
                 backgroundColor: '#cfd9df'
@@ -90,7 +93,8 @@ const BottomTabNavigation = ({route}) => {
             headerTitle: "Transactions History",
             headerLeft: null,
             tabBarIcon: ({focused}) => (
-                <Octicons name="history" size={22} color={focused? 'blue':'grey'} />
+                focused ? <TabIcon img={require('../assets/img/transaction-active.png')} size={26} /> :
+                <TabIcon img={require('../assets/img/transaction-inactive.png')} size={26} />
             ),
             headerStyle: {
                 backgroundColor: '#cfd9df'

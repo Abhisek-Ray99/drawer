@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         height: windowHeight / 11.5,
         backgroundColor: '#1D5DFF',
         justifyContent: 'center',
-        bottom: 100,
+        bottom: 60,
         right: 25,
         alignItems: 'center',
         borderRadius: Math.round(windowWidth+windowHeight)

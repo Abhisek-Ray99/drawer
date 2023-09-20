@@ -14,9 +14,7 @@
 **Dashboard**
 - Access to individual Inventory summar like Items, Total Quantity, Total Category, Total Values.
 - Create new purchase, new sale, new invoice & explore more
-- view purchases, sales
-
-todo: customers, vendors
+- view purchases, sales, vendors, customers
 
 **Profile**
 - Account Settings, Edit
@@ -27,28 +25,34 @@ todo: customers, vendors
 - Help & Support
 
 **Preferences**
+todo
 - Language
 - Set time zone automatically
 - Look and feel (Light , Dark & System Default)
 
 **Create Inventory** *(only for owner)*
 - can view the Create a new inventory button and create a new inventory
+- create own template and multiple other templates to choose and then go further with multiform input fields.
 
 **View Members** *(only for owner)*
-- owner can view the members present in current account
+
+todo:
+- owner can view the members in current account
+- can add new members
 
 **Member Screen**
 *(owner view)*
 owner can chat & view stats
 
-*(owner view)*
-owner can chat, not view stats
+*(staff view)*
+staff can chat, not view stats
 
 **Items**
 *(products) - toptab*
 - search items by name and apply filter
 - add a item manually and by barcode scanning
 - delete and edit product
+- select multiple item and sell to customer in bulk, edit can be possible
 
 *(categories) - toptab*
 - search catagories by name & apply filter

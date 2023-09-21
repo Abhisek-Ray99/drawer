@@ -19,7 +19,7 @@ const DashBoardHeader = ({
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerItems}>
-        <Pressable onPress={()=> navigation.openDrawer()}>
+        <Pressable onPressIn={()=> navigation.openDrawer()}>
           <View style={styles.imgstyle}>
               <AppText style={{fontSize: 22, fontWeight: '700', color: colors.white}}>{ItemTitle.charAt(0).toUpperCase()}</AppText>
           </View>

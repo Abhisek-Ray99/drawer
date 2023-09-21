@@ -74,7 +74,7 @@ const ProductElement = ({
         <Pressable 
           style={{position: 'absolute', right: 10, top: 10}}
           hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
-          android_ripple={{color: colors.grey1900, borderless: true}}
+          android_ripple={{color: colors.grey1900, borderless: true, foreground: true}}
           pressRetentionOffset={100}
           onPress={onShowPopup}
         >

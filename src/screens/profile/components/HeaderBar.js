@@ -17,7 +17,9 @@ const HeaderBar = () => {
     <SafeAreaView style={styles.header}>
       <View style={styles.leftheader}>
         <View style={styles.backicon}>
-          <Pressable onPress={()=> navigation.goBack()} android_ripple={{color: colors.grey1900, borderless: true}}>
+          <Pressable 
+            onPress={()=> navigation.goBack()} 
+            android_ripple={{color: colors.grey1900, borderless: true, foreground: true}}>
             <Ionicons name="chevron-back" size={26} color={colors.black} />
           </Pressable>
         </View>

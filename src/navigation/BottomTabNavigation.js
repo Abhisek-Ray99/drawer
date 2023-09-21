@@ -34,11 +34,10 @@ const BottomTabNavigation = ({route}) => {
                 borderTopWidth: 1,
                 borderColor: colors.grey100,
             },
-            tabBarLabelStyle: ({}) => ({
-                fontSize: 12,
-                fontWeight: '600',
-                marginBottom: 6
-            }),
+            tabBarLabelStyle: {
+                fontSize: 10,
+                fontWeight: '700'
+            },
             tabBarIconStyle:{
                 marginTop: 10
             }
@@ -52,7 +51,7 @@ const BottomTabNavigation = ({route}) => {
             tabBarLabel: "Dashboard",
             headerShown: false,
             tabBarIcon: ({focused}) => (
-                focused ? <TabIcon img={require('../assets/img/dashboard-active.png')} size={28} /> :
+                focused ? <TabIcon img={require('../assets/img/dashboard-active.png')} size={32} /> :
                 <TabIcon img={require('../assets/img/dashboard-inactive.png')} size={28} />
             ),
         }} />
@@ -64,7 +63,7 @@ const BottomTabNavigation = ({route}) => {
             tabBarLabel: "Items",
             headerShown: false,
             tabBarIcon: ({focused}) => (
-                focused ? <TabIcon img={require('../assets/img/items-active.png')} size={26} /> :
+                focused ? <TabIcon img={require('../assets/img/items-active.png')} size={32} /> :
                 <TabIcon img={require('../assets/img/items-inactive.png')} size={26} />
             ),
 
@@ -77,7 +76,7 @@ const BottomTabNavigation = ({route}) => {
             headerTitle: "Reports",
             headerLeft: null,
             tabBarIcon: ({focused}) => (
-                focused ? <TabIcon img={require('../assets/img/report-active.png')} size={25} /> :
+                focused ? <TabIcon img={require('../assets/img/report-active.png')} size={30} /> :
                 <TabIcon img={require('../assets/img/report-inactive.png')} size={25} />
             ),
             headerStyle: {
@@ -93,7 +92,7 @@ const BottomTabNavigation = ({route}) => {
             headerTitle: "Transactions History",
             headerLeft: null,
             tabBarIcon: ({focused}) => (
-                focused ? <TabIcon img={require('../assets/img/transaction-active.png')} size={26} /> :
+                focused ? <TabIcon img={require('../assets/img/transaction-active.png')} size={32} /> :
                 <TabIcon img={require('../assets/img/transaction-inactive.png')} size={26} />
             ),
             headerStyle: {

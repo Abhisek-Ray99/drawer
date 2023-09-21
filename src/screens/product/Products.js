@@ -27,6 +27,7 @@ const Products = ({route, navigation}) => {
 
   const [searchTerm, setSearchTerm] = useState("")
   const [filteredData, setFilteredData] = useState(data)
+  
   const [selectedData, setSelectedData] = useState([])
 
   // Create an array to track the active state for each item
@@ -83,13 +84,27 @@ const Products = ({route, navigation}) => {
 
   const lastContentOffset = useSharedValue(0);
   const isScrolling = useSharedValue(false);
-  const translateY = useSharedValue(0);
+  const translateY_action = useSharedValue(0);
+  const translateY_filter = useSharedValue(0);
+
+  const filterBarStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateY: withTiming(translateY_filter.value, {
+            duration: 300,
+            easing: Easing.inOut(Easing.quad),
+          }),
+        },
+      ],
+    }
+  })
 
   const actionBarStyle = useAnimatedStyle(() => {
     return {
       transform: [
         {
-          translateY: withTiming(translateY.value, {
+          translateY: withTiming(translateY_action.value, {
             duration: 300,
             easing: Easing.inOut(Easing.quad),
           }),
@@ -104,13 +119,15 @@ const Products = ({route, navigation}) => {
         lastContentOffset.value > event.contentOffset.y &&
         isScrolling.value
       ) {
-        translateY.value = -2;
+        translateY_filter.value = 0;
+        translateY_action.value = 0;
         // console.log("scrolling up");
       } else if (
         lastContentOffset.value < event.contentOffset.y &&
         isScrolling.value
       ) {
-        translateY.value = 160;
+        translateY_filter.value = -100;
+        translateY_action.value = 160;
         // console.log("scrolling down");
       }
       lastContentOffset.value = event.contentOffset.y;
@@ -200,13 +217,16 @@ const Products = ({route, navigation}) => {
 
   return (
           <SafeAreaView style={[styles.container, ]}>
+            {
+              activeStates.every(element => element === false) && 
+              <Animated.View style={filterBarStyle}>
+                <SearchFilter onChangeText={value => handleInputChange(value)} value={searchTerm} />
+              </Animated.View>
+            }
             <View>
               {
               Array.isArray(data) && data?.length ? (
                 <View style={styles.emptycontainer}>
-                  <View>
-                    <SearchFilter onChangeText={value => handleInputChange(value)} value={searchTerm} />
-                  </View>
                   <Animated.FlatList
                     contentContainerStyle={{ paddingBottom: 140, paddingTop: 50 }}
                     showsVerticalScrollIndicator={false}

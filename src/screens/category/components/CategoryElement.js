@@ -8,7 +8,10 @@ const CategoryElement = ({
     onPress
 }) => {
   return (
-    <Pressable style={styles.category} onPress={onPress} android_ripple={{color: colors.grey1900, borderless: false}}>
+    <Pressable 
+      style={styles.category} 
+      onPress={onPress} 
+      android_ripple={{color: colors.grey1900, borderless: false, foreground: true}}>
       <Text style={styles.categoryText}>{categoryName}</Text>
       <Text>{totalItems}</Text>
     </Pressable>

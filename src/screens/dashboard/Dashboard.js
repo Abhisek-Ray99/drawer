@@ -1,5 +1,5 @@
 import React, { useRef, useMemo, useState, useEffect } from "react";
-import { StyleSheet, View, StatusBar, BackHandler } from "react-native";
+import { StyleSheet, View, StatusBar, BackHandler, Pressable, Text } from "react-native";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -77,7 +77,8 @@ const App = ({route, navigation}) => {
               width={80}
               height={40}
               style={styles.sbutton}
-              onPress={showModal}
+              onPressIn={showModal}
+              // delayPressIn={10}
             >
               Create
             </ThemedButton>
@@ -95,6 +96,15 @@ const App = ({route, navigation}) => {
       >
         <BottomSheetScrollView contentContainerStyle={styles.contentContainer}>
           <FirstView />
+          {/* <Pressable
+
+            // onPress={()=>console.log('onPress')}
+            onPressIn={()=>console.log('onPressIn')}
+            // onPressOut={()=>console.log('onPressOut')}
+            delayPressIn={1}
+          >
+            <Text>Press</Text>
+          </Pressable> */}
         </BottomSheetScrollView>
       </BottomSheet>
       <Portal>

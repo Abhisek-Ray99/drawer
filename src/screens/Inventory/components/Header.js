@@ -22,7 +22,7 @@ const Header = ({
         ( <View style={styles.backcontainer}>
             <Pressable 
               style={{padding: 10}} 
-              android_ripple={{color: colors.grey1900, borderless: true}}
+              android_ripple={{color: colors.grey1900, borderless: true, foreground: true}}
               onPress={backStage}
             >
               <Ionicons name="chevron-back" size={26} />
@@ -31,7 +31,7 @@ const Header = ({
           <View style={styles.backcontainer}>
             <Pressable 
               style={{padding: 10}} 
-              android_ripple={{color: colors.grey1900, borderless: true}}
+              android_ripple={{color: colors.grey1900, borderless: true, foreground: true}}
               onPress={backStage}
             >
               <Ionicons name="close" size={26} />
@@ -44,7 +44,7 @@ const Header = ({
         <View>
           <Pressable 
             style={{padding: 10}} 
-            android_ripple={{color: colors.grey1900, borderless: false}}
+            android_ripple={{color: colors.grey1900, borderless: false, foreground: true}}
             onPress={frontStage}
           >
             <AppText style={styles.text}>Next</AppText>

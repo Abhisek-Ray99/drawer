@@ -40,7 +40,7 @@ const ContentModal = ({
               </View>
               <View style={styles.hide}>
                   <Pressable 
-                      android_ripple={{color: colors.grey1900, borderless: true}}
+                      android_ripple={{color: colors.grey1900, borderless: true, foreground: true}}
                       style={{padding: 6}}
                       onPress={onClosePopup}
                   >

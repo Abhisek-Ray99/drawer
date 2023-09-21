@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { Pressable, StyleSheet, View } from 'react-native'
 import React, {memo} from 'react'
 
 import { CardStyleInterpolators, createStackNavigator, TransitionSpecs, HeaderStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
@@ -89,7 +89,7 @@ const RootNavigation = ({userData}) => {
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                     cardStyle: {
                         backgroundColor: colors.white
-                    }
+                    }, 
                 })}
                 />
             <RootStack.Screen
@@ -231,5 +231,3 @@ const RootNavigation = ({userData}) => {
 }
 
 export default memo(RootNavigation)
-
-const styles = StyleSheet.create({})

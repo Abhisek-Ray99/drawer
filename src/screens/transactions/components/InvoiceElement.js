@@ -11,8 +11,11 @@ const InvoiceElement = ({
     onPress
 }) => {
   return (
-    <Pressable style={styles.invoiceContainer} android_ripple={{color: colors.grey1900, borderless: false}}
-    onPress={onPress}>
+    <Pressable 
+        style={styles.invoiceContainer} 
+        android_ripple={{color: colors.grey1900, borderless: false, foreground: true, foreground: true}}
+        onPressIn={onPress}
+    >
         <View 
             style={styles.item}
             

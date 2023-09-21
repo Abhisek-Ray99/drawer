@@ -65,8 +65,8 @@ const DrawerItem = ({
         <Pressable 
             onLongPress={onLongPress}
             disabled={disabled}
-            onPress={onPress} 
-            android_ripple={{color: colors.grey1900, borderless: false}}
+            onPress={onPress}
+            android_ripple={{color: colors.grey1900, borderless: false, foreground: true}}
             style={styles.drawerItemView}>
             <View style={[styles.drawerItemView2]}>
                 <View style={[{borderColor: borderColor},styles.activeView, style]}>
@@ -88,7 +88,7 @@ const DrawerItem = ({
             </View>
             <View>
                 <Pressable 
-                    android_ripple={{color: colors.grey1900, borderless: true}}
+                    android_ripple={{color: colors.grey1900, borderless: true, foreground: true}}
                     pressRetentionOffset={{bottom: 300, left: 200, right: 200, top: 200}}
                     onPress={onShowPopup}
                 >

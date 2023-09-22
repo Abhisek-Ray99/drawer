@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Image, Pressable, Animated } from 'react-native'
+import React, {useRef, memo} from 'react'
 import AppText from '../text/AppText'
 import { colors } from '../../constants/colors'
 import { windowHeight, windowWidth } from '../../utils/Dimension'
@@ -9,15 +9,37 @@ const ImgBtn = ({
     Title,
     disabled,
     leftIcon,
-    height= windowHeight/14,
+    height= windowHeight/13,
     width= windowWidth/1.14,
     style
 }) => {
+
+  const scaleValue = useRef(new Animated.Value(1)).current;
+
+  const handlePressIn = () => {
+    // Animate the button press effect
+    Animated.spring(scaleValue, {
+      toValue: 0.95,
+      useNativeDriver: false, // Set to false when using layout properties like scale
+    }).start();
+  };
+
+  const handlePressOut = () => {
+    // Reset the button scale to its original size
+    Animated.spring(scaleValue, {
+      toValue: 1,
+      useNativeDriver: false,
+    }).start();
+  };
+
   return (
     <Pressable
         onPress={disabled ? null :onPress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        activeOpacity={0.8}
     >
-        <View style={[{opacity: disabled ? 0.4 : 1}]}>
+        <Animated.View style={[{opacity: disabled ? 0.4 : 1}, { transform: [{ scale: !disabled ?scaleValue: 1 }] }]}>
             <Image
             style={[{width: width, height: height},styles.img, style]}
             source={require('../../assets/img/mesh-51.png')}
@@ -26,12 +48,12 @@ const ImgBtn = ({
                 {leftIcon}
                 <AppText style={styles.text}>{Title}</AppText>
             </View>
-        </View>
+        </Animated.View>
     </Pressable>
   )
 }
 
-export default ImgBtn
+export default memo(ImgBtn)
 
 const styles = StyleSheet.create({
     img:{

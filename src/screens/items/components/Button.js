@@ -1,15 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, Pressable } from 'react-native'
 import React, {memo} from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { windowHeight } from '../../../utils/Dimension'
+import { colors } from '../../../constants/colors'
 
 const Button = ({name, IconName, ...other}) => {
   return (
-    <TouchableOpacity style={styles.btn} {...other}>
+    <Pressable 
+        android_ripple={{color: colors.grey1900, borderless: false}}
+        style={styles.btn} 
+        {...other}
+    >
         <Text style={styles.btnText}>{name}</Text>
         <MaterialCommunityIcons style={styles.btnIcon} name={IconName} size={24}/>
-    </TouchableOpacity>
+    </Pressable>
   )
 }
 

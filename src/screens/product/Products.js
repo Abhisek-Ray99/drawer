@@ -1,12 +1,9 @@
 import { StyleSheet, View, SafeAreaView, BackHandler} from 'react-native'
-import React, { useCallback, useRef, useMemo,useState, memo, useEffect } from 'react'
-import {
-  BottomSheetModal,
-} from '@gorhom/bottom-sheet';
-import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
-import { useRoute, useFocusEffect } from '@react-navigation/native';
+import React, { useCallback, useState, memo, useEffect } from 'react'
+import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
+import { useFocusEffect } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-
+import Modal from "react-native-modal";
 
 
 import animation from '../../assets/img/animation_1.json';
@@ -15,7 +12,7 @@ import Button from '../items/components/Button';
 import { colors } from '../../constants/colors';
 import ProductElement from './components/ProductElement';
 import SearchFilter from '../../components/input/Search&Filter';
-import { windowHeight } from '../../utils/Dimension';
+import { windowHeight, windowWidth } from '../../utils/Dimension';
 import EmptyView from '../../components/view/LottieView';
 import LottieView from '../../components/view/LottieView';
 import Popup from '../../components/popup/Popup';
@@ -64,23 +61,10 @@ const Products = ({route, navigation}) => {
     setFilteredData(filteredData)
   }
   
-  const sheetroute = useRoute();
-  // ref
-  const bottomSheetModalRef = useRef(null);
-
-  // variables
-  const snapPoints = useMemo(() => ['25%', '25%'], []);
-
-  // callbacks
-  const handlePresentModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.present();
-  }, []);
-  const handleDismissModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.dismiss();
-  }, []);
-  const handleSheetChanges = useCallback((index) => {
-    // console.log('handleSheetChanges', index);
-  }, []);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
   const lastContentOffset = useSharedValue(0);
   const isScrolling = useSharedValue(false);
@@ -273,31 +257,47 @@ const Products = ({route, navigation}) => {
               {
                 activeStates.every(element => element === false) && <ActionButton
                 onPress={()=> {
-                  handlePresentModalPress()
+                  toggleModal()
                 }}
                 title="Present Modal"
                 color="black"
               />
               }
             </Animated.View>
-            <BottomSheetModal
-              ref={bottomSheetModalRef}
-              index={1}
-              snapPoints={snapPoints}
-              onChange={handleSheetChanges}
+            <Modal
+              onBackdropPress={() => setModalVisible(false)}
+              onBackButtonPress={() => setModalVisible(false)}
+              isVisible={isModalVisible}
+              swipeDirection="down"
+              onSwipeComplete={toggleModal}
+              animationIn="slideInUp"
+              animationOut="slideOutDown"
+              animationInTiming={200}
+              animationOutTiming={300}
+              backdropTransitionInTiming={1000}
+              backdropTransitionOutTiming={500}
+              backdropColor={colors.black}
+              backdropOpacity={0.5}
+              statusBarTranslucent 
+              style={styles.modal}
             >
-              <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}  colors={['#cfd9df', '#e2ebf0', '#E1E1EC' ]} style={styles.contentContainer}>
-                <Button name="Add a Item" IconName="package-variant" onPress={()=> {handleDismissModalPress() ,navigation.navigate('add-item')}} />
-                <Button name="Add Item via Scan" IconName="barcode-scan" onPress={()=> {handleDismissModalPress() ,navigation.navigate('barcode-item')}}/>
-              </LinearGradient>
-            </BottomSheetModal>
-              <Popup 
-                style={popupBarStyle} 
-                style2={popupBarRightStyle}
-                moveRight={handlePressRight} 
-                handledown={handlePressdown}
-                data={selectedData}
-              />
+              <View style={styles.modalContent}>
+                <View style={styles.center}>
+                  <View style={styles.barIcon} />
+                </View>
+                <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}}  colors={['#cfd9df', '#e2ebf0', '#E1E1EC' ]} style={styles.contentContainer}>
+                  <Button name="Add a Item" IconName="package-variant" onPress={()=> {navigation.navigate('add-item'), toggleModal()}} />
+                  <Button name="Add Item via Scan" IconName="barcode-scan" onPress={()=> {navigation.navigate('barcode-item'), toggleModal()}}/>
+                </LinearGradient>
+              </View>
+            </Modal>
+            <Popup 
+              style={popupBarStyle} 
+              style2={popupBarRightStyle}
+              moveRight={handlePressRight} 
+              handledown={handlePressdown}
+              data={selectedData}
+            />
               
           </SafeAreaView>
   )
@@ -309,9 +309,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  modal: {
+    justifyContent: "flex-end",
+    margin: 0,
+  },
+  modalContent: {
+    paddingTop: 20,
+    minHeight: 200
+  },
+  center: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  barIcon: {
+    width: 40,
+    height: 5,
+    backgroundColor: "#bbb",
+    borderRadius: 3,
+    marginBottom: 10
+  },
   contentContainer: {
     flex: 1,
-    backgroundColor: colors.wheat100
+    width: windowWidth,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
   },
   productflatlist:{
     padding: 10,
@@ -324,9 +346,6 @@ const styles = StyleSheet.create({
     left:0,
     right: 0,
     margin: 'auto',
-  },
-  actbtn:{
-    
   },
   emptycontainer:{
     height: windowHeight/1.1,

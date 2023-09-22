@@ -14,10 +14,7 @@ const Tab = createBottomTabNavigator();
 
 const BottomTabNavigation = ({route}) => {
   const { items, transactions } = route.params.params[0]
-
-
   
-
   return (
     <Tab.Navigator
         screenOptions={{
@@ -35,11 +32,12 @@ const BottomTabNavigation = ({route}) => {
                 borderColor: colors.grey100,
             },
             tabBarLabelStyle: {
-                fontSize: 10,
-                fontWeight: '700'
+                fontSize: 12,
+                fontWeight: '700',
+                bottom: 4
             },
             tabBarIconStyle:{
-                marginTop: 10
+                marginTop: 0
             }
         }}
     >

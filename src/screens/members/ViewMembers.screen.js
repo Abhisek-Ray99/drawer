@@ -37,4 +37,5 @@ const ViewMembersScreen = () => {
 
 export default memo(ViewMembersScreen)
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+})

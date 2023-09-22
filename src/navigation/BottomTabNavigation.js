@@ -1,6 +1,7 @@
 import React, {memo} from 'react'
-
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View, Pressable, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import Dashboard from '../screens/dashboard/Dashboard';
 import Reports from '../screens/Reports/Reports';
@@ -8,12 +9,15 @@ import TopTabNavigation from './TopTabNavigation';
 import Transactions from '../screens/transactions/Transactions';
 import { colors } from '../constants/colors';
 import TabIcon from './components/TabIcon';
+import { windowWidth } from '../utils/Dimension';
+import AppText from '../components/text/AppText';
 
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigation = ({route}) => {
   const { items, transactions } = route.params.params[0]
+  const navigation = useNavigation();
   
   return (
     <Tab.Navigator
@@ -31,27 +35,35 @@ const BottomTabNavigation = ({route}) => {
                 borderTopWidth: 1,
                 borderColor: colors.grey100,
             },
-            tabBarLabelStyle: {
-                fontSize: 12,
-                fontWeight: '700',
-                bottom: 4
-            },
             tabBarIconStyle:{
-                marginTop: 0
-            }
+                top: 4
+            },
+            tabBarShowLabel: false,
         }}
     >
+        
       <Tab.Screen 
         name="dashboard" 
         component={Dashboard} 
         initialParams={route.params}
         options={{
-            tabBarLabel: "Dashboard",
             headerShown: false,
-            tabBarIcon: ({focused}) => (
-                focused ? <TabIcon img={require('../assets/img/dashboard-active.png')} size={32} /> :
-                <TabIcon img={require('../assets/img/dashboard-inactive.png')} size={28} />
-            ),
+            tabBarIcon: ({ focused }) => (
+                <View style={styles.tabContainer}>
+                  <Pressable
+                    onPress={() => {navigation.navigate('dashboard')}}
+                    android_ripple={{color: colors.grey1900, borderless: true}}
+                    style={styles.pressablestyle}
+                  >
+                    {focused ? (
+                      <TabIcon img={require('../assets/img/dashboard-active.png')} size={30} />
+                    ) : (
+                      <TabIcon img={require('../assets/img/dashboard-inactive.png')} size={30} />
+                    )}
+                    <AppText style={focused ? styles.activefont : styles.inactivefont}>Dashboard</AppText>
+                  </Pressable>
+                </View>
+              ),
         }} />
       <Tab.Screen 
         name="item" 
@@ -60,11 +72,22 @@ const BottomTabNavigation = ({route}) => {
         options={{
             tabBarLabel: "Items",
             headerShown: false,
-            tabBarIcon: ({focused}) => (
-                focused ? <TabIcon img={require('../assets/img/items-active.png')} size={32} /> :
-                <TabIcon img={require('../assets/img/items-inactive.png')} size={26} />
+            tabBarIcon: ({ focused }) => (
+                <View style={styles.tabContainer}>
+                  <Pressable
+                    onPress={() => {navigation.navigate('item')}}
+                    android_ripple={{color: colors.grey1900, borderless: true}}
+                    style={styles.pressablestyle}
+                  >
+                    {focused ? (
+                      <TabIcon img={require('../assets/img/items-active.png')} size={30} />
+                    ) : (
+                        <TabIcon img={require('../assets/img/items-inactive.png')} size={30} />
+                    )}
+                    <AppText style={focused ? styles.activefont : styles.inactivefont}>Items</AppText>
+                  </Pressable>
+                </View>
             ),
-
         }} />
       <Tab.Screen 
         name="reports" 
@@ -73,9 +96,21 @@ const BottomTabNavigation = ({route}) => {
             tabBarLabel: "Reports",
             headerTitle: "Reports",
             headerLeft: null,
-            tabBarIcon: ({focused}) => (
-                focused ? <TabIcon img={require('../assets/img/report-active.png')} size={30} /> :
-                <TabIcon img={require('../assets/img/report-inactive.png')} size={25} />
+            tabBarIcon: ({ focused }) => (
+                <View style={styles.tabContainer}>
+                  <Pressable
+                    onPress={() => {navigation.navigate('reports')}}
+                    android_ripple={{color: colors.grey1900, borderless: true}}
+                    style={styles.pressablestyle}
+                  >
+                    {focused ? (
+                      <TabIcon img={require('../assets/img/report-active.png')} size={28} />
+                    ) : (
+                      <TabIcon img={require('../assets/img/report-inactive.png')} size={28} />
+                    )}
+                    <AppText style={focused ? styles.activefont : styles.inactivefont}>Reports</AppText>
+                  </Pressable>
+                </View>
             ),
             headerStyle: {
                 backgroundColor: '#cfd9df'
@@ -89,10 +124,24 @@ const BottomTabNavigation = ({route}) => {
             tabBarLabel: "Transactions",
             headerTitle: "Transactions History",
             headerLeft: null,
-            tabBarIcon: ({focused}) => (
-                focused ? <TabIcon img={require('../assets/img/transaction-active.png')} size={32} /> :
-                <TabIcon img={require('../assets/img/transaction-inactive.png')} size={26} />
-            ),
+            tabBarIcon: ({ focused }) => (
+                <View
+                style={styles.tabContainer}
+                >
+                  <Pressable
+                    onPress={() => {navigation.navigate('transactions')}}
+                    android_ripple={{color: colors.grey1900, borderless: true}}
+                    style={styles.pressablestyle}
+                  >
+                    {focused ? (
+                      <TabIcon img={require('../assets/img/transaction-active.png')} size={30} />
+                    ) : (
+                        <TabIcon img={require('../assets/img/transaction-inactive.png')} size={30} />
+                    )}
+                    <AppText style={focused ? styles.activefont : styles.inactivefont}>Transactions</AppText>
+                  </Pressable>
+                </View>
+              ),
             headerStyle: {
                 backgroundColor: '#cfd9df'
             },  
@@ -102,3 +151,27 @@ const BottomTabNavigation = ({route}) => {
 }
 
 export default memo(BottomTabNavigation)
+
+const styles = StyleSheet.create({
+    tabContainer: {
+        width: windowWidth / 4,
+        height: 70, 
+        alignItems: 'center',
+        padding: 4,
+    },
+    activefont:{
+        fontSize: 11,
+        bottom: 8,
+        fontWeight: '700'
+    },
+    inactivefont: {
+        fontSize: 11,
+        bottom: 8
+    },
+    pressablestyle:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 60,
+        width: 70,
+    }
+})

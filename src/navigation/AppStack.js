@@ -6,6 +6,7 @@ import {
     // BottomSheetModal,
 } from '@gorhom/bottom-sheet';
 
+
 import SplashScreen from '../screens/splash/Splash.Screen';
 import RootNavigation from './RootNavigation';
 import AuthNavigation from './AuthNavigation';

@@ -40,7 +40,7 @@ const ProductElement = ({
     <Pressable
       onPress={onPress}
       onLongPress={onLongPress}
-      delayLongPress={100}
+      delayLongPress={200}
     >
       <View style={[styles.productContainer, {backgroundColor: activebar ? colors.grey1500: colors.alice}]}>
         <View style={[styles.productContainer1, productStyle]}>
@@ -65,7 +65,7 @@ const ProductElement = ({
               <View style={styles.tags}>
                 <View style={styles.unitPrice}>
                   <Tag>{item?.count +" "+item?.unit}</Tag>
-                  <AppText style={styles.amountStyle}>${item?.price}</AppText>
+                  <AppText style={styles.amountStyle}>₹ {item?.price}</AppText>
                 </View>
                 <Tag boxColor={colors.green100} titleColor={colors.greenheavy} borderColor={colors.greenheavy} borderW={0.5}>{item?.category}</Tag>
               </View>

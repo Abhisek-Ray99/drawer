@@ -30,7 +30,7 @@ const AnimatedPressable = ({
       onPressOut={handlePressOut}
       activeOpacity={0.8} // This controls the opacity when pressed
     >
-      <Animated.View style={[styles.button, { transform: [{ scale: scaleValue }] }]}>
+      <Animated.View style={[{ transform: [{ scale: scaleValue }] }]}>
         {children}
       </Animated.View>
     </TouchableOpacity>

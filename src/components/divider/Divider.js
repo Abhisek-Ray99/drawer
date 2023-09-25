@@ -5,6 +5,7 @@ import { colors } from '../../constants/colors'
 
 const Divider = ({
   dashed=false,
+  style
 }) => {
   return (
     <View 
@@ -13,6 +14,7 @@ const Divider = ({
         borderStyle: dashed ? 'dashed' : 'solid', 
         borderColor: colors.grey1500
        },
+       style
       ]}
     />
   )

@@ -8,11 +8,12 @@ const GradientBtn = ({
     title,
     height=windowHeight/15,
     width=windowWidth/1.18,
-    leftIcon
+    leftIcon,
+    colors
 }) => {
   return (
     <LinearGradient  
-        colors={[colors.darkviolet100, colors.royalblue100]} 
+        colors={[...colors]} 
         style={{borderRadius: 9}} 
         start={{x: 0, y: 0.5}} 
         end={{x: 1, y: 0.5}}

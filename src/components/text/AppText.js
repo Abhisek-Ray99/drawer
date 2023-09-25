@@ -8,11 +8,13 @@ const AppText = ({
     children,
     fontWeight = 400,
     style,
+    fontfamily="san-serif",
+    size,
     ...other
 }) => {
   return (
     <Text
-        style={[styles.text, {fontFamily: MONTSERRAT[fontWeight]}, style]}
+        style={[styles.text, {fontFamily: fontfamily, fontSize: size}, style]}
         {...other}
     >{children}</Text>
   )

@@ -16,6 +16,7 @@ import { windowHeight, windowWidth } from '../../utils/Dimension';
 import EmptyView from '../../components/view/LottieView';
 import LottieView from '../../components/view/LottieView';
 import Popup from '../../components/popup/Popup';
+import AppText from '../../components/text/AppText';
 
 
 const Products = ({route, navigation}) => {
@@ -154,7 +155,7 @@ const Products = ({route, navigation}) => {
     if(activeStates.every(element => element === false)){
       popupTranslateY.value = 0;
     }else{
-      popupTranslateY.value = -72;
+      popupTranslateY.value = -92;
     }
   };
   handlePress();
@@ -202,10 +203,12 @@ const Products = ({route, navigation}) => {
   return (
           <SafeAreaView style={[styles.container, ]}>
             {
-              activeStates.every(element => element === false) && 
+              activeStates.every(element => element === false) ? 
               <Animated.View style={filterBarStyle}>
                 <SearchFilter onChangeText={value => handleInputChange(value)} value={searchTerm} />
               </Animated.View>
+              :
+              null
             }
             <View>
               {

@@ -69,7 +69,7 @@ const Popup = ({
                   BtnStyle={styles.btn} 
                   titleStyle={styles.btntxt} 
                   rightIcon={<Octicons name="triangle-right" size={14} color={colors.white} />}
-                  onPress={() => navigation.navigate('selected-item')}
+                  onPress={() => navigation.navigate('selected-item', data)}
                 />
               </View>
               <View style={styles.contentView2}>

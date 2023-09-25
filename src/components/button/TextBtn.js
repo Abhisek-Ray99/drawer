@@ -12,21 +12,22 @@ const TextBtn = ({
     TextStyle,
     onPress,
     style,
-    viewStyle
+    viewStyle,
+    borderless
 }) => {
   return (
     <View style={[styles.container,{ backgroundColor: bg ? colors.grey2000 : null}, viewStyle]}>
         <Pressable 
-            android_ripple={{color: colors.grey1900, borderless: false}}
+            android_ripple={{color: colors.grey1900, borderless: borderless ? borderless : false}}
             style={[styles.TextBtnView, style]}
             onPress={onPress}
         >
             {leftIcon}
             {leftImg}
-            <AppText style={[styles.TextBtnText, TextStyle]}>{TextTitle}</AppText>
-            <View style={styles.righticon}>
+            { TextTitle ? <AppText style={[styles.TextBtnText, TextStyle]}>{TextTitle}</AppText> : null}
+            { rightIcon ? <View style={styles.righticon}>
                 {rightIcon}
-            </View>
+            </View> : null}
         </Pressable>
     </View>
   )

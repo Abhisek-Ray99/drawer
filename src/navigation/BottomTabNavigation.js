@@ -25,7 +25,7 @@ const BottomTabNavigation = ({route}) => {
             initialRouteName: "dashboard",  
             tabBarActiveTintColor: colors.dodgerblue100,
             tabBarStyle: { 
-                height: 60, 
+                height: 80, 
                 borderTopLeftRadius: 24,
                 borderTopRightRadius: 24,
                 borderLeftWidth: 1,
@@ -34,11 +34,13 @@ const BottomTabNavigation = ({route}) => {
                 overflow: 'hidden',
                 borderTopWidth: 1,
                 borderColor: colors.grey100,
+                elevation: 0
             },
             tabBarIconStyle:{
-                top: 4
+                top: 2
             },
             tabBarShowLabel: false,
+            
         }}
     >
         
@@ -70,7 +72,6 @@ const BottomTabNavigation = ({route}) => {
         component={TopTabNavigation}
         initialParams={items}
         options={{
-            tabBarLabel: "Items",
             headerShown: false,
             tabBarIcon: ({ focused }) => (
                 <View style={styles.tabContainer}>
@@ -84,7 +85,7 @@ const BottomTabNavigation = ({route}) => {
                     ) : (
                         <TabIcon img={require('../assets/img/items-inactive.png')} size={30} />
                     )}
-                    <AppText style={focused ? styles.activefont : styles.inactivefont}>Items</AppText>
+                    <AppText style={focused ? styles.activefont : styles.inactivefont}>Products</AppText>
                   </Pressable>
                 </View>
             ),
@@ -93,7 +94,6 @@ const BottomTabNavigation = ({route}) => {
         name="reports" 
         component={Reports}
         options={{
-            tabBarLabel: "Reports",
             headerTitle: "Reports",
             headerLeft: null,
             tabBarIcon: ({ focused }) => (
@@ -121,7 +121,6 @@ const BottomTabNavigation = ({route}) => {
         component={Transactions}
         initialParams={transactions}
         options={{
-            tabBarLabel: "Transactions",
             headerTitle: "Transactions History",
             headerLeft: null,
             tabBarIcon: ({ focused }) => (
@@ -153,25 +152,22 @@ const BottomTabNavigation = ({route}) => {
 export default memo(BottomTabNavigation)
 
 const styles = StyleSheet.create({
-    tabContainer: {
-        width: windowWidth / 4,
-        height: 70, 
-        alignItems: 'center',
-        padding: 4,
-    },
     activefont:{
-        fontSize: 11,
+        fontSize: 12,
         bottom: 8,
-        fontWeight: '700'
+        fontFamily: 'NotoSans-Bold',
+        color: colors.royalblue200
     },
     inactivefont: {
-        fontSize: 11,
-        bottom: 8
+        fontSize: 12,
+        bottom: 8,
+        fontFamily: 'NotoSans-Bold',
+        color: colors.black
     },
     pressablestyle:{
         justifyContent: 'center',
         alignItems: 'center',
         height: 60,
-        width: 70,
+        width:  100,
     }
 })

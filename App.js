@@ -6,12 +6,14 @@ import {
 } from 'react-native';
 import { NativeBaseProvider } from "native-base";
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import ImmersiveMode from 'react-native-immersive-mode';
 
 import { colors } from './src/constants/colors';
 import NetInfo from './src/components/network/NetInfo';
-import AppStack from './src/navigation/AppStack';
+import AppStack from './src/navigation/AppStack';;
 
 function App() {
+  ImmersiveMode.setBarTranslucent(true);
   const isDarkMode = useColorScheme() === 'dark';
   const MyTheme = {
     ...DefaultTheme,

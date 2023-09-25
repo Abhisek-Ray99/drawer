@@ -23,8 +23,16 @@ const Stage3 = ({
         leftIcon={<Ionicons name="share-outline" size={24} color={colors.white} style={{fontWeight: '700'}} />}
         style={{borderRadius: 7}} 
       />
-      <GradientBtn title="Add from Contacts"  leftIcon={<MaterialCommunityIcons name="contacts-outline" size={24} color={colors.darkviolet100} />} />
-      <GradientBtn title="Add by email"  leftIcon={<MaterialCommunityIcons name="email-plus-outline" size={24} color={colors.darkviolet100} />} />
+      <GradientBtn 
+        title="Add from Contacts"  
+        leftIcon={<MaterialCommunityIcons name="contacts-outline" size={24} color={colors.darkviolet100} />} 
+        colors={[colors.darkviolet100, colors.royalblue100]}
+      />
+      <GradientBtn 
+        title="Add by email"  
+        leftIcon={<MaterialCommunityIcons name="email-plus-outline" size={24} color={colors.darkviolet100} />}
+        colors={[colors.darkviolet100, colors.royalblue100]}
+      />
     </View>
   )
 }

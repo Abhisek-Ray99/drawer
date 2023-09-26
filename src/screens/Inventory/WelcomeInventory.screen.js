@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, StatusBar } from 'react-native'
 import React, {memo, useState} from 'react'
 import { useNavigation } from '@react-navigation/native';
 
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
   welcomecontainer:{
     flex: 1,
     marginTop: 30,
+    paddingBottom: StatusBar.currentHeight/2
   },
   stageview:{
     flex: 1,

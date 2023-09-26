@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Pressable, FlatList } from 'react-native'
+import { StyleSheet, Text, View, Image, Pressable, FlatList, StatusBar } from 'react-native'
 import React, {memo, useState} from 'react'
 
 import { useNavigation } from '@react-navigation/native';
@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     drawerContainer:{
         flex:1,
         overflow: 'hidden',
+        paddingBottom: StatusBar.currentHeight/2
     },
     toprofile:{
         width: windowWidth/1.17,

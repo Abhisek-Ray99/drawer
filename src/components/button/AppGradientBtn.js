@@ -10,15 +10,16 @@ const AppGradientBtn = ({
   width = windowWidth / 3,
   borderRadius= 10,
   colors = ['#16222A', '#3A6073', '#16222A'],
+  locations= [0, 0.61, 1],
   fontfamily="NotoSans-Bold",
 }) => {
   return (
     <LinearGradient
         style={[styles.gradientBackground, {height: height, width: width, borderRadius: borderRadius}]}
         colors={colors}
-        start={{ x: 0.5, y: 0.3 }}
-        end={{ x: 1, y: 0.5 }}
-        locations={[0, 0.61, 1]}
+        start={{ x: 0.2, y: 0.3}}
+        end={{ x: 0.7, y: 3 }}
+        locations={locations}
     >
         <AppText style={[styles.buttonText, {fontFamily: fontfamily}]}>{title}</AppText>
     </LinearGradient>

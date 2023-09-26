@@ -16,7 +16,6 @@ import { windowHeight, windowWidth } from '../../utils/Dimension';
 import EmptyView from '../../components/view/LottieView';
 import LottieView from '../../components/view/LottieView';
 import Popup from '../../components/popup/Popup';
-import AppText from '../../components/text/AppText';
 
 
 const Products = ({route, navigation}) => {
@@ -300,6 +299,7 @@ const Products = ({route, navigation}) => {
               moveRight={handlePressRight} 
               handledown={handlePressdown}
               data={selectedData}
+              toggleActiveState={toggleActiveState}
             />
               
           </SafeAreaView>

@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { memo } from 'react'
+import CustomHeader from '../../components/view/CustomHeader'
+import { styles } from './sales.styles'
 
 const Sales = () => {
   return (
-    <View>
-      <Text>Sales</Text>
+    <View style={styles.salescontainer}>
+      <CustomHeader/>
     </View>
   )
 }
 
 export default memo(Sales)
-
-const styles = StyleSheet.create({})

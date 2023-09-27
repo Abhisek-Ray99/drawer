@@ -1,9 +1,9 @@
 import { StyleSheet, View, BackHandler } from 'react-native'
 import React, {memo, useCallback} from 'react'
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
+import navigation from '../../navigation/navigation';
 
 const PreferencesScreen = () => {
-  const navigation = useNavigation();
 
   useFocusEffect(
     useCallback(() => {

@@ -8,17 +8,16 @@ ScrollView,
 
 } from 'react-native'
 import React, { useState, useRef, memo } from 'react'
-import { useNavigation } from '@react-navigation/native';
 
 import { windowHeight, windowWidth } from '../../../utils/Dimension'
 import { colors } from '../../../constants/colors'
 import PurSaleView from '../../../components/view/PurSaleView';
+import navigation from '../../../navigation/navigation';
 
 
 const width = windowWidth
 
 const FirstView = () => {
-  const navigation = useNavigation();
   const [active, setActive] = useState(0);
   const [xTabOne, setXTabOne] = useState(0);
   const [xTabTwo, setXTabTwo] = useState(0);
@@ -140,14 +139,14 @@ const FirstView = () => {
                 !active ? 
                 <Animated.View>
                     <View style={styles.absoluteview1}>
-                        <PurSaleView bgColor={colors.pastelpink} BtnTitle="View purchase" img={require('../../../assets/img/outline-mobile-bank.png')} onPress={()=> navigation.navigate('sales')} />
-                        <PurSaleView bgColor={colors.paleblue} BtnTitle="Vendors" img={require('../../../assets/img/simplistic-mobile-bank.png')} onPress={()=> navigation.navigate('purchase')}  />
+                        <PurSaleView bgColor={colors.pastelpink} BtnTitle="View purchase" img={require('../../../assets/img/outline-mobile-bank.png')} onPress={()=> navigation.navigate('purchases')} />
+                        <PurSaleView bgColor={colors.paleblue} BtnTitle="Vendors" img={require('../../../assets/img/simplistic-mobile-bank.png')} onPress={()=> navigation.navigate('vendors')}  />
                     </View>
                 </Animated.View>:
                 <Animated.View>
                     <View style={styles.absoluteview1}>
                         <PurSaleView bgColor={'#613FBA'} BtnTitle="View Sale" img={require('../../../assets/img/outline-mobile-bank.png')} onPress={()=> navigation.navigate('sales')} />
-                        <PurSaleView bgColor={'#ECFF8D'} BtnTitle="Customers" img={require('../../../assets/img/simplistic-mobile-bank.png')} onPress={()=> navigation.navigate('purchase')}  />
+                        <PurSaleView bgColor={'#ECFF8D'} BtnTitle="Customers" img={require('../../../assets/img/simplistic-mobile-bank.png')} onPress={()=> navigation.navigate('customers')}  />
                     </View>
                 </Animated.View>
             }

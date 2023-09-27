@@ -1,9 +1,9 @@
 import { View } from 'react-native'
-import React, { memo } from 'react'
+import React, {memo} from 'react'
+import { styles } from './customers.styles'
 import CustomHeader from '../../components/view/CustomHeader'
-import {styles} from './purchase.styles'
 
-const Purchase = () => {
+const Customers = () => {
   return (
     <View style={styles.customercontainer}>
       <CustomHeader/>
@@ -11,4 +11,4 @@ const Purchase = () => {
   )
 }
 
-export default memo(Purchase)
+export default memo(Customers)

@@ -1,18 +1,16 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import React from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 import { windowWidth } from '../../../utils/Dimension'
 import { colors } from '../../../constants/colors'
-import { SafeAreaView } from 'react-native-safe-area-context'
-
-import { useNavigation } from '@react-navigation/native';
 import AppText from '../../../components/text/AppText'
+import navigation from '../../../navigation/navigation'
 
 const HeaderBar = () => {
-  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.header}>
       <View style={styles.leftheader}>

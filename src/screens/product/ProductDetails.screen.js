@@ -1,12 +1,11 @@
 import { StyleSheet, Text, View, BackHandler } from 'react-native'
 import React, {memo, useEffect} from 'react'
-import { useNavigation } from '@react-navigation/native';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { colors } from '../../constants/colors';
+import navigation from '../../navigation/navigation';
 
 const ProductDetailsScreen = () => {
-  const navigation = useNavigation();
 
   function handleBackButtonClick() {
     navigation.goBack();

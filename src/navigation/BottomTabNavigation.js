@@ -1,7 +1,6 @@
 import React, {memo} from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Pressable, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 import Dashboard from '../screens/dashboard/Dashboard';
 import Reports from '../screens/Reports/Reports';
@@ -9,15 +8,14 @@ import TopTabNavigation from './TopTabNavigation';
 import Transactions from '../screens/transactions/Transactions';
 import { colors } from '../constants/colors';
 import TabIcon from './components/TabIcon';
-import { windowWidth } from '../utils/Dimension';
 import AppText from '../components/text/AppText';
+import navigation from './navigation';
 
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigation = ({route}) => {
   const { items, transactions } = route.params.params[0]
-  const navigation = useNavigation();
   
   return (
     <Tab.Navigator

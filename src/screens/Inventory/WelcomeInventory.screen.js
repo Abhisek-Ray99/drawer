@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, StatusBar } from 'react-native'
 import React, {memo, useState} from 'react'
-import { useNavigation } from '@react-navigation/native';
 
 import { useDispatch } from '../../redux/store'
 import { setLogout } from '../../redux/slices/user'
@@ -14,9 +13,9 @@ import SliderForm from './components/SliderForm'
 import AppText from '../../components/text/AppText'
 import AppBtn from '../../components/button/AppBtn'
 import { colors } from '../../constants/colors'
+import navigation from '../../navigation/navigation'
 
 const WelcomeInventoryScreen = ({route}) => {
-  const navigation = useNavigation();
   const {mail, inventories} = route.params
   const [stage, setStage] = useState(0)
 

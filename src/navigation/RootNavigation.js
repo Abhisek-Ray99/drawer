@@ -21,6 +21,8 @@ import Sales from '../screens/sale/Sales';
 import Purchase from '../screens/purchase/Purchase';
 import WelcomeInventoryScreen from '../screens/Inventory/WelcomeInventory.screen';
 import SelectItemScreen from '../screens/items/SelectItem.screen';
+import Customers from '../screens/customers/Customers';
+import Vendors from '../screens/vendors/Vendors';
 
 
 const RootStack = createStackNavigator()
@@ -194,17 +196,17 @@ const RootNavigation = ({userData}) => {
                 name="sales"
                 component={Sales} 
                 options={{
-                    // headerShown: false,
+                    headerShown: false,
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                     ...TransitionPresets.FadeFromBottomAndroid,
                 }}
                 
                 />
             <RootStack.Screen
-                name="purchase"
+                name="purchases"
                 component={Purchase} 
                 options={{
-                    // headerShown: false,
+                    headerShown: false,
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                     ...TransitionPresets.FadeFromBottomAndroid,
                     transitionSpec: {
@@ -224,6 +226,50 @@ const RootNavigation = ({userData}) => {
                         open: config,
                         close: config,
                     },
+                }}
+            />
+            <RootStack.Screen
+                name="customers"
+                component={Customers} 
+                options={{
+                    headerShown: false,
+                    transitionSpec: {
+                        open: TransitionSpecs.TransitionIOSSpec,
+                        close: {
+                            animation: 'timing',
+                            config: {
+                                duration: 100,
+                                stiffness: 1000,
+                                damping: 500,
+                                overshootClamping: true,
+                                restDisplacementThreshold: 0.01,
+                                restSpeedThreshold: 0.6,
+                            },
+                        },
+                    }
+        
+                }}
+            />
+            <RootStack.Screen
+                name="vendors"
+                component={Vendors} 
+                options={{
+                    headerShown: false,
+                    transitionSpec: {
+                        open: TransitionSpecs.TransitionIOSSpec,
+                        close: {
+                            animation: 'timing',
+                            config: {
+                                duration: 100,
+                                stiffness: 1000,
+                                damping: 500,
+                                overshootClamping: true,
+                                restDisplacementThreshold: 0.01,
+                                restSpeedThreshold: 0.6,
+                            },
+                        },
+                    }
+        
                 }}
             />
         </RootStack.Navigator>

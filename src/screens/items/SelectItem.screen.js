@@ -1,8 +1,6 @@
 import { StyleSheet, View, ScrollView, Pressable, TouchableOpacity, StatusBar, Animated } from 'react-native'
 import React, { memo, useState, useRef } from 'react'
-import { useNavigation } from '@react-navigation/native';
 import Modal from "react-native-modal";
-import LinearGradient from 'react-native-linear-gradient';
 import LottieView from 'lottie-react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -12,14 +10,12 @@ import { windowHeight, windowWidth } from '../../utils/Dimension';
 import { colors } from '../../constants/colors';
 import AppText from '../../components/text/AppText';
 import Divider from '../../components/divider/Divider';
-import GradientBtn from '../../components/button/GradientBtn';
-import AppBtn from '../../components/button/AppBtn';
 import AnimatedPressable from '../../components/button/AnimatedPressable';
 import AppGradientBtn from '../../components/button/AppGradientBtn';
 import SelectedItem from './components/SelectedItem';
+import navigation from '../../navigation/navigation';
 
 const SelectItemScreen = ({route}) => {
-  const navigation = useNavigation();
   const { params: items } = route
 
   const [count, setCount] = useState(0)
@@ -39,10 +35,6 @@ const SelectItemScreen = ({route}) => {
     setCount(newCount);
     setTotalprice(newTotalPrice);
   };
-
-
-
-  // console.log(totalprice/count)
 
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {

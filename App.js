@@ -10,7 +10,8 @@ import ImmersiveMode from 'react-native-immersive-mode';
 
 import { colors } from './src/constants/colors';
 import NetInfo from './src/components/network/NetInfo';
-import AppStack from './src/navigation/AppStack';;
+import AppStack from './src/navigation/AppStack';
+import navigation from './src/navigation/navigation';
 
 function App() {
   ImmersiveMode.setBarTranslucent(true);
@@ -22,9 +23,12 @@ function App() {
       background: colors.white
     },
   };
+  const handleNavRef = (navigatorRef) => {
+    navigation.setTopLevelNavigator(navigatorRef)
+  };
   return (
     <NativeBaseProvider>
-      <NavigationContainer theme={MyTheme}>
+      <NavigationContainer theme={MyTheme} ref={handleNavRef}>
         <StatusBar
           barStyle={isDarkMode ? 'light-content' : 'dark-content'}
           translucent backgroundColor="transparent"

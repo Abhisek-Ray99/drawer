@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 import Animated from 'react-native-reanimated';
-import { useNavigation } from '@react-navigation/native';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -13,6 +12,7 @@ import { colors } from '../../constants/colors';
 import { Pressable } from 'native-base';
 import AppText from '../text/AppText';
 import AppBtn from '../button/AppBtn';
+import navigation from '../../navigation/navigation';
 
 const Popup = ({
   style,
@@ -21,8 +21,6 @@ const Popup = ({
   handledown,
   data
 }) => {
-
-  const navigation = useNavigation();
   
   return (
     <Animated.View

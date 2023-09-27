@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, Image, Pressable, FlatList, StatusBar } from 'react-native'
 import React, {memo, useState} from 'react'
 
-import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatlist';
 
@@ -18,6 +17,7 @@ import ProfileImage from '../../screens/profile/components/ProfileImage';
 
 import { useDispatch } from '../../redux/store';
 import { setLogout } from '../../redux/slices/user';
+import navigation from '../navigation';
 
 const CustomDrawerContent = ({inventories, userData}) => {
     const dispatch = useDispatch();
@@ -33,7 +33,6 @@ const CustomDrawerContent = ({inventories, userData}) => {
 
     const [data, setData] = useState(inventories)
 
-    const navigation = useNavigation();
     return (
         <View style={styles.drawerContainer}>
             <LinearGradient  colors={['#cfd9df', '#e2ebf0', '#fff']} style={styles.toprofile}>

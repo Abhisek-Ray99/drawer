@@ -5,8 +5,7 @@ import { colors } from '../../../constants/colors'
 import { windowHeight, windowWidth } from '../../../utils/Dimension'
 import AppText from '../../../components/text/AppText'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
-import { useNavigation } from '@react-navigation/native';
+import navigation from '../../../navigation/navigation'
 
 const boxHeight = (windowHeight - 0 * 2)/23;
 const boxWidth = (windowWidth - 0 * 2)/11;
@@ -15,7 +14,6 @@ const DashBoardHeader = ({
   ItemTitle,
   DrawerName="Drawer Shop"
 }) => {
-  const navigation = useNavigation();
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerItems}>

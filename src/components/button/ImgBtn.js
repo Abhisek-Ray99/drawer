@@ -3,6 +3,7 @@ import React, {useRef, memo} from 'react'
 import AppText from '../text/AppText'
 import { colors } from '../../constants/colors'
 import { windowHeight, windowWidth } from '../../utils/Dimension'
+import { mesh_51 } from '../../constants/Images'
 
 const ImgBtn = ({
     onPress,
@@ -42,7 +43,7 @@ const ImgBtn = ({
         <Animated.View style={[{opacity: disabled ? 0.4 : 1}, { transform: [{ scale: !disabled ?scaleValue: 1 }] }]}>
             <Image
             style={[{width: width, height: height},styles.img, style]}
-            source={require('../../assets/img/mesh-51.png')}
+            source={mesh_51}
             />
             <View style={styles.textview}>
                 {leftIcon}

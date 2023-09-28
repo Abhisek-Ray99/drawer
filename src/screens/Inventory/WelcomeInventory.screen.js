@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, StatusBar } from 'react-native'
-import React, {memo, useState} from 'react'
+import React, {memo, useState, useRef, useEffect} from 'react'
 
 import { useDispatch } from '../../redux/store'
 import { setLogout } from '../../redux/slices/user'
@@ -30,21 +30,27 @@ const WelcomeInventoryScreen = ({route}) => {
     stage > 0 ? setStage(stage-1) : !isInventories ? dispatch(setLogout()) : navigation.goBack();
   }
 
+  const confettiRef = useRef(null);
+  function triggerConfetti() {
+    confettiRef.current?.play();
+  }
+
   let stages = {
     0: <WelcomeStage mailid={mail} changeStage={handlechangeStage} isInventories={isInventories}  />,
     1: <SliderForm title="What's the name of your store or warehouse?" placeholder="e.g.Shop1 or Warehouse1" changeStage={handlechangeStage}  />,
     2: <SliderForm title="What kind of inventory goods your staff managing?" placeholder="e.g.Stationary or Restaurant" changeStage={handlechangeStage} />,
     3: <Stage3 changeStage={handlechangeStage} />,
-    4: <Stage4 />,
+    4: <Stage4 ref={confettiRef} />,
   };
 
   const ConditionalComponent = (stage) => {
     return stages[stage]
   }
 
+
   return (
     <View style={styles.welcomecontainer}>
-      <Header stages={stages} stage={stage} backStage={handlebackStage} frontStage={handlechangeStage} />
+      <Header stages={stages} stage={stage} backStage={handlebackStage} frontStage={handlechangeStage} triggerConfetti={triggerConfetti} />
       <View style={styles.stageview}>
         {ConditionalComponent(stage)}
       </View>

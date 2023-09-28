@@ -2,14 +2,19 @@ import React, {memo} from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Pressable, StyleSheet } from 'react-native';
 
-import Dashboard from '../screens/dashboard/Dashboard';
-import Reports from '../screens/Reports/Reports';
 import TopTabNavigation from './TopTabNavigation';
-import Transactions from '../screens/transactions/Transactions';
 import { colors } from '../constants/colors';
+import { NotoSans } from '../constants/fonts';
 import TabIcon from './components/TabIcon';
 import AppText from '../components/text/AppText';
+
+// screens
+import { Dashboard, Reports, Transactions } from '../screens';
+
+// navigation props
 import navigation from './navigation';
+import { ROUTES } from './routes';
+import { dashboard_active, dashboard_inactive, items_active, items_inactive, report_active, report_inactive, transaction_active, transaction_inactive } from '../constants/Images';
 
 
 const Tab = createBottomTabNavigator();
@@ -20,7 +25,7 @@ const BottomTabNavigation = ({route}) => {
   return (
     <Tab.Navigator
         screenOptions={{
-            initialRouteName: "dashboard",  
+            initialRouteName: ROUTES.DASHBOARD,  
             tabBarActiveTintColor: colors.dodgerblue100,
             tabBarStyle: { 
                 height: 80, 
@@ -43,7 +48,7 @@ const BottomTabNavigation = ({route}) => {
     >
         
       <Tab.Screen 
-        name="dashboard" 
+        name={ROUTES.DASHBOARD}
         component={Dashboard} 
         initialParams={route.params}
         options={{
@@ -56,9 +61,9 @@ const BottomTabNavigation = ({route}) => {
                     style={styles.pressablestyle}
                   >
                     {focused ? (
-                      <TabIcon img={require('../assets/img/dashboard-active.png')} size={30} />
+                      <TabIcon img={dashboard_active} size={30} />
                     ) : (
-                      <TabIcon img={require('../assets/img/dashboard-inactive.png')} size={30} />
+                      <TabIcon img={dashboard_inactive} size={30} />
                     )}
                     <AppText style={focused ? styles.activefont : styles.inactivefont}>Dashboard</AppText>
                   </Pressable>
@@ -66,7 +71,7 @@ const BottomTabNavigation = ({route}) => {
               ),
         }} />
       <Tab.Screen 
-        name="item" 
+        name={ROUTES.ITEM} 
         component={TopTabNavigation}
         initialParams={items}
         options={{
@@ -79,9 +84,9 @@ const BottomTabNavigation = ({route}) => {
                     style={styles.pressablestyle}
                   >
                     {focused ? (
-                      <TabIcon img={require('../assets/img/items-active.png')} size={30} />
+                      <TabIcon img={items_active} size={30} />
                     ) : (
-                        <TabIcon img={require('../assets/img/items-inactive.png')} size={30} />
+                        <TabIcon img={items_inactive} size={30} />
                     )}
                     <AppText style={focused ? styles.activefont : styles.inactivefont}>Products</AppText>
                   </Pressable>
@@ -89,7 +94,7 @@ const BottomTabNavigation = ({route}) => {
             ),
         }} />
       <Tab.Screen 
-        name="reports" 
+        name={ROUTES.REPORTS}
         component={Reports}
         options={{
             headerTitle: "Reports",
@@ -102,9 +107,9 @@ const BottomTabNavigation = ({route}) => {
                     style={styles.pressablestyle}
                   >
                     {focused ? (
-                      <TabIcon img={require('../assets/img/report-active.png')} size={28} />
+                      <TabIcon img={report_active} size={28} />
                     ) : (
-                      <TabIcon img={require('../assets/img/report-inactive.png')} size={28} />
+                      <TabIcon img={report_inactive} size={28} />
                     )}
                     <AppText style={focused ? styles.activefont : styles.inactivefont}>Reports</AppText>
                   </Pressable>
@@ -115,7 +120,7 @@ const BottomTabNavigation = ({route}) => {
             }, 
         }} />
       <Tab.Screen 
-        name="transactions" 
+        name={ROUTES.TRANSACTIONS} 
         component={Transactions}
         initialParams={transactions}
         options={{
@@ -131,9 +136,9 @@ const BottomTabNavigation = ({route}) => {
                     style={styles.pressablestyle}
                   >
                     {focused ? (
-                      <TabIcon img={require('../assets/img/transaction-active.png')} size={30} />
+                      <TabIcon img={transaction_active} size={30} />
                     ) : (
-                        <TabIcon img={require('../assets/img/transaction-inactive.png')} size={30} />
+                        <TabIcon img={transaction_inactive} size={30} />
                     )}
                     <AppText style={focused ? styles.activefont : styles.inactivefont}>Transactions</AppText>
                   </Pressable>
@@ -153,13 +158,13 @@ const styles = StyleSheet.create({
     activefont:{
         fontSize: 12,
         bottom: 8,
-        fontFamily: 'NotoSans-Bold',
+        fontFamily: NotoSans["700"],
         color: colors.royalblue200
     },
     inactivefont: {
         fontSize: 12,
         bottom: 8,
-        fontFamily: 'NotoSans-Bold',
+        fontFamily: NotoSans['700'],
         color: colors.black
     },
     pressablestyle:{

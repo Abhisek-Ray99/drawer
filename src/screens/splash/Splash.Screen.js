@@ -10,6 +10,7 @@ import Animated, {
   withTiming,
   interpolate,
 } from 'react-native-reanimated';
+import { splash } from '../../constants/Images';
 
 const SplashScreen = () => {
 
@@ -32,7 +33,7 @@ const SplashScreen = () => {
   return (
     <View style={styles.container}>
       <Animated.Image 
-        source={require('../../assets/img/splash.png')} 
+        source={splash} 
         style={[{ height: windowHeight - 10, width: windowWidth - 10 }, animatedImageStyle]}
         resizeMode='contain'
       />

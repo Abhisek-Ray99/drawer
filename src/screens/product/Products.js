@@ -5,17 +5,16 @@ import { useFocusEffect } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import Modal from "react-native-modal";
 
-
-import animation from '../../assets/img/animation_1.json';
 import ActionButton from '../items/components/ActionButton'
 import Button from '../items/components/Button';
 import { colors } from '../../constants/colors';
 import ProductElement from './components/ProductElement';
 import SearchFilter from '../../components/input/Search&Filter';
 import { windowHeight, windowWidth } from '../../utils/Dimension';
-import EmptyView from '../../components/view/LottieView';
-import LottieView from '../../components/view/LottieView';
+import LottieAnimation from '../../components/view/LottieAnimation';
+import LottieView from '../../components/view/LottieAnimation';
 import Popup from '../../components/popup/Popup';
+import { animation } from '../../constants/Images';
 
 
 const Products = ({route, navigation}) => {
@@ -229,7 +228,7 @@ const Products = ({route, navigation}) => {
                         />
                     }
                     ListEmptyComponent={
-                      <EmptyView 
+                      <LottieAnimation
                         title="no product found"
                         imagesource={animation}
                         style={{marginTop: 100}} 

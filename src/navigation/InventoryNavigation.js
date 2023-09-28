@@ -1,4 +1,4 @@
-import { StyleSheet, StatusBar } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React, {memo} from 'react'
 
 import { 
@@ -48,5 +48,3 @@ const InventoryNavigation = ({route}) => {
 }
 
 export default memo(InventoryNavigation)
-
-const styles = StyleSheet.create({})

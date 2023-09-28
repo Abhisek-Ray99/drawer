@@ -18,6 +18,7 @@ import ProfileImage from '../../screens/profile/components/ProfileImage';
 import { useDispatch } from '../../redux/store';
 import { setLogout } from '../../redux/slices/user';
 import navigation from '../navigation';
+import { mesh_51 } from '../../constants/Images';
 
 const CustomDrawerContent = ({inventories, userData}) => {
     const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const CustomDrawerContent = ({inventories, userData}) => {
                 >
                     <Image
                         style={styles.Img}
-                        source={require('../../assets/img/mesh-51.png')}
+                        source={mesh_51}
                     />
                     <View style={styles.profilethumb}>
                         <ProfileImage imgwidth={40} imgheight={40} size={25} style={styles.imgview} />

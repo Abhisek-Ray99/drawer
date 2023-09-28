@@ -3,6 +3,7 @@ import React, {memo} from 'react'
 import AppText from './AppText'
 
 import { colors } from '../../constants/colors'
+import { NotoSans } from '../../constants/fonts'
 
 const TextLink = ({
     title,
@@ -30,7 +31,7 @@ export default memo(TextLink)
 const styles = StyleSheet.create({
     color: {
         color: colors.primary ,
-        fontFamily: 'NotoSans-Bold'
+        fontFamily: NotoSans['700']
     },
     container:{
         flexDirection: 'row',

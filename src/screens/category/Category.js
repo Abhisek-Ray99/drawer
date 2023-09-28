@@ -6,10 +6,9 @@ import { useFocusEffect } from '@react-navigation/native';
 
 import CategoryElement from './components/CategoryElement'
 import SearchFilter from '../../components/input/Search&Filter';
-import EmptyView from '../../components/view/LottieView';
-import AppText from '../../components/text/AppText';
-import animation from '../../assets/img/animation_2.json';
-import LottieView from '../../components/view/LottieView';
+import LottieAnimation from '../../components/view/LottieAnimation';
+import LottieView from '../../components/view/LottieAnimation';
+import { animation } from '../../constants/Images';
 
 const Category = ({route, navigation}) => {
 
@@ -131,7 +130,7 @@ const Category = ({route, navigation}) => {
               )}
               keyExtractor={(item) => item.categoryName}
               ListEmptyComponent={
-                <EmptyView 
+                <LottieAnimation
                   title="no category found"
                   imagesource={animation} 
                   style={{marginTop: 100}} 

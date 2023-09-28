@@ -9,7 +9,8 @@ import { useFocusEffect } from '@react-navigation/native';
 
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle, withTiming, Easing, } from 'react-native-reanimated';
 import SearchFilter from '../../components/input/Search&Filter'
-import EmptyView from '../../components/view/LottieView';
+import LottieAnimation from '../../components/view/LottieAnimation';
+import { details } from '../../constants/Images';
 
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList);
 
@@ -118,7 +119,7 @@ const Transactions = ({route, navigation}) => {
         )}
         scrollEventThrottle={16}
         ListEmptyComponent={
-          <EmptyView imagesource={require('../../assets/img/details.png')} />
+          <LottieAnimation imagesource={details} />
         }
         onScroll={scrollHandler}
         showsVerticalScrollIndicator={false}

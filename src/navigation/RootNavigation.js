@@ -1,29 +1,32 @@
-import { Pressable, StyleSheet, View } from 'react-native'
 import React, {memo} from 'react'
 
 import { CardStyleInterpolators, createStackNavigator, TransitionSpecs, HeaderStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 
-import AddItem from '../screens/items/AddItem';
-import BarcodeItem from '../screens/items/BarcodeItem'
-import CategoryScreen from '../screens/category/Category.screen';
 import { colors } from '../constants/colors';
-import ProductDetailsScreen from '../screens/product/ProductDetails.screen';
 import InventoryNavigation from './InventoryNavigation';
-import ViewMembersScreen from '../screens/members/ViewMembers.screen';
-import PreferencesScreen from '../screens/preferences/Preferences.screen';
-import InvoiceScreen from '../screens/transactions/Invoice.screen';
-import SettingsScreen from '../screens/settings/Settings.screen';
-import ProfileScreenEdit from '../screens/profile/Profile.screen.edit';
-import Profile from '../screens/profile/Profile';
-import NewPurchaseScreen from '../screens/purchase/NewPurchase.screen';
-import NewSaleScreen from '../screens/sale/NewSale.screen';
-import Sales from '../screens/sale/Sales';
-import Purchase from '../screens/purchase/Purchase';
-import WelcomeInventoryScreen from '../screens/Inventory/WelcomeInventory.screen';
-import SelectItemScreen from '../screens/items/SelectItem.screen';
-import Customers from '../screens/customers/Customers';
-import Vendors from '../screens/vendors/Vendors';
 
+//screens
+import { 
+    AddItem, 
+    BarcodeItem, 
+    CategoryScreen, 
+    ProductDetailsScreen, 
+    ViewMembersScreen, 
+    InvoiceScreen, 
+    SettingsScreen, 
+    PreferencesScreen, 
+    ProfileScreenEdit, 
+    Profile, 
+    NewPurchaseScreen, 
+    NewSaleScreen, 
+    Sales, 
+    Purchase, 
+    WelcomeInventoryScreen, 
+    SelectItemScreen, 
+    Customers, 
+    Vendors 
+} from '../screens';
+import { ROUTES } from './routes';
 
 const RootStack = createStackNavigator()
 
@@ -42,14 +45,14 @@ const config = {
 const RootNavigation = ({userData}) => {
 
     const initialScreen = (Array.isArray(userData[0]?.inventories) && !userData[0]?.inventories?.length)
-    ? "welcome-inventory" : "home"
+    ? ROUTES.WELCOME_INVENTORY : ROUTES.HOME
 
     return (
         <RootStack.Navigator
             initialRouteName= {initialScreen}
         >
             <RootStack.Screen
-                name="welcome-inventory"
+                name={ROUTES.WELCOME_INVENTORY}
                 initialParams={userData[0]}
                 component={WelcomeInventoryScreen} 
                 options={{
@@ -60,14 +63,14 @@ const RootNavigation = ({userData}) => {
                 
             />
             <RootStack.Screen
-                name="home"
+                name={ROUTES.HOME}
                 initialParams={userData}
                 component={InventoryNavigation} 
                 options={{
                     headerShown: false,
                 }}/>
             <RootStack.Screen
-                name="add-item"
+                name={ROUTES.ADD_ITEM}
                 component={AddItem} 
                 options={{
                     presentation: 'modal',
@@ -75,7 +78,7 @@ const RootNavigation = ({userData}) => {
                 }}
                 />
             <RootStack.Screen
-                name="barcode-item"
+                name={ROUTES.BARCODE_ITEM}
                 component={BarcodeItem} 
                 options={{
                     presentation: 'modal',
@@ -84,7 +87,7 @@ const RootNavigation = ({userData}) => {
                 }}
                 />
             <RootStack.Screen
-                name="category-screen"
+                name={ROUTES.CATEGORY_SCREEN}
                 component={CategoryScreen} 
                 options={({ route }) => ({
                     title: route.params.categoryName,
@@ -95,7 +98,7 @@ const RootNavigation = ({userData}) => {
                 })}
                 />
             <RootStack.Screen
-                name="product-screen"
+                name={ROUTES.PRODUCT_SCREEN}
                 component={ProductDetailsScreen} 
                 options={{
                     headerShown: false,
@@ -104,7 +107,7 @@ const RootNavigation = ({userData}) => {
                 
                 />
             <RootStack.Screen
-                name="view-members"
+                name={ROUTES.VIEW_MEMEBERS}
                 component={ViewMembersScreen} 
                 options={{
                     headerTitle: 'View Members',
@@ -113,7 +116,7 @@ const RootNavigation = ({userData}) => {
                 
                 />
             <RootStack.Screen
-                name="preferences"
+                name={ROUTES.PREFERENCES}
                 component={PreferencesScreen} 
                 options={{
                     headerTitle: 'Preferences',
@@ -123,7 +126,7 @@ const RootNavigation = ({userData}) => {
                 
                 />
             <RootStack.Screen
-                name="invoice"
+                name={ROUTES.INVOICE}
                 component={InvoiceScreen} 
                 options={{
                     headerTitle: 'Invoice',
@@ -132,7 +135,7 @@ const RootNavigation = ({userData}) => {
                 
                 />
             <RootStack.Screen
-                name="settings"
+                name={ROUTES.SETTINGS}
                 component={SettingsScreen} 
                 options={{
                     headerTitle: 'Settings',
@@ -146,7 +149,7 @@ const RootNavigation = ({userData}) => {
                 
                 />
             <RootStack.Screen
-                name="profile-edit"
+                name={ROUTES.PROFILE_EDIT}
                 component={ProfileScreenEdit} 
                 options={{
                     headerTitle: 'Edit Profile',
@@ -160,7 +163,7 @@ const RootNavigation = ({userData}) => {
                 
                 />
             <RootStack.Screen
-                name="profile"
+                name={ROUTES.PROFILE}
                 component={Profile} 
                 options={{
                     headerShown: false,
@@ -173,7 +176,7 @@ const RootNavigation = ({userData}) => {
                 
                 />
             <RootStack.Screen
-                name="new-purchase"
+                name={ROUTES.NEW_PURCHASE}
                 component={NewPurchaseScreen} 
                 options={{
                     // headerShown: false,
@@ -183,7 +186,7 @@ const RootNavigation = ({userData}) => {
                 
                 />
             <RootStack.Screen
-                name="new-sale"
+                name={ROUTES.NEW_SALE}
                 component={NewSaleScreen} 
                 options={{
                     // headerShown: false,
@@ -193,7 +196,7 @@ const RootNavigation = ({userData}) => {
                 
                 />
             <RootStack.Screen
-                name="sales"
+                name={ROUTES.SALES}
                 component={Sales} 
                 options={{
                     headerShown: false,
@@ -203,7 +206,7 @@ const RootNavigation = ({userData}) => {
                 
                 />
             <RootStack.Screen
-                name="purchases"
+                name={ROUTES.PURCHASES}
                 component={Purchase} 
                 options={{
                     headerShown: false,
@@ -217,7 +220,7 @@ const RootNavigation = ({userData}) => {
                 
             />
             <RootStack.Screen
-                name="selected-item"
+                name={ROUTES.SELECTED_ITEM}
                 component={SelectItemScreen} 
                 options={{
                     headerShown: false,
@@ -229,7 +232,7 @@ const RootNavigation = ({userData}) => {
                 }}
             />
             <RootStack.Screen
-                name="customers"
+                name={ROUTES.CUSTOMERS}
                 component={Customers} 
                 options={{
                     headerShown: false,
@@ -251,7 +254,7 @@ const RootNavigation = ({userData}) => {
                 }}
             />
             <RootStack.Screen
-                name="vendors"
+                name={ROUTES.VENDORS}
                 component={Vendors} 
                 options={{
                     headerShown: false,

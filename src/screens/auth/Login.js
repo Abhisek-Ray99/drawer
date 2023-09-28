@@ -14,6 +14,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import { useDispatch, useSelector } from '../../redux/store'
 import { setLoggedIn } from '../../redux/slices/user'
+import { mesh_51 } from '../../constants/Images'
 
 
 const Login = ({navigation}) => {
@@ -62,7 +63,7 @@ const Login = ({navigation}) => {
       <View style={styles.LoginView1}>
         <Image
           style={styles.loginImg}
-          source={require('../../assets/img/mesh-51.png')}
+          source={mesh_51}
         />
       </View>
       <View style={styles.LoginView2}>

@@ -1,5 +1,5 @@
-import React, { useRef, useMemo, useState, useEffect } from "react";
-import { StyleSheet, View, StatusBar, BackHandler, Pressable, Text } from "react-native";
+import React, { useRef, useMemo, useState, useEffect, memo } from "react";
+import { StyleSheet, View, StatusBar, BackHandler } from "react-native";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -7,7 +7,7 @@ import ViewBox from "../../components/view/ViewBox";
 import Summary from "./components/Summary";
 import DashBoardHeader from "./components/DashBoardHeader";
 
-import { windowHeight, windowWidth } from "../../utils/Dimension";
+import { windowHeight } from "../../utils/Dimension";
 import { colors } from "../../constants/colors";
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -18,9 +18,10 @@ import { Modal, Portal} from 'react-native-paper';
 import ViewItem from "./components/ViewItem";
 import Divider from "../../components/divider/Divider";
 import FirstView from "./components/FirstView";
+import { more } from "../../constants/Images";
 
 
-const App = ({route, navigation}) => {
+const DashBoard = ({route, navigation}) => {
 
   const { name, items } = route.params.params[0]
 
@@ -96,15 +97,6 @@ const App = ({route, navigation}) => {
       >
         <BottomSheetScrollView contentContainerStyle={styles.contentContainer}>
           <FirstView />
-          {/* <Pressable
-
-            // onPress={()=>console.log('onPress')}
-            onPressIn={()=>console.log('onPressIn')}
-            // onPressOut={()=>console.log('onPressOut')}
-            delayPressIn={1}
-          >
-            <Text>Press</Text>
-          </Pressable> */}
         </BottomSheetScrollView>
       </BottomSheet>
       <Portal>
@@ -142,7 +134,7 @@ const App = ({route, navigation}) => {
                   descript="Tap to find more features"
                   bgColor={colors.grey1600}
                   borderC={colors.grey100}
-                  img={require('../../assets/img/more.png')}
+                  img={more}
               />
             </View>
           </Modal>
@@ -200,4 +192,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default App;
+export default memo(DashBoard);

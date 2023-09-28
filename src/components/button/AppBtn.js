@@ -25,12 +25,12 @@ const AppBtn = ({
             >
                 {leftIcon}
                 {isLoading && <ActivityIndicator color={colors.white} />}
-                <AppText
+                {title && <AppText
                     fontWeight={'700'}
                     style={[styles.text, titleStyle]}
                 >
                     {title}
-                </AppText>
+                </AppText>}
                 {rightIcon}
             </Pressable>
     </View>

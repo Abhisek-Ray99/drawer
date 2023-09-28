@@ -1,32 +1,37 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React, {memo} from 'react'
+import { StyleSheet, View } from 'react-native'
+import React, {memo, forwardRef} from 'react'
 import LottieView from 'lottie-react-native';
 
 import AppText from '../text/AppText'
 import { colors } from '../../constants/colors';
 
-const EmptyView = ({
+const LottieAnimation = forwardRef(({
     imagesource,
     title,
     description,
     size=200,
-    style
-}) => {
+    style,
+    lottiestyle,
+    loop,
+    resizeMode,
+}, ref) => {
   return (
     <View style={[styles.container, style]}>
         <LottieView
             source={imagesource}
             autoPlay
-            loop
-            style={[{width: size, height: size}]}
+            loop={loop}
+            style={[{width: size, height: size}, lottiestyle]}
+            ref={ref}
+            resizeMode={resizeMode}
         />
         {title && <AppText style={styles.title}>{title}</AppText>}
         {description && <AppText style={styles.desc}>{description}</AppText>}
     </View>
   )
-}
+})
 
-export default memo(EmptyView)
+export default memo(LottieAnimation)
 
 const styles = StyleSheet.create({
     container:{

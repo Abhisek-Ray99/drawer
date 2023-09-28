@@ -1,17 +1,29 @@
-import { StyleSheet, Text, View} from 'react-native'
-import React, {memo} from 'react'
+import { StyleSheet, View} from 'react-native'
+import React, {memo, forwardRef} from 'react'
+import LottieView from 'lottie-react-native';
+
 import ImgBtn from '../../../components/button/ImgBtn'
 import AppText from '../../../components/text/AppText'
-import LottieView from '../../../components/view/LottieView'
-import { windowHeight } from '../../../utils/Dimension'
+import LottieAnimation from '../../../components/view/LottieAnimation';
+import { windowHeight } from '../../../utils/Dimension';
+import { animation_4, congratulation } from '../../../constants/Images';
 
-const Stage4 = () => {
+const Stage4 = forwardRef(({}, ref) => {
   return (
     <View style={styles.container}>
+      <LottieView
+        ref={ref}
+        source={congratulation}
+        autoPlay
+        loop={false}
+        style={styles.lottie}
+        resizeMode='cover'
+      />
+
       <AppText style={styles.stagetext}>Tada! Add your first Items to the Inventory</AppText>
       <View style={styles.view1}>
-        <LottieView
-          imagesource={require('../../../assets/img/animation_4.json')}
+        <LottieAnimation
+          imagesource={animation_4}
           size={500}
         />
       </View>
@@ -23,8 +35,8 @@ const Stage4 = () => {
         />
       </View>
     </View>
-  )
-}
+  );
+})
 
 export default memo(Stage4)
 
@@ -47,5 +59,15 @@ const styles = StyleSheet.create({
     fontSize: 26,
     textAlign: 'center',
     fontWeight: '700'
-  }
+  },
+  lottie: {
+    height: windowHeight,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 1000,
+    pointerEvents: 'none',
+  },
 })

@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/Fontisto'
 import { colors } from '../../constants/colors'
 import AppText from '../../components/text/AppText'
 import { windowWidth } from '../../utils/Dimension';
+import { img_hero } from '../../constants/Images';
 
 const Onboarding = ({navigation}) => {
 
@@ -15,7 +16,7 @@ const Onboarding = ({navigation}) => {
     <View style={styles.onboardContainer}>
       <LinearGradient  colors={['#cfd9df', '#e2ebf0', '#e6dee9', '#fff']} style={styles.onboardSlider}>
         <Image 
-          source={require('../../assets/img/img-hero.png')}
+          source={img_hero}
           resizeMode='cover'
           style={styles.heroimg}
         />

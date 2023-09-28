@@ -1,12 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { View } from 'react-native'
 import React, {memo} from 'react'
-import CustomHeader from '../../components/view/CustomHeader'
+
 import {styles} from './vendors.styles'
+import DetailsHeader from '../../components/view/DetailsHeader'
+import { rename, simplistic_mobile_bank } from '../../constants/Images'
 
 const Vendors = () => {
   return (
-    <View style={styles.customercontainer}>
-      <CustomHeader/>
+    <View style={styles.vendorcontainer}>
+      <DetailsHeader
+        bgColor={'#97BC62FF'}
+        headerTitle={"Vendors"}
+        img={simplistic_mobile_bank}
+        contentIcon={rename}
+      />
     </View>
   )
 }

@@ -8,62 +8,66 @@ import { colors } from '../../../constants/colors'
 import { windowHeight, windowWidth } from '../../../utils/Dimension'
 
 const Header = ({
-  stage,
-  backStage,
-  frontStage,
-  stages
-}) => {
-  
-  return (
-    <View>
-      <View style={styles.headerbuttonContainer}>
-      {
-        stage !== 0 ? 
-        ( <View style={styles.backcontainer}>
+    stage,
+    backStage,
+    frontStage,
+    stages,
+    triggerConfetti
+  }) => {
+    
+    return (
+      <View>
+        <View style={styles.headerbuttonContainer}>
+        {
+          stage !== 0 ? 
+          ( <View style={styles.backcontainer}>
+              <Pressable 
+                style={{padding: 10}} 
+                android_ripple={{color: colors.grey1900, borderless: true, foreground: true}}
+                onPress={backStage}
+              >
+                <Ionicons name="chevron-back" size={26} />
+              </Pressable>
+            </View>):(
+            <View style={styles.backcontainer}>
+              <Pressable 
+                style={{padding: 10}} 
+                android_ripple={{color: colors.grey1900, borderless: true, foreground: true}}
+                onPress={backStage}
+              >
+                <Ionicons name="close" size={26} />
+              </Pressable>
+            </View>
+          )
+        }
+        {
+          Object.keys(stages).length-2 === stage ?
+          <View>
             <Pressable 
               style={{padding: 10}} 
-              android_ripple={{color: colors.grey1900, borderless: true, foreground: true}}
-              onPress={backStage}
+              android_ripple={{color: colors.grey1900, borderless: false, foreground: true}}
+              onPress={()=> {
+                frontStage(),
+                triggerConfetti()
+              }}
             >
-              <Ionicons name="chevron-back" size={26} />
-            </Pressable>
-          </View>):(
-          <View style={styles.backcontainer}>
-            <Pressable 
-              style={{padding: 10}} 
-              android_ripple={{color: colors.grey1900, borderless: true, foreground: true}}
-              onPress={backStage}
-            >
-              <Ionicons name="close" size={26} />
+              <AppText style={styles.text}>Next</AppText>
             </Pressable>
           </View>
-        )
-      }
-      {
-        Object.keys(stages).length-2 === stage ?
-        <View>
-          <Pressable 
-            style={{padding: 10}} 
-            android_ripple={{color: colors.grey1900, borderless: false, foreground: true}}
-            onPress={frontStage}
-          >
-            <AppText style={styles.text}>Next</AppText>
-          </Pressable>
+          :
+          null
+        }
         </View>
-        :
-        null
-      }
+        { Object.keys(stages).length-1 !== stage && stage !== 0 ?
+          <View style={styles.progressview}>
+            <ProgressBar activecount={stage} />
+          </View>
+          :
+          null
+        }
       </View>
-      { Object.keys(stages).length-1 !== stage ?
-        <View style={styles.progressview}>
-          <ProgressBar activecount={stage} />
-        </View>
-        :
-        null
-      }
-    </View>
-  )
-}
+    )
+  }
 
 export default memo(Header)
 
@@ -72,7 +76,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   backcontainer:{
     width: windowWidth/7.6,

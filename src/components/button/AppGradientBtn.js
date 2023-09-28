@@ -3,6 +3,7 @@ import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import AppText from '../text/AppText';
 import { windowHeight, windowWidth } from '../../utils/Dimension';
+import { NotoSans } from '../../constants/fonts';
 
 const AppGradientBtn = ({
   title,
@@ -11,7 +12,7 @@ const AppGradientBtn = ({
   borderRadius= 10,
   colors = ['#16222A', '#3A6073', '#16222A'],
   locations= [0, 0.61, 1],
-  fontfamily="NotoSans-Bold",
+  fontfamily=NotoSans['700'],
 }) => {
   return (
     <LinearGradient

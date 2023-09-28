@@ -6,6 +6,8 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import AppText from '../../../components/text/AppText'
 import { colors } from '../../../constants/colors'
 import { windowWidth } from '../../../utils/Dimension'
+import { NotoSans } from '../../../constants/fonts'
+import { products } from '../../../constants/Images'
 
 const SelectedItem = ({
     item,
@@ -30,10 +32,10 @@ const SelectedItem = ({
   return (
     <View style={styles.box1} key={item.id}>
         <View style={styles.itemview}>
-        <Image source={require('../../../assets/img/products.png')} resizeMode='contain' style={styles.img1} />
+        <Image source={products} resizeMode='contain' style={styles.img1} />
         <View>
-            <AppText fontfamily="NotoSans-Bold" size={13}>{item.name}</AppText>
-            <AppText fontfamily="NotoSans-Bold" size={13}>{`₹ ${item.price}`}</AppText>
+            <AppText fontfamily={NotoSans['700']} size={13}>{item.name}</AppText>
+            <AppText fontfamily={NotoSans['700']} size={13}>{`₹ ${item.price}`}</AppText>
             <TextLink 
                 title="Edit"
                 lefticon={<AntDesign name="down" size={8} color={colors.primary } />}

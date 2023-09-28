@@ -16,6 +16,7 @@ const boxWidth = (windowWidth - 0 * 2)/2.4;
 
 import Feather from 'react-native-vector-icons/Feather';
 import ViewBox from '../../components/view/ViewBox'
+import { _export, details, icons8, mesh_51, support, track_order } from '../../constants/Images'
 
 const Profile = ({route, navigation}) => {
 
@@ -73,13 +74,13 @@ const Profile = ({route, navigation}) => {
             <View style={styles.viewinventory}>
               <Image
                 style={styles.tinyLogo1}
-                source={require('../../assets/img/mesh-51.png')}
+                source={mesh_51}
               />
             </View>
             <View style={styles.viewshop}>
               <Image
                 style={styles.tinyLogo2}
-                source={require('../../assets/img/icons8.png')}
+                source={icons8}
               />
               <AppText style={styles.viewinventorytext}>View my Inventories</AppText>
             </View>
@@ -92,28 +93,28 @@ const Profile = ({route, navigation}) => {
           <ViewBox height={boxHeight} width={boxWidth} viewboxStyle={styles.boxview}>
             <Image
                 style={styles.profilebanner}
-                source={require('../../assets/img/details.png')}
+                source={details}
             />
             <AppText style={styles.profiletext}>Your Details</AppText>
           </ViewBox>
           <ViewBox height={boxHeight} width={boxWidth } viewboxStyle={styles.boxview}>
             <Image
                   style={styles.profilebanner}
-                  source={require('../../assets/img/track-order.png')}
+                  source={track_order}
             />
             <AppText style={styles.profiletext}>Track Orders</AppText>
           </ViewBox>
           <ViewBox height={boxHeight} width={boxWidth } viewboxStyle={styles.boxview}>
             <Image
                     style={styles.profilebanner}
-                    source={require('../../assets/img/export.png')}
+                    source={_export}
             />
             <AppText style={styles.profiletext}>Bulk Data export</AppText>
           </ViewBox>
           <ViewBox height={boxHeight} width={boxWidth } viewboxStyle={styles.boxview}>
             <Image
                     style={styles.profilebanner}
-                    source={require('../../assets/img/support.png')}
+                    source={support}
             />
             <AppText style={styles.profiletext}>Help & Support</AppText>
           </ViewBox>

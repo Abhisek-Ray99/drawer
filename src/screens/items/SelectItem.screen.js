@@ -14,6 +14,8 @@ import AnimatedPressable from '../../components/button/AnimatedPressable';
 import AppGradientBtn from '../../components/button/AppGradientBtn';
 import SelectedItem from './components/SelectedItem';
 import navigation from '../../navigation/navigation';
+import { NotoSans } from '../../constants/fonts';
+import { empty_toast } from '../../constants/Images';
 
 const SelectItemScreen = ({route}) => {
   const { params: items } = route
@@ -72,7 +74,7 @@ const SelectItemScreen = ({route}) => {
     <View style={styles.container}>
       <Animated.View style={[ styles.toastContainer,{transform: [{ translateY: popAnim }]},]}>
           <LottieView
-              source={require('../../assets/img/empty-toast.json')}
+              source={empty_toast}
               autoPlay
               loop
               style={[{width: 60, height: 60}]}
@@ -264,7 +266,7 @@ const styles = StyleSheet.create({
   headerText:{
     fontSize: 16,
     textAlign: 'center',
-    fontFamily: 'NotoSans-Bold',
+    fontFamily: NotoSans['700'],
     letterSpacing: 2,
     color: colors.grey2300
   },
@@ -302,7 +304,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16
   },
   text:{
-    fontFamily: 'NotoSans-Bold'
+    fontFamily: NotoSans['700']
   },
   modal: {
     justifyContent: "flex-end",

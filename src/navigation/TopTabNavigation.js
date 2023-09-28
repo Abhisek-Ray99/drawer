@@ -1,14 +1,16 @@
 import React, {memo} from 'react'
-
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Category from '../screens/category/Category';
-import Products from '../screens/product/Products';
+
 import { colors } from '../constants/colors';
+
+//screens
+import { Category, Products } from '../screens';
+import { ROUTES } from './routes';
 
 const Tab = createMaterialTopTabNavigator();
 
 const TopTabNavigation = ({route}) => {
-  // console.log(route)
+  
   return (
     <Tab.Navigator
       screenOptions={{
@@ -29,7 +31,7 @@ const TopTabNavigation = ({route}) => {
       }}
     >
         <Tab.Screen 
-            name="products" 
+            name={ROUTES.PRODUCTS}
             component={Products}   
             initialParams={{
               products: route.params
@@ -39,7 +41,7 @@ const TopTabNavigation = ({route}) => {
             }}
         />
         <Tab.Screen 
-            name="categories" 
+            name={ROUTES.CATEGORIES}
             component={Category} 
             initialParams={{
               products: route.params

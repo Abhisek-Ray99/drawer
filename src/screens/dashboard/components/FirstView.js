@@ -13,6 +13,7 @@ import { windowHeight, windowWidth } from '../../../utils/Dimension'
 import { colors } from '../../../constants/colors'
 import PurSaleView from '../../../components/view/PurSaleView';
 import navigation from '../../../navigation/navigation';
+import { outline_mobile_bank, simplistic_mobile_bank } from '../../../constants/Images';
 
 
 const width = windowWidth
@@ -139,14 +140,14 @@ const FirstView = () => {
                 !active ? 
                 <Animated.View>
                     <View style={styles.absoluteview1}>
-                        <PurSaleView bgColor={colors.pastelpink} BtnTitle="View purchase" img={require('../../../assets/img/outline-mobile-bank.png')} onPress={()=> navigation.navigate('purchases')} />
-                        <PurSaleView bgColor={colors.paleblue} BtnTitle="Vendors" img={require('../../../assets/img/simplistic-mobile-bank.png')} onPress={()=> navigation.navigate('vendors')}  />
+                        <PurSaleView bgColor={'#FFA177FF'} BtnTitle="View purchase" img={outline_mobile_bank} onPress={()=> navigation.navigate('purchases')} />
+                        <PurSaleView bgColor={'#97BC62FF'} BtnTitle="Vendors" img={simplistic_mobile_bank} onPress={()=> navigation.navigate('vendors')}  />
                     </View>
                 </Animated.View>:
                 <Animated.View>
                     <View style={styles.absoluteview1}>
-                        <PurSaleView bgColor={'#613FBA'} BtnTitle="View Sale" img={require('../../../assets/img/outline-mobile-bank.png')} onPress={()=> navigation.navigate('sales')} />
-                        <PurSaleView bgColor={'#ECFF8D'} BtnTitle="Customers" img={require('../../../assets/img/simplistic-mobile-bank.png')} onPress={()=> navigation.navigate('customers')}  />
+                        <PurSaleView bgColor={'#4B878BFF'} BtnTitle="View Sale" img={outline_mobile_bank} onPress={()=> navigation.navigate('sales')} />
+                        <PurSaleView bgColor={'#B1B3B3FF'} BtnTitle="Customers" img={simplistic_mobile_bank} onPress={()=> navigation.navigate('customers')}  />
                     </View>
                 </Animated.View>
             }

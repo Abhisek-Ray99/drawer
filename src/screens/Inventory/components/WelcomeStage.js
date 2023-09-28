@@ -1,48 +1,51 @@
-import { StyleSheet, Text, View, Image, FlatList, ScrollView } from 'react-native'
-import React, {memo} from 'react'
-
+import { StyleSheet, View, Image, ScrollView } from 'react-native'
+import React, {memo, useRef, useEffect} from 'react'
 
 import AppText from '../../../components/text/AppText'
-import LottieView from '../../../components/view/LottieView'
+import LottieView from '../../../components/view/LottieAnimation'
 import ImgBtn from '../../../components/button/ImgBtn'
 import { windowWidth } from '../../../utils/Dimension'
 import TextBtn from '../../../components/button/TextBtn'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { animation_3, ecommerce, electronics, first_inventory, health, restaurant, sports, vehicles } from '../../../constants/Images'
 
 
 const TEMPLATES = [
   {
-    url: require('../../../assets/img/restaurant.png'),
+    url: restaurant,
     name: "Restaurant",
   },
   {
-    url: require('../../../assets/img/health.png'),
+    url: health,
     name: "Healthcare",
   },
   {
-    url: require('../../../assets/img/electronics.png'),
+    url: electronics,
     name: "Electronic",
   },
   {
-    url: require('../../../assets/img/ecommerce.png'),
+    url: ecommerce,
     name: "Ecommerce Sales",
   },
   {
-    url: require('../../../assets/img/sports.png'),
+    url: sports,
     name: "Sport Goods",
   },
   {
-    url: require('../../../assets/img/vehicles.png'),
+    url: vehicles,
     name: "Vehicles showrooms",
   }
 ]
-
 
 const WelcomeStage = ({
   mailid,
   changeStage,
   isInventories
 }) => {
+  const animationRef = useRef(null)
+  useEffect(() => {
+    animationRef.current?.play();
+  }, [animationRef.current]);
 
   return (
     <ScrollView>
@@ -59,8 +62,10 @@ const WelcomeStage = ({
           </View>
           <View style={styles.view2}>
             <LottieView
-              imagesource={require('../../../assets/img/animation_3.json')}
+              imagesource={animation_3}
               size={250}
+              ref={animationRef}
+              loop={false}
             />
           </View>
           <View style={styles.btnview}>
@@ -81,7 +86,7 @@ const WelcomeStage = ({
             bg
             viewStyle={styles.txtbtn}
             leftImg={
-              <Image source={require('../../../assets/img/first-inventory.png')} style={{width: 40, height: 40}} />
+              <Image source={first_inventory} style={{width: 40, height: 40}} />
             }
             rightIcon={
               <MaterialCommunityIcons name="chevron-right" size={24} />

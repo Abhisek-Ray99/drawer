@@ -9,6 +9,7 @@ export const colors = {
     profileblue: '#486BD5',
     royalblue100: '#3368F8',
     royalblue200: '#3A81DE',
+    royalblue300: '#613FBA',
     darkviolet100: '#644E8E',
     blue100: '#D0BFFF',
     white: 'white',
@@ -70,5 +71,6 @@ export const colors = {
     bondiblue: '#5BADC5',
     green300: '#63AAAE',
     yellow100: '#E8C95C',
+    yellow200: '#ECFF8D',
     powderblue100: '#6EB0D4'
   };

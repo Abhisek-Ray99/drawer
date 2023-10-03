@@ -21,6 +21,7 @@ const SliderForm = ({
             placeholder={placeholder}
             InputViewStyle={styles.inputstyle}
             onChangeText={value => setName(value)}
+            cursorColor={colors.black}
         />
         <ImgBtn Title="Next" 
           disabled={!name.length? true:false} 

@@ -1,12 +1,16 @@
-import { View } from 'react-native'
+import { View, StatusBar } from 'react-native'
 import React, { memo } from 'react'
-import CustomHeader from '../../components/view/CustomHeader'
+
 import {styles} from './purchase.styles'
+import StickyHeader from '../../components/view/StickyHeader'
 
 const Purchase = () => {
   return (
     <View style={styles.customercontainer}>
-      <CustomHeader/>
+      <StatusBar barStyle='light-content' translucent />
+      <StickyHeader headerTitle="Sales" bgColor="#4F709C" >
+        
+      </StickyHeader>
     </View>
   )
 }

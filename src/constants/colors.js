@@ -72,5 +72,9 @@ export const colors = {
     green300: '#63AAAE',
     yellow100: '#E8C95C',
     yellow200: '#ECFF8D',
-    powderblue100: '#6EB0D4'
+    powderblue100: '#6EB0D4',
+    customer: '#B1B3B3FF',
+    vendor: '#609966',
+    purchase: '#4F709C',
+    sale: '#4B878BFF'
   };

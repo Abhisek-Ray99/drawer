@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View, Animated } from 'react-native'
 import React, {memo} from 'react'
 
 import { windowWidth } from '../../utils/Dimension'
@@ -7,25 +7,31 @@ import { colors } from '../../constants/colors'
 import navigation from '../../navigation/navigation'
 
 const CustomHeader = ({
-    
+    headerTitle,
+    animateText,
+    animateIconleft,
+    animateIconright
 }) => {
   return (
-    <View style={styles.headerContainer}>
+    <Animated.View style={[styles.headerContainer]}>
       <Pressable
         onPress={() => {
             navigation.goBack();
         }} 
       >
-        <View style={styles.headerbtn}>
-            <MaterialCommunityIcons name="arrow-left-thin" size={24} color={colors.grey300} />
-        </View>
+        <Animated.View style={[styles.headerbtn, animateIconleft]}>
+            <MaterialCommunityIcons name="arrow-left-thin" size={24} color={colors.white} />
+        </Animated.View>
       </Pressable>  
+      <Animated.Text  style={animateText}>
+        {headerTitle}
+      </Animated.Text>
       <Pressable>
-        <View style={styles.headerbtn}>
-            <MaterialCommunityIcons name="plus" size={24} color={colors.grey300} />
-        </View>
+        <Animated.View style={[styles.headerbtn,animateIconright]}>
+            <MaterialCommunityIcons name="plus" size={24} color={colors.white} />
+        </Animated.View>
       </Pressable>
-    </View>
+    </Animated.View>
   )
 }
 
@@ -33,20 +39,16 @@ export default memo(CustomHeader)
 
 const styles = StyleSheet.create({
     headerContainer:{
-        width: windowWidth,
-        height: 60,
+        height: 65,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingHorizontal: 12
     },
     headerbtn:{
         width: 40,
         height: 40,
-        borderWidth: 1,
         borderRadius: 10,
-        borderColor: colors.grey700,
-        backgroundColor: colors.white,
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
         alignItems: 'center',
         justifyContent: 'center'
     }

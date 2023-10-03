@@ -72,11 +72,16 @@ const Login = ({navigation}) => {
           <AppText style={styles.ownerLoginTitle2}>To keep connected with us please login with your info</AppText>
         </View>
         <View style={styles.loginfields}>
-          <InputField placeholder={"Email"}  onChangeText={value => setMail(value)} />
+          <InputField 
+            placeholder={"Email"}  
+            onChangeText={value => setMail(value)} 
+            cursorColor={colors.black}
+          />
           <InputField 
             placeholder={"Password"} 
             secureTextEntry={show ? false : true} 
             onChangeText={value => setPwd(value)}
+            cursorColor={colors.black}
             InputRightElement={
               pwd && 
               (<Pressable onPress={() => setShow(!show)} style={styles.inputicon}>

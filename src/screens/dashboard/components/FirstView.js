@@ -140,14 +140,14 @@ const FirstView = () => {
                 !active ? 
                 <Animated.View>
                     <View style={styles.absoluteview1}>
-                        <PurSaleView bgColor={'#FFA177FF'} BtnTitle="View purchase" img={outline_mobile_bank} onPress={()=> navigation.navigate('purchases')} />
-                        <PurSaleView bgColor={'#97BC62FF'} BtnTitle="Vendors" img={simplistic_mobile_bank} onPress={()=> navigation.navigate('vendors')}  />
+                        <PurSaleView bgColor={colors.purchase} BtnTitle="View purchase" img={outline_mobile_bank} onPress={()=> navigation.navigate('purchases')} />
+                        <PurSaleView bgColor={colors.vendor} BtnTitle="Vendors" img={simplistic_mobile_bank} onPress={()=> navigation.navigate('vendors')}  />
                     </View>
                 </Animated.View>:
                 <Animated.View>
                     <View style={styles.absoluteview1}>
-                        <PurSaleView bgColor={'#4B878BFF'} BtnTitle="View Sale" img={outline_mobile_bank} onPress={()=> navigation.navigate('sales')} />
-                        <PurSaleView bgColor={'#B1B3B3FF'} BtnTitle="Customers" img={simplistic_mobile_bank} onPress={()=> navigation.navigate('customers')}  />
+                        <PurSaleView bgColor={colors.sale} BtnTitle="View Sale" img={outline_mobile_bank} onPress={()=> navigation.navigate('sales')} />
+                        <PurSaleView bgColor={colors.customer} BtnTitle="Customers" img={simplistic_mobile_bank} onPress={()=> navigation.navigate('customers')}  />
                     </View>
                 </Animated.View>
             }

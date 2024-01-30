@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "598950884388",
+    "project_id": "drawer-a5bcc",
+    "storage_bucket": "drawer-a5bcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:598950884388:android:76611ff8233692b77754b1",
+        "android_client_info": {
+          "package_name": "com.demoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "598950884388-juho7015gfqmalsn2vilom6v9semq19l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.demoapp",
+            "certificate_hash": "314eab787bbcf8d7a07d3b22716c5d990aeae048"
+          }
+        },
+        {
+          "client_id": "598950884388-nmavr5ab3dh14k7a4opvaq0q6378ll15.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD__DgzKCu-zJRjuylOXurMVS4YeAC7pD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "598950884388-nmavr5ab3dh14k7a4opvaq0q6378ll15.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
